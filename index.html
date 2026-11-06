@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Где купить дешевле: Apple Watch и Dyson</title>
-<meta name="description" content="Apple Watch и Dyson в Канаде: лучшая цена с налогами провинции и кэшбэком, сравнение магазинов, гарантии, прогноз Black Friday.">
+<meta name="description" content="Apple Watch и Dyson в Канаде: лучшая цена с налогами и кэшбэком, сравнение моделей и функций, давление, прогноз Black Friday.">
 <meta property="og:title" content="Где купить дешевле: Apple Watch и Dyson">
-<meta property="og:description" content="Выберите модель, и страница покажет самый дешёвый надёжный магазин и итог с налогами.">
+<meta property="og:description" content="Лучшие цены сверху, сравнение моделей, функция давления, итог с налогами провинции.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#14233A">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,24 +14,27 @@
 <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  /* Plan: one family, 4px spacing grid, quiet neutral surfaces; yellow is reserved for the
-     single best option; inputs sit left of the comparison table; the table stacks on phones. */
+  /* Plan: one family, three type steps (12 / 14 / 20), 4px grid. Yellow = best price only.
+     Green = health feature that matters (blood pressure). Most important info sits on top. */
   --bg:#F3F5F8; --surface:#FFFFFF; --soft:#F6F8FA; --ink:#14233A; --muted:#5E6B7B; --line:#E2E7ED;
   --tag:#FFC21A; --tag-ink:#3A2C00; --tag-bg:#FFF7DB;
-  --save:#0B7A4B; --save-bg:#E5F4EC; --risk:#B3382A; --risk-bg:#FCEDEA; --cond:#8A5600; --cond-bg:#FFF1D9;
+  --save:#0B7A4B; --save-bg:#E5F4EC; --save-line:#9ED8B9;
+  --risk:#B3382A; --risk-bg:#FCEDEA; --cond:#8A5600; --cond-bg:#FFF1D9;
   --font:"Golos Text", "Segoe UI", system-ui, -apple-system, sans-serif;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#0D141D; --surface:#151E2A; --soft:#1A2432; --ink:#E6EDF5; --muted:#98A6B7; --line:#26344A;
-    --tag:#FFC21A; --tag-ink:#2E2300; --tag-bg:#2E2710; --save:#45C98F; --save-bg:#11301F;
+    --tag:#FFC21A; --tag-ink:#2E2300; --tag-bg:rgba(255,194,26,.09);
+    --save:#45C98F; --save-bg:rgba(69,201,143,.12); --save-line:#2C6B4C;
     --risk:#FF8068; --risk-bg:#3A1A16; --cond:#F1B451; --cond-bg:#33260E; color-scheme: dark;
   }
 }
 :root[data-theme="dark"]{
   --bg:#0D141D; --surface:#151E2A; --soft:#1A2432; --ink:#E6EDF5; --muted:#98A6B7; --line:#26344A;
-  --tag:#FFC21A; --tag-ink:#2E2300; --tag-bg:#2E2710; --save:#45C98F; --save-bg:#11301F;
+  --tag:#FFC21A; --tag-ink:#2E2300; --tag-bg:rgba(255,194,26,.09);
+  --save:#45C98F; --save-bg:rgba(69,201,143,.12); --save-line:#2C6B4C;
   --risk:#FF8068; --risk-bg:#3A1A16; --cond:#F1B451; --cond-bg:#33260E; color-scheme: dark;
 }
 *{box-sizing:border-box}
@@ -43,29 +46,31 @@ p{margin:0}
 .wrap{max-width:1080px; margin:0 auto; padding:20px 16px 48px; display:flex; flex-direction:column; gap:14px}
 .muted{color:var(--muted)}
 .n{font-variant-numeric:tabular-nums; white-space:nowrap}
+.s12{font-size:12px}
 
 /* Buttons */
-.btn{display:inline-block; text-align:center; text-decoration:none; white-space:nowrap; padding:7px 12px; border-radius:8px; font:600 13px/1.2 var(--font);
+.btn{display:inline-block; text-align:center; text-decoration:none; white-space:nowrap; padding:6px 12px; border-radius:8px; font:600 14px/1.25 var(--font);
   background:var(--ink); color:var(--surface); border:1px solid var(--ink); cursor:pointer}
 .btn:hover{filter:brightness(1.15)}
 .btn.ghost{background:transparent; color:var(--ink); border-color:var(--line)}
 .btn.ghost:hover{border-color:var(--ink); filter:none}
 .btn.wa{background:#1E8E52; border-color:#1E8E52; color:#fff}
+.btn.hot{background:var(--tag); border-color:var(--tag); color:var(--tag-ink)}
 .act{display:flex; flex-direction:column; align-items:stretch; gap:2px}
-.act small{font-size:11px; color:var(--muted); text-align:center}
+.act small{font-size:12px; color:var(--muted); text-align:center}
 .stack{display:flex; flex-direction:column; gap:6px}
 
 /* Header */
 .top{display:flex; justify-content:space-between; align-items:flex-start; gap:16px}
-.top h1{font-size:22px; line-height:1.2; font-weight:700; letter-spacing:-.01em}
-.top p{margin-top:4px; font-size:13px; color:var(--muted); max-width:60ch}
+.top h1{font-size:20px; line-height:1.2; font-weight:700; letter-spacing:-.01em}
+.top p{margin-top:4px; font-size:12px; color:var(--muted); max-width:62ch}
 .top .stack{min-width:170px}
 
 /* Conditions */
 .cond{display:flex; flex-wrap:wrap; align-items:center; gap:8px 18px; background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:10px 14px}
-.cond .prov{display:flex; align-items:center; gap:8px; font-weight:600; font-size:13px}
-select{font:500 13px var(--font); color:var(--ink); background:var(--soft); border:1px solid var(--line); border-radius:8px; padding:6px 8px; height:32px}
-.sw{display:inline-flex; align-items:center; gap:8px; font-size:13px; cursor:pointer; user-select:none}
+.cond .prov{display:flex; align-items:center; gap:8px; font-weight:600; font-size:14px}
+select{font:500 14px var(--font); color:var(--ink); background:var(--soft); border:1px solid var(--line); border-radius:8px; padding:6px 8px; height:32px}
+.sw{display:inline-flex; align-items:center; gap:8px; font-size:14px; cursor:pointer; user-select:none}
 .sw input{position:absolute; opacity:0; width:1px; height:1px}
 .sw .tr{width:30px; height:18px; border-radius:999px; background:var(--line); position:relative; flex:none; transition:background .15s}
 .sw .tr::after{content:""; position:absolute; top:2px; left:2px; width:14px; height:14px; border-radius:50%; background:#fff; box-shadow:0 1px 2px rgba(0,0,0,.25); transition:transform .15s}
@@ -73,68 +78,125 @@ select{font:500 13px var(--font); color:var(--ink); background:var(--soft); bord
 .sw input:checked + .tr::after{transform:translateX(12px)}
 .sw input:focus-visible + .tr{outline:2px solid var(--ink); outline-offset:2px}
 
-/* Tooltip trigger */
-.tip{display:inline-grid; place-items:center; width:16px; height:16px; border-radius:50%; border:1px solid var(--line); background:var(--soft); color:var(--muted); font:700 10px/1 var(--font); cursor:help; padding:0; flex:none}
+/* Tooltip */
+.tip{display:inline-grid; place-items:center; width:16px; height:16px; border-radius:50%; border:1px solid var(--line); background:var(--soft); color:var(--muted); font:700 10px/1 var(--font); cursor:help; padding:0; flex:none; vertical-align:middle}
 #tt{position:fixed; z-index:99; max-width:300px; background:var(--ink); color:var(--surface); font-size:12px; line-height:1.45; padding:8px 10px; border-radius:8px; pointer-events:none; opacity:0; transition:opacity .12s; white-space:pre-line}
 #tt.on{opacity:1}
 
-/* Best cards */
-.best-row{display:grid; grid-template-columns:1fr 1fr; gap:12px}
-.bcard{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--tag); border-radius:12px; padding:12px 14px; display:grid; grid-template-columns:1fr auto; gap:6px 14px; align-items:center}
-.bcard .what{display:flex; flex-wrap:wrap; align-items:center; gap:6px; font-weight:600; font-size:14px}
-.bcard .what span.c{font-weight:400; color:var(--muted); font-size:13px}
-.bcard .where{font-size:12.5px; color:var(--muted)}
-.bcard .calc{font-size:12px; color:var(--muted); margin-top:2px}
-.bcard .sum{text-align:right}
-.bcard .sum b{display:block; font-size:24px; line-height:1.1; font-weight:700}
-.bcard .sum .save{font-size:12px; font-weight:600; color:var(--save)}
-.bcard .go{grid-column:2; grid-row:2 / span 2; align-self:end}
-
 /* Pills */
-.pill{display:inline-block; font:600 11px/1 var(--font); padding:4px 7px; border-radius:999px; vertical-align:middle; white-space:nowrap}
+.pill{display:inline-block; font:600 12px/1 var(--font); padding:3px 7px; border-radius:999px; vertical-align:middle; white-space:nowrap}
 .pill.best{background:var(--tag); color:var(--tag-ink)}
 .pill.risk{background:var(--risk-bg); color:var(--risk)}
 .pill.cond{background:var(--cond-bg); color:var(--cond)}
 .pill.off{background:var(--soft); color:var(--muted); border:1px solid var(--line)}
+.pill.ok{background:var(--save-bg); color:var(--save)}
+
+/* Best cards */
+.best-row{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+.bcard{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--tag); border-radius:12px; padding:12px 14px; display:grid; grid-template-columns:1fr auto; gap:6px 12px; align-content:start}
+.bcard.alt{border-left-color:var(--save)}
+.bcard .k{grid-column:1 / -1; display:flex; flex-wrap:wrap; align-items:center; gap:6px; font-size:12px; color:var(--muted)}
+.bcard .what{font-weight:700; font-size:14px}
+.bcard .what span{font-weight:400; color:var(--muted); font-size:12px}
+.bcard .where{font-size:12px; color:var(--muted)}
+.bcard .sum{text-align:right}
+.bcard .sum b{display:block; font-size:20px; line-height:1.1; font-weight:700}
+.bcard .sum .save{font-size:12px; font-weight:600; color:var(--save)}
+.bcard .calc{grid-column:1 / -1; font-size:12px; color:var(--muted)}
+.bcard .go{grid-column:1 / -1}
+.bcard .go .stack{flex-direction:row}
+.bcard .go .act{flex:1}
+
+/* Blood pressure highlight */
+.bp{background:var(--save-bg); border:1px solid var(--save-line); border-radius:12px; padding:14px 16px; display:grid; grid-template-columns:1.1fr 1fr; gap:14px 24px}
+.bp h2{font-size:20px; font-weight:700; color:var(--save); grid-column:1 / -1; display:flex; align-items:center; gap:8px}
+.bp .lead{font-size:14px}
+.bp ul{margin:8px 0 0; padding-left:18px; display:grid; gap:4px; font-size:12px}
+.models-bp{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px}
+.meter{display:grid; gap:10px}
+.meter .row{display:grid; gap:4px}
+.meter .lab{display:flex; justify-content:space-between; gap:8px; font-size:12px}
+.meter .lab b{font-size:14px}
+.bar{height:10px; border-radius:999px; background:var(--surface); border:1px solid var(--save-line); overflow:hidden}
+.bar i{display:block; height:100%; background:var(--save); border-radius:999px}
+.bp .verdict{grid-column:1 / -1; font-size:14px; font-weight:600; background:var(--surface); border-radius:8px; padding:8px 12px}
 
 /* Panels */
 .panel{background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:14px 16px 16px}
 .ph{display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:4px 16px; margin-bottom:12px}
-.ph h2{font-size:17px; font-weight:700}
-.ph p{font-size:12.5px; color:var(--muted)}
-.chooser{display:grid; grid-template-columns:210px 1fr; gap:16px; align-items:start}
+.ph h2{font-size:20px; font-weight:700}
+.ph p{font-size:12px; color:var(--muted)}
+.sub-h{font-size:14px; font-weight:700; margin:16px 0 8px}
+
+/* Feature comparison */
+.cmpf{width:100%; border-collapse:separate; border-spacing:0; font-size:12px; min-width:720px}
+.cmpf th, .cmpf td{padding:7px 10px; border-bottom:1px solid var(--line); text-align:center; vertical-align:middle}
+.cmpf tbody th{text-align:left; font-weight:600; color:var(--muted); position:sticky; left:0; background:var(--surface); z-index:1; white-space:nowrap}
+.cmpf thead th{background:var(--soft); vertical-align:bottom; padding:8px 6px}
+.cmpf thead th:first-child{background:var(--soft); position:sticky; left:0; z-index:2}
+.cmpf .mbtn{display:flex; flex-direction:column; align-items:center; gap:4px; width:100%; border:1px solid transparent; background:transparent; border-radius:8px; padding:6px 4px; cursor:pointer; font:700 14px var(--font); color:var(--ink)}
+.cmpf .mbtn small{font-weight:400; font-size:12px; color:var(--muted)}
+.cmpf .mbtn:hover{border-color:var(--line)}
+.cmpf .mbtn.static{cursor:default}
+.cmpf .mbtn.static:hover{border-color:transparent}
+.cmpf td.sel, .cmpf th.sel{background:var(--soft)}
+.cmpf th.sel .mbtn{border-color:var(--ink)}
+.cmpf tr.bprow > *{background:var(--save-bg)}
+.cmpf tr.bprow th{color:var(--save); background:linear-gradient(var(--save-bg),var(--save-bg)) var(--surface)}
+.cmpf tr.price td b{font-size:14px}
+.y{color:var(--save); font-weight:700}
+.no{color:var(--risk); font-weight:700}
+.na{color:var(--muted)}
+.tw2{overflow-x:auto; border:1px solid var(--line); border-radius:10px}
+
+/* Size and box contents */
+.two{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+.card2{border:1px solid var(--line); border-radius:10px; padding:12px}
+.card2 h3{font-size:14px; font-weight:700; margin-bottom:8px}
+.sizes{display:flex; align-items:flex-end; justify-content:space-around; gap:8px; padding:6px 0 8px}
+.sizes figure{margin:0; display:flex; flex-direction:column; align-items:center; gap:4px; font-size:12px}
+.sizes figure b{font-size:14px}
+.sizes figure{flex:1; min-width:0}
+.sizes svg{width:100%; max-width:110px; height:auto}
+.mini{width:100%; border-collapse:collapse; font-size:12px}
+.mini th, .mini td{text-align:left; padding:6px 8px; border-top:1px solid var(--line); vertical-align:top}
+.mini thead th{border-top:none; color:var(--muted); font-weight:600}
+
+/* Chooser + store table */
+.chooser{display:grid; grid-template-columns:220px 1fr; gap:16px; align-items:start}
 .opts{display:flex; flex-direction:column; gap:12px}
 .lbl{display:flex; align-items:center; gap:6px; font-size:12px; font-weight:600; color:var(--muted); margin-bottom:6px}
 .list{display:grid; gap:4px}
 .opt{position:relative; display:block}
 .opt input{position:absolute; opacity:0; inset:0; margin:0}
-.opt span{display:flex; justify-content:space-between; align-items:baseline; gap:8px; padding:6px 10px; border:1px solid var(--line); border-radius:8px; background:var(--surface); cursor:pointer; font-weight:600; font-size:13px}
-.opt span small{font-weight:400; font-size:11.5px; color:var(--muted); white-space:nowrap}
+.opt span{display:block; padding:6px 10px; border:1px solid var(--line); border-radius:8px; background:var(--surface); cursor:pointer; font-weight:600; font-size:14px; line-height:1.3}
+.opt span small{display:block; font-weight:400; font-size:12px; color:var(--muted)}
 .opt input:checked + span{border-color:var(--ink); background:var(--soft); box-shadow:inset 0 0 0 1px var(--ink)}
 .opt input:focus-visible + span{outline:2px solid var(--ink); outline-offset:2px}
 .seg{display:grid; grid-auto-flow:column; grid-auto-columns:1fr; border:1px solid var(--line); border-radius:8px; overflow:hidden; background:var(--surface)}
 .seg label{position:relative}
 .seg input{position:absolute; opacity:0; inset:0; margin:0}
-.seg span{display:block; text-align:center; padding:6px 4px; font-size:13px; font-weight:600; cursor:pointer; border-left:1px solid var(--line)}
+.seg span{display:block; text-align:center; padding:6px 4px; font-size:14px; font-weight:600; cursor:pointer; border-left:1px solid var(--line)}
 .seg label:first-child span{border-left:none}
 .seg input:checked + span{background:var(--ink); color:var(--surface)}
 .seg input:focus-visible + span{outline:2px solid var(--ink); outline-offset:-3px}
 
-/* Comparison table (stacks on narrow containers) */
 .tw{container-type:inline-size; border:1px solid var(--line); border-radius:10px; overflow:auto}
-.cmp{width:100%; border-collapse:separate; border-spacing:0; font-size:13px}
+.cmp{width:100%; border-collapse:separate; border-spacing:0; font-size:14px}
 .cmp caption{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0)}
-.cmp thead th{background:var(--soft); color:var(--muted); font-weight:600; font-size:11.5px; text-align:right; padding:8px 10px; border-bottom:1px solid var(--line); white-space:nowrap}
+.cmp thead th{background:var(--soft); color:var(--muted); font-weight:600; font-size:12px; text-align:right; padding:8px 10px; border-bottom:1px solid var(--line); white-space:nowrap}
 .cmp thead th:first-child{text-align:left}
 .cmp td, .cmp tbody th{padding:9px 10px; border-bottom:1px solid var(--line); vertical-align:middle}
 .cmp tbody tr:last-child > *{border-bottom:none}
 .cmp tbody th{text-align:left; font-weight:400}
-.cmp .sn{font-weight:600; font-size:13.5px}
-.cmp .sub{display:block; font-size:11.5px; color:var(--muted); margin-top:2px}
+.cmp .sn{font-weight:600; font-size:14px}
+.cmp .sub{display:block; font-size:12px; color:var(--muted); margin-top:2px}
+.cmp tbody th .tip{margin-left:4px}
 .cmp td.num{text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap}
-.cmp td.num small{display:block; font-size:11px; color:var(--muted)}
+.cmp td.num small{display:block; font-size:12px; color:var(--muted)}
+.cmp td.price, .cmp td.tax{color:var(--muted)}
 .cmp td.back{color:var(--save)}
-.cmp td.total b{font-size:15px}
+.cmp td.total b{font-size:14px; font-weight:700}
 .cmp td.total small.g{color:var(--save); font-weight:600}
 .cmp td.total small.r{color:var(--risk); font-weight:600}
 .cmp td.go{text-align:right; width:1%}
@@ -143,7 +205,6 @@ select{font:500 13px var(--font); color:var(--ink); background:var(--soft); bord
 .cmp tr.best > th{box-shadow:inset 3px 0 0 var(--tag)}
 .cmp tr.risk .sn, .cmp tr.risk td{color:var(--muted)}
 .cmp tr.off{opacity:.6}
-
 @container (width < 600px){
   .cmp, .cmp tbody, .cmp tr, .cmp th, .cmp td{display:block}
   .cmp thead{display:none}
@@ -161,20 +222,18 @@ select{font:500 13px var(--font); color:var(--ink); background:var(--soft); bord
   .cmp td.go .act{flex:1}
   .cmp td.go .btn{width:100%}
 }
-
-/* Under-table info */
 .after{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px}
 .box{background:var(--soft); border-radius:10px; padding:10px 12px}
-.box h3{font-size:12.5px; font-weight:700; margin-bottom:6px}
-.box ol{margin:0; padding-left:18px; display:grid; gap:4px; font-size:12.5px}
-.box p{font-size:12.5px}
+.box h3{font-size:14px; font-weight:700; margin-bottom:6px}
+.box ol{margin:0; padding-left:18px; display:grid; gap:4px; font-size:12px}
+.box p{font-size:12px}
 .badge{display:inline-block; margin-top:6px; font-size:12px; font-weight:600; padding:3px 8px; border-radius:6px}
 .badge.g{background:var(--save-bg); color:var(--save)} .badge.c{background:var(--cond-bg); color:var(--cond)}
 
 /* Simple tables + disclosure */
-.tbl{width:100%; border-collapse:collapse; font-size:12.5px}
+.tbl{width:100%; border-collapse:collapse; font-size:12px}
 .tbl th, .tbl td{text-align:left; padding:8px 10px; border-top:1px solid var(--line); vertical-align:top}
-.tbl thead th{border-top:none; background:var(--soft); color:var(--muted); font-weight:600; font-size:11.5px}
+.tbl thead th{border-top:none; background:var(--soft); color:var(--muted); font-weight:600; font-size:12px}
 .tbl td:first-child{font-weight:600}
 .tbl tr.hl td{background:var(--tag-bg)}
 .scroll{overflow-x:auto; border:1px solid var(--line); border-radius:10px}
@@ -185,25 +244,27 @@ details.more > summary::-webkit-details-marker{display:none}
 details.more > summary::after{content:""; width:8px; height:8px; border-right:2px solid var(--muted); border-bottom:2px solid var(--muted); transform:rotate(45deg); transition:transform .15s; margin-right:4px}
 details.more[open] > summary::after{transform:rotate(-135deg)}
 details.more .in{padding:0 16px 14px}
-.rej{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:6px 16px; font-size:12.5px}
-.rej b{font-weight:600}
-.src{margin:0; padding-left:18px; columns:2 280px; column-gap:24px; font-size:12.5px}
+.rej{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:6px 16px; font-size:12px}
+.src{margin:0; padding-left:18px; columns:2 280px; column-gap:24px; font-size:12px}
 .src li{margin-bottom:4px; break-inside:avoid}
 .src a{color:var(--ink)}
 footer{font-size:12px; color:var(--muted)}
-.toast{position:fixed; left:50%; bottom:20px; transform:translateX(-50%); background:var(--ink); color:var(--surface); padding:8px 14px; border-radius:999px; font-size:13px; opacity:0; transition:opacity .2s; pointer-events:none}
+.toast{position:fixed; left:50%; bottom:20px; transform:translateX(-50%); background:var(--ink); color:var(--surface); padding:8px 14px; border-radius:999px; font-size:14px; opacity:0; transition:opacity .2s; pointer-events:none}
 .toast.on{opacity:1}
+svg .w-body{fill:var(--soft); stroke:var(--ink); stroke-width:1.5}
+svg .w-band{fill:var(--line)}
+svg .w-screen{fill:var(--ink)}
+svg .v-line{fill:none; stroke:var(--ink); stroke-width:2; stroke-linecap:round}
+svg .v-fill{fill:var(--soft); stroke:var(--ink); stroke-width:1.5}
+svg .v-acc{fill:var(--save)}
 @media (prefers-reduced-motion: reduce){*{transition:none !important}}
-
+@media (max-width:900px){ .best-row{grid-template-columns:1fr 1fr} }
 @media (max-width:820px){
   .chooser{grid-template-columns:1fr}
   .opts .list.models{grid-template-columns:1fr 1fr}
-  .after{grid-template-columns:1fr}
+  .after, .two, .bp{grid-template-columns:1fr}
 }
-@media (max-width:640px){
-  .best-row{grid-template-columns:1fr}
-  .rej{grid-template-columns:1fr}
-}
+@media (max-width:640px){ .best-row{grid-template-columns:1fr} .rej{grid-template-columns:1fr} }
 @media (max-width:520px){
   .top{flex-direction:column}
   .top .stack{flex-direction:row; width:100%; min-width:0}
@@ -219,7 +280,7 @@ footer{font-size:12px; color:var(--muted)}
 <header class="top">
   <div>
     <h1>Где купить дешевле: Apple Watch и Dyson</h1>
-    <p>Выберите модель, и таблица покажет самый дешёвый надёжный магазин. Итог уже с налогами провинции и кэшбэком. Цены от <span id="checked"></span>.</p>
+    <p>Сверху лучшие варианты. Ниже сравнение моделей и магазинов: итог уже с налогами провинции и кэшбэком. Цены от <span id="checked"></span>.</p>
   </div>
   <div class="stack">
     <div class="act"><a class="btn wa" id="waBtn" href="#" target="_blank" rel="noopener">Отправить в WhatsApp</a><small>ссылка на страницу</small></div>
@@ -234,17 +295,70 @@ footer{font-size:12px; color:var(--muted)}
   <label class="sw"><input type="checkbox" id="rak" checked><span class="tr"></span>Через Rakuten <button class="tip" type="button" data-tip="Кэшбэк Rakuten.ca на Dyson.ca сейчас 18% (обычно 2.5%). Приходит позже, раз в квартал.">?</button></label>
 </section>
 
-<section class="best-row" aria-label="Лучшие цены сейчас">
+<section class="best-row" aria-label="Лучшие варианты сейчас">
   <article class="bcard" id="bWatch"></article>
+  <article class="bcard alt" id="bAlt"></article>
   <article class="bcard" id="bDyson"></article>
 </section>
 
+<section class="bp" aria-labelledby="bpTitle">
+  <h2 id="bpTitle">♥ Давление: что реально умеют Apple Watch</h2>
+  <div>
+    <p class="lead">Часы <b>не показывают цифры давления</b> (как 120/80). Они 30 дней анализируют пульс и присылают уведомление «возможная гипертензия», если видят признаки.</p>
+    <div class="models-bp"><span class="pill ok">✓ Series 12</span><span class="pill ok">✓ Series 11</span><span class="pill ok">✓ Series 10 и 9</span><span class="pill ok">✓ Ultra 4</span><span class="pill risk">✕ SE 3</span></div>
+    <ul>
+      <li>В Канаде работает с октября 2025, на Series 12 и Ultra 4 включили в октябре 2026.</li>
+      <li>Не предназначено: младше 22 лет, если гипертензия уже диагностирована, при беременности.</li>
+      <li>Точные цифры даёт только тонометр с манжетой. Замеры можно вносить в «Здоровье» на iPhone.</li>
+    </ul>
+  </div>
+  <div class="meter">
+    <div class="row"><div class="lab"><span>Из 100 человек с повышенным давлением предупредят</span><b>≈ 41 <button class="tip" type="button" data-tip="Клиническая проверка Apple: чувствительность 41%. При лёгкой гипертензии (стадия 1) около 30%, при выраженной (стадия 2) около 54%. Если уведомление пришло, примерно в 7 случаях из 10 давление действительно повышено.">?</button></b></div><div class="bar"><i style="width:41%"></i></div></div>
+    <div class="row"><div class="lab"><span>Из 100 человек с нормальным давлением не потревожат</span><b>≈ 92</b></div><div class="bar"><i style="width:92%"></i></div></div>
+    <p class="s12 muted">Если уведомление пришло, это повод проверить давление тонометром. Если не пришло, это ещё не гарантия нормы.</p>
+  </div>
+  <p class="verdict">Для давления Series 12 не лучше Series 11: функция одинаковая. Если нужна именно она, Series 11 дешевле на $50–100 в зависимости от размера.</p>
+</section>
+
 <section class="panel" id="watch">
-  <div class="ph"><h2>Apple Watch</h2><p>Последние модели: Series 12 и Ultra 4 (сентябрь 2026)</p></div>
+  <div class="ph"><h2>Apple Watch: сравнение моделей</h2><p>Нажмите на модель, чтобы выбрать её ниже</p></div>
+  <div class="tw2"><table class="cmpf" id="wCompare"></table></div>
+
+  <div class="two" style="margin-top:12px">
+    <div class="card2">
+      <h3>42 мм или 46 мм</h3>
+      <div class="sizes" aria-hidden="true" id="sizeArt"></div>
+      <table class="mini">
+        <thead><tr><th></th><th>42 мм</th><th>46 мм</th></tr></thead>
+        <tbody>
+          <tr><td>Кому</td><td>тонкое запястье, легче</td><td>крупнее экран и текст</td></tr>
+          <tr><td>Батарея Series 12</td><td>323 мА·ч</td><td>363 мА·ч</td></tr>
+          <tr><td>Время работы</td><td colspan="2">до 24 ч у обоих</td></tr>
+          <tr><td>Разница в цене</td><td colspan="2" id="sizeDiff"></td></tr>
+          <tr><td>Функции</td><td colspan="2">одинаковые, давление тоже</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card2">
+      <h3>Что входит и что докупается</h3>
+      <table class="mini">
+        <thead><tr><th></th><th>В коробке</th><th>Отдельно</th></tr></thead>
+        <tbody>
+          <tr><td>Ремешок</td><td>1, размер выбирается при заказе</td><td>другие ремешки</td></tr>
+          <tr><td>Зарядка</td><td>магнитный кабель USB-C</td><td>блок питания</td></tr>
+          <tr><td>AppleCare+</td><td>нет</td><td>можно добавить в течение 60 дней</td></tr>
+          <tr><td>Сотовая связь</td><td>только в версии GPS + сотовая</td><td>нужен тариф оператора</td></tr>
+          <tr><td>iPhone</td><td colspan="2">нужен iPhone с последней версией iOS</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h3 class="sub-h">Где купить выбранную модель</h3>
   <div class="chooser">
     <form class="opts" id="wOpts" onsubmit="return false">
       <div><div class="lbl">Модель</div><div class="list models" id="wModel"></div></div>
-      <div><div class="lbl">Размер <button class="tip" type="button" data-tip="Ремешок S/M на запястье 130–180 мм, M/L на 150–200 мм.">?</button></div><div class="seg" id="wSize"></div></div>
+      <div><div class="lbl">Размер <button class="tip" type="button" data-tip="Ремешок S/M примерно на запястье 130–190 мм, M/L на 150–210 мм.">?</button></div><div class="seg" id="wSize"></div></div>
       <div><div class="lbl">Связь <button class="tip" type="button" data-tip="GPS работает в паре с iPhone. С сотовой связью часы звонят без телефона, нужен тариф оператора.">?</button></div><div class="seg" id="wConn"></div></div>
     </form>
     <div>
@@ -260,7 +374,23 @@ footer{font-size:12px; color:var(--muted)}
 </section>
 
 <section class="panel" id="dyson">
-  <div class="ph"><h2>Пылесос Dyson</h2><p>Флагман: V16 Piston Animal. Нового флагмана в 2026 году не вышло</p></div>
+  <div class="ph"><h2>Пылесос Dyson: сравнение моделей</h2><p>Нажмите на модель, чтобы выбрать её ниже</p></div>
+  <div class="tw2"><table class="cmpf" id="dCompare"></table></div>
+  <div class="card2" style="margin-top:12px">
+    <h3>Что входит и что докупается</h3>
+    <table class="mini">
+      <thead><tr><th></th><th>Как устроено</th><th>Цена</th></tr></thead>
+      <tbody>
+        <tr><td>Насадки V16</td><td>на Dyson.ca две насадки, в Best Buy одна (другая модель)</td><td>цена одинаковая</td></tr>
+        <tr><td>Станция автоочистки</td><td>комплект V16 + Auto-Empty Dok</td><td>+$200 к V16</td></tr>
+        <tr><td>Влажная уборка</td><td>только в V16 Submarine</td><td>+$200 к V16</td></tr>
+        <tr><td>Аккумулятор</td><td>съёмный, запасной продаётся отдельно</td><td>на Dyson.ca</td></tr>
+        <tr><td>Гарантия</td><td>новый 2 года, восстановленный 1 год</td><td>входит в цену</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub-h">Где купить выбранную модель</h3>
   <div class="chooser">
     <form class="opts" id="dOpts" onsubmit="return false">
       <div><div class="lbl">Модель</div><div class="list models" id="dModel"></div></div>
@@ -293,7 +423,7 @@ footer{font-size:12px; color:var(--muted)}
 
 <details class="more">
   <summary>Гарантии, возврат и рассрочка</summary>
-  <div class="in"><p class="muted" style="font-size:12.5px; margin-bottom:8px">Покупайте у самого магазина, не у стороннего продавца маркетплейса. Платите кредиткой: при проблеме деньги можно вернуть через банк.</p>
+  <div class="in"><p class="s12 muted" style="margin-bottom:8px">Покупайте у самого магазина, не у стороннего продавца маркетплейса. Платите кредиткой: при проблеме деньги можно вернуть через банк.</p>
   <div class="scroll"><table class="tbl">
     <thead><tr><th>Магазин</th><th>Возврат</th><th>Если цена упадёт</th><th>Гарантия</th><th>Оплата частями</th></tr></thead>
     <tbody>
@@ -322,6 +452,11 @@ footer{font-size:12px; color:var(--muted)}
   <summary>Источники</summary>
   <div class="in"><ul class="src">
     <li><a href="https://www.iphoneincanada.ca/2026/09/09/apple-watch-series-12-and-ultra-4-canadian-pricing-revealed-starting-at-549/" target="_blank" rel="noopener">Цены Series 12 и Ultra 4 в Канаде</a></li>
+    <li><a href="https://www.macrumors.com/guide/apple-watch-series-11-vs-12/" target="_blank" rel="noopener">Series 11 и Series 12: отличия</a></li>
+    <li><a href="https://www.stuff.tv/features/apple-watch-series-12-vs-series-11-whats-new-and-is-it-worth-upgrading/" target="_blank" rel="noopener">Series 12 и 11: общие функции</a></li>
+    <li><a href="https://www.pmda.go.jp/files/000279598.pdf" target="_blank" rel="noopener">Точность функции давления (41% / 92%)</a></li>
+    <li><a href="https://www.apple.com/ca/newsroom/2025/10/hypertension-notifications-available-today-on-apple-watch/" target="_blank" rel="noopener">Apple: уведомления о гипертензии в Канаде</a></li>
+    <li><a href="https://www.iphoneincanada.ca/2026/10/17/apple-watch-series-12-hypertension-canada/" target="_blank" rel="noopener">Давление на Series 12 в Канаде</a></li>
     <li><a href="https://www.apple.com/ca/shop/buy-watch/apple-watch" target="_blank" rel="noopener">Apple Canada: Apple Watch</a></li>
     <li><a href="https://www.costco.ca/p/-/apple-watch-series-12-gps/4201049502" target="_blank" rel="noopener">Costco.ca: Series 12 GPS</a></li>
     <li><a href="https://www.bestbuy.ca/en-ca/help/holiday-shopping-at-best-buy/making-sure-you-get-the-best-price" target="_blank" rel="noopener">Best Buy: гарантия низкой цены</a></li>
@@ -330,139 +465,136 @@ footer{font-size:12px; color:var(--muted)}
     <li><a href="https://www.rakuten.ca/dyson" target="_blank" rel="noopener">Rakuten.ca: Dyson</a></li>
     <li><a href="https://www.dysoncanada.ca/en/the-dyson-difference" target="_blank" rel="noopener">Dyson Canada: защита цены и возврат</a></li>
     <li><a href="https://dysoncanada.ca/en/offers/dyson-financing" target="_blank" rel="noopener">Dyson Canada: рассрочка Affirm</a></li>
-    <li><a href="https://www.cgmagonline.com/news/dyson-launches-purifier-v16-piston/" target="_blank" rel="noopener">Цены V16 в Канаде</a></li>
+    <li><a href="https://www.mumsnet.com/reviews/dyson-v16-piston-animal-cordless-vacuum-cleaner-review" target="_blank" rel="noopener">V16 и V15: вес, ёмкость, время</a></li>
+    <li><a href="https://www.technobezz.com/best/best-dyson-vacuums-0hl" target="_blank" rel="noopener">Характеристики пылесосов Dyson</a></li>
     <li><a href="https://www.clubic.com/bons-plans-636772-boulanger-avance-le-black-friday-le-dyson-v16-piston-animal-passe-a--23.html" target="_blank" rel="noopener">V16 со скидкой во Франции</a></li>
     <li><a href="https://www.iphoneincanada.ca/2025/11/28/apple-black-friday-canada-is-live-now-and-gift-cards-hit-350/" target="_blank" rel="noopener">Распродажа Apple 2025 в Канаде</a></li>
-    <li><a href="https://www.iphoneincanada.ca/2023/11/17/apple-gift-cards-black-friday-bonus/" target="_blank" rel="noopener">PC Optimum: бонус на карты Apple</a></li>
     <li><a href="https://www.taxtips.ca/salestaxes/sales-tax-rates-2026.htm" target="_blank" rel="noopener">Налоги по провинциям 2026</a></li>
     <li><a href="https://forums.redflagdeals.com/tags/apple%20watch/" target="_blank" rel="noopener">RedFlagDeals: Apple Watch</a></li>
-    <li><a href="https://forums.redflagdeals.com/tags/dyson/" target="_blank" rel="noopener">RedFlagDeals: Dyson</a></li>
   </ul></div>
 </details>
 
-<footer>Цены меняются, перед покупкой сверьте по ссылке магазина. Страница не связана ни с одним магазином.</footer>
+<footer>Цены меняются, перед покупкой сверьте по ссылке магазина. Рисунки схематичные, в масштабе по размеру корпуса. Фото моделей смотрите на сайтах Apple и Dyson по ссылкам в таблицах. Страница не связана ни с одним магазином.</footer>
 </div>
 <div id="tt" role="tooltip"></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 /* =====================================================================
-   DATA: всё, что меняется, редактируется здесь.
-   Цена без налога, CAD. URL — страница товара.
+   DATA: всё, что меняется, редактируется здесь. Цена без налога, CAD.
    ===================================================================== */
 const PUBLIC_URL = "https://incomesbook.github.io/deals/";
 const CHECKED = "6 ноября 2026";
-const RAKUTEN_DYSON = 18;     // % кэшбэка Rakuten на Dyson.ca
-const EXEC_PCT = 2;           // % Costco Executive
+const RAKUTEN_DYSON = 18;
+const EXEC_PCT = 2;
 
 const TAX = {
-  ON:{n:"Онтарио", p:[["HST",13]]},
-  BC:{n:"Британская Колумбия", p:[["GST",5],["PST",7]]},
-  AB:{n:"Альберта", p:[["GST",5]]},
-  QC:{n:"Квебек", p:[["GST",5],["QST",9.975]]},
-  MB:{n:"Манитоба", p:[["GST",5],["PST",7]]},
-  SK:{n:"Саскачеван", p:[["GST",5],["PST",6]]},
-  NS:{n:"Новая Шотландия", p:[["HST",14]]},
-  NB:{n:"Нью-Брансуик", p:[["HST",15]]},
-  NL:{n:"Ньюфаундленд и Лабрадор", p:[["HST",15]]},
-  PE:{n:"Остров Принца Эдуарда", p:[["HST",15]]},
-  YT:{n:"Юкон", p:[["GST",5]]},
-  NT:{n:"Северо-Западные территории", p:[["GST",5]]},
-  NU:{n:"Нунавут", p:[["GST",5]]}
+  ON:{n:"Онтарио", p:[["HST",13]]}, BC:{n:"Британская Колумбия", p:[["GST",5],["PST",7]]}, AB:{n:"Альберта", p:[["GST",5]]},
+  QC:{n:"Квебек", p:[["GST",5],["QST",9.975]]}, MB:{n:"Манитоба", p:[["GST",5],["PST",7]]}, SK:{n:"Саскачеван", p:[["GST",5],["PST",6]]},
+  NS:{n:"Новая Шотландия", p:[["HST",14]]}, NB:{n:"Нью-Брансуик", p:[["HST",15]]}, NL:{n:"Ньюфаундленд и Лабрадор", p:[["HST",15]]},
+  PE:{n:"Остров Принца Эдуарда", p:[["HST",15]]}, YT:{n:"Юкон", p:[["GST",5]]}, NT:{n:"Северо-Западные территории", p:[["GST",5]]}, NU:{n:"Нунавут", p:[["GST",5]]}
 };
 
 const U = {
-  costcoS12:"https://www.costco.ca/p/-/apple-watch-series-12-gps/4201049502",
-  costcoW:"https://www.costco.ca/s?keyword=apple%20watch",
-  costcoDyson:"https://www.costco.ca/s?keyword=dyson%20vacuum",
+  costcoS12:"https://www.costco.ca/p/-/apple-watch-series-12-gps/4201049502", costcoW:"https://www.costco.ca/s?keyword=apple%20watch", costcoDyson:"https://www.costco.ca/s?keyword=dyson%20vacuum",
   amz42:"https://www.amazon.ca/dp/B0HJB23HFR", amz46:"https://www.amazon.ca/dp/B0HJ9QCWM7", amzS11:"https://www.amazon.ca/dp/B0FQG8Y4V9",
-  bbS12:"https://www.bestbuy.ca/en-ca/collection/apple-watch-series-12/blt280565f8612df673",
-  bbS11:"https://www.bestbuy.ca/en-ca/search?search=apple%20watch%20series%2011",
+  bbS12:"https://www.bestbuy.ca/en-ca/collection/apple-watch-series-12/blt280565f8612df673", bbS11:"https://www.bestbuy.ca/en-ca/search?search=apple%20watch%20series%2011",
   walmart:"https://www.walmart.ca/en/search?q=apple%20watch%20series%2012",
-  apple:"https://www.apple.com/ca/shop/buy-watch/apple-watch",
-  appleUltra:"https://www.apple.com/ca/shop/buy-watch/apple-watch-ultra",
-  appleSE:"https://www.apple.com/ca/shop/buy-watch/apple-watch-se",
+  apple:"https://www.apple.com/ca/shop/buy-watch/apple-watch", appleUltra:"https://www.apple.com/ca/shop/buy-watch/apple-watch-ultra", appleSE:"https://www.apple.com/ca/shop/buy-watch/apple-watch-se",
   rakDyson:"https://www.rakuten.ca/dyson",
-  dysonV16:"https://www.dysoncanada.ca/en/vacuum-cleaners/cordless/v16-piston-animal/copper",
-  dysonCordless:"https://www.dysoncanada.ca/en/vacuum-cleaners/cordless",
-  dysonDeals:"https://www.dysoncanada.ca/en/deals/dyson-canada-sale",
-  dysonOutlet:"https://www.dysoncanada.ca/en/dyson-outlet",
-  bbV16:"https://www.bestbuy.ca/en-ca/product/-/19339632",
-  bbSub:"https://www.bestbuy.ca/en-ca/product/-/19339633",
-  bbSubOB:"https://www.bestbuy.ca/en-ca/product/-/19743372",
-  bbDok:"https://www.bestbuy.ca/en-ca/product/-/20167772",
-  bbV15:"https://www.bestbuy.ca/en-ca/product/-/17183862",
-  bbV15core:"https://www.bestbuy.ca/en-ca/product/-/20204384",
-  ctV16:"https://www.canadiantire.ca/en/pdp/dyson-v16-piston-animal-cordless-stick-vacuum-0437267p.html",
-  ctSub:"https://www.canadiantire.ca/en/pdp/dyson-v16-piston-submarine-cordless-stick-vacuum-0437268p.html"
+  dysonV16:"https://www.dysoncanada.ca/en/vacuum-cleaners/cordless/v16-piston-animal/copper", dysonCordless:"https://www.dysoncanada.ca/en/vacuum-cleaners/cordless",
+  dysonDeals:"https://www.dysoncanada.ca/en/deals/dyson-canada-sale", dysonOutlet:"https://www.dysoncanada.ca/en/dyson-outlet",
+  bbV16:"https://www.bestbuy.ca/en-ca/product/-/19339632", bbSub:"https://www.bestbuy.ca/en-ca/product/-/19339633", bbSubOB:"https://www.bestbuy.ca/en-ca/product/-/19743372",
+  bbDok:"https://www.bestbuy.ca/en-ca/product/-/20167772", bbV15:"https://www.bestbuy.ca/en-ca/product/-/17183862", bbV15core:"https://www.bestbuy.ca/en-ca/product/-/20204384",
+  ctV16:"https://www.canadiantire.ca/en/pdp/dyson-v16-piston-animal-cordless-stick-vacuum-0437267p.html", ctSub:"https://www.canadiantire.ca/en/pdp/dyson-v16-piston-submarine-cordless-stick-vacuum-0437268p.html"
 };
 
-/* Магазины: условия (коротко) и шаги покупки */
 const STORE = {
   costco:{n:"Costco.ca", dom:"costco.ca", member:true, exec:true, terms:"возврат 90 дней, корректировка цены 30 дней",
-    steps:["Откройте товар на Costco.ca, выберите размер, цвет и ремешок.","Оплатите кредиткой, лучше с дополнительной гарантией.","До 6 декабря следите за ценой. Снизилась — запросите корректировку в Customer Service.","Стало намного дешевле в другом магазине — верните в Costco (90 дней) и купите там."]},
+    steps:["Откройте Costco.ca и выберите размер, цвет и ремешок.","Оплатите кредиткой.","До 6 декабря следите за ценой: снизится — Costco вернёт разницу по запросу.","Стало намного дешевле в другом магазине — верните в течение 90 дней."]},
   costcoStore:{n:"Costco, склад", dom:"только в складе", member:true, exec:true, terms:"возврат 90 дней",
     steps:["Позвоните в ближайший Costco и спросите наличие.","Распродажа в одном складе не значит, что товар есть в других."]},
-  amazon:{n:"Amazon.ca", dom:"amazon.ca", terms:"возврат 30 дней",
-    steps:["Проверьте, что продавец Amazon.ca, а не сторонний.","Защиты цены нет, но 30 дней можно вернуть."]},
+  amazon:{n:"Amazon.ca", dom:"amazon.ca", terms:"возврат 30 дней", steps:["Проверьте, что продавец Amazon.ca, а не сторонний.","Защиты цены нет, но 30 дней можно вернуть."]},
   bestbuy:{n:"Best Buy", dom:"bestbuy.ca", terms:"сравняет цену с конкурентом, защита цены 30 дней",
     steps:["Откройте товар на Best Buy.","Дешевле на Amazon.ca или в Walmart — попросите сравнять цену в чате или на кассе.","30 дней: снизит цену — вернут разницу."]},
-  walmart:{n:"Walmart", dom:"walmart.ca", terms:"стандартный возврат",
-    steps:["Проверьте, что продавец Walmart, а не маркетплейс.","Оформите доставку или самовывоз."]},
+  walmart:{n:"Walmart", dom:"walmart.ca", terms:"стандартный возврат", steps:["Проверьте, что продавец Walmart, а не маркетплейс.","Оформите доставку или самовывоз."]},
   apple:{n:"Apple.ca", dom:"apple.com/ca", terms:"возврат 14 дней, гарантия 1 год",
     steps:["Оформите на Apple.ca или в Apple Square One.","Выгодно только с акциями: бонус PC Optimum на карты Apple и подарочная карта на Black Friday."]},
   dyson:{n:"Dyson.ca", dom:"dysoncanada.ca", terms:"возврат 30 дней, защита цены 30 дней, гарантия 2 года, Affirm 0%",
-    steps:["Войдите на Rakuten.ca, отключите блокировщик рекламы, очистите корзину Dyson.ca.","Нажмите «Через Rakuten», затем Shop, и в той же вкладке оформите заказ.","Оплатите через Affirm (6 платежей от 0%) или кредиткой.","Через 1–7 дней в Rakuten появится ожидаемый кэшбэк. Нет — подайте Missing Cash Back.","До 6 декабря: на Black Friday сильно дешевле — позвоните в Dyson 1-877-397-6622 или верните и купите заново."],
+    steps:["Войдите на Rakuten.ca, нажмите «Через Rakuten», затем Shop.","В той же вкладке оформите заказ на Dyson.ca: Affirm 0% или кредитка.","Через 1–7 дней проверьте кэшбэк в Rakuten.","До 6 декабря: станет сильно дешевле — верните бесплатно и купите заново."],
     stepsNoRak:["Оформите заказ на Dyson.ca.","Оплатите через Affirm (6 платежей от 0%) или кредиткой.","30 дней: та же модель дешевле у авторизованного продавца — Dyson вернёт разницу."]},
-  ct:{n:"Canadian Tire", dom:"canadiantire.ca", terms:"CT Money 0.4–4% с картой Triangle",
-    steps:["Оформите на canadiantire.ca с картой Triangle, чтобы получить CT Money.","CT Money тратится только в Canadian Tire."]},
-  outlet:{n:"Dyson Outlet", dom:"dysoncanada.ca", terms:"восстановлен Dyson, гарантия 1 год, без возврата",
-    steps:["Восстановлен Dyson, гарантия 1 год.","Возврат не принимают: проверьте комплектацию до оплаты."]},
-  bbOutlet:{n:"Dyson Outlet на Best Buy", dom:"bestbuy.ca", terms:"официальный магазин Dyson, гарантия 1 год",
-    steps:["Проверьте, что продавец Dyson Official Outlet.","Гарантия 1 год от Dyson."]},
-  mkt:{n:"Маркетплейс Best Buy", dom:"bestbuy.ca", risk:true, terms:"сторонний продавец",
-    steps:["Не рекомендую: гарантия и состояние на совести продавца."]}
+  ct:{n:"Canadian Tire", dom:"canadiantire.ca", terms:"CT Money 0.4–4% с картой Triangle", steps:["Оформите на canadiantire.ca с картой Triangle, чтобы получить CT Money.","CT Money тратится только в Canadian Tire."]},
+  outlet:{n:"Dyson Outlet", dom:"dysoncanada.ca", terms:"восстановлен Dyson, гарантия 1 год, без возврата", steps:["Восстановлен Dyson, гарантия 1 год.","Возврат не принимают: проверьте комплектацию до оплаты."]},
+  bbOutlet:{n:"Dyson Outlet на Best Buy", dom:"bestbuy.ca", terms:"официальный магазин Dyson, гарантия 1 год", steps:["Проверьте, что продавец Dyson Official Outlet.","Гарантия 1 год от Dyson."]},
+  mkt:{n:"Маркетплейс Best Buy", dom:"bestbuy.ca", risk:true, terms:"сторонний продавец", steps:["Не рекомендую: гарантия и состояние на совести продавца."]}
 };
 
-/* Каталог. o: [магазин, цена, url, {note, rak, cond}] */
 const WATCH = {
-  s12:{n:"Series 12", sub:"2026", bf:[50,100], cfg:{
+  s12:{n:"Series 12", sub:"2026, новая", def:"42|gps", bf:[50,100], cfg:{
     "42|gps":{msrp:549, o:[["costco",548.99,U.costcoS12],["amazon",548.99,U.amz42],["bestbuy",549.99,U.bbS12],["apple",549,U.apple],["mkt",464.99,U.bbS12,{note:"open box, продавец PRO OB"}]]},
     "46|gps":{msrp:619, o:[["costco",588.99,U.costcoS12],["amazon",589,U.amz46],["walmart",589,U.walmart],["apple",619,U.apple],["bestbuy",619.99,U.bbS12],["mkt",524.99,U.bbS12,{note:"open box, продавец PRO OB"}]]},
     "42|cell":{msrp:679, o:[["apple",679,U.apple],["bestbuy",679.99,U.bbS12]]},
     "46|cell":{msrp:749, o:[["apple",749,U.apple],["bestbuy",749.99,U.bbS12]]}
   }},
-  u4:{n:"Ultra 4", sub:"2026", cfg:{
+  s11:{n:"Series 11", sub:"2025, прошлая", def:"46|gps", cfg:{
+    "42|gps":{msrp:549, o:[["bestbuy",499.99,U.bbS11,{note:"цена до 13 ноября"}]]},
+    "46|gps":{msrp:589, o:[["amazon",489.97,U.amzS11],["bestbuy",549.99,U.bbS11,{note:"цена до 13 ноября"}]]}
+  }},
+  u4:{n:"Ultra 4", sub:"2026, спорт", def:"49|cell", cfg:{
     "49|cell":{msrp:1099, o:[["costco",1098.99,U.costcoW],["apple",1099,U.appleUltra]]}
   }},
-  se3:{n:"SE 3", sub:"2025, бюджетная", cfg:{
+  se3:{n:"SE 3", sub:"2025, бюджетная", def:"40|gps", cfg:{
     "40|gps":{msrp:329, o:[["costco",328.99,U.costcoW],["apple",329,U.appleSE]]},
     "44|gps":{msrp:369, o:[["costco",368.99,U.costcoW],["apple",369,U.appleSE]]},
     "40|cell":{msrp:399, o:[["apple",399,U.appleSE]]}
-  }},
-  s11:{n:"Series 11", sub:"2025, прошлая", cfg:{
-    "42|gps":{msrp:549, o:[["bestbuy",499.99,U.bbS11,{note:"цена до 13 ноября"}]]},
-    "46|gps":{msrp:589, o:[["amazon",489.97,U.amzS11],["bestbuy",549.99,U.bbS11,{note:"цена до 13 ноября"}]]}
   }}
 };
+/* Функции для таблицы сравнения: y = есть, n = нет, ? = нет данных, иначе текст */
+const WFEAT = {
+  order:["s12","s11","s10","u4","se3"],
+  head:{s12:["Series 12","2026"], s11:["Series 11","2025"], s10:["Series 10","2024"], u4:["Ultra 4","2026"], se3:["SE 3","2025"]},
+  rows:[
+    ["Уведомления о давлении", {s12:"y",s11:"y",s10:"y",u4:"y",se3:"n"}, "bp"],
+    ["ЭКГ", {s12:"y",s11:"y",s10:"y",u4:"y",se3:"n"}],
+    ["Кислород в крови", {s12:"y",s11:"y",s10:"y",u4:"y",se3:"n"}],
+    ["Температура запястья", {s12:"y",s11:"y",s10:"y",u4:"y",se3:"y"}],
+    ["Апноэ во сне, оценка сна", {s12:"y",s11:"y",s10:"y",u4:"y",se3:"y"}],
+    ["Пульс в фоне", {s12:"каждые 5 с",s11:"периодически",s10:"периодически",u4:"?",se3:"периодически"}],
+    ["Вариабельность пульса (HRV)", {s12:"в 24 раза чаще",s11:"обычно",s10:"обычно",u4:"?",se3:"?"}],
+    ["Оценка готовности (Readiness)", {s12:"y",s11:"n",s10:"n",u4:"?",se3:"n"}],
+    ["Падение и авария: вызов помощи", {s12:"y",s11:"y",s10:"y",u4:"y",se3:"y"}],
+    ["Процессор", {s12:"S11",s11:"S10",s10:"S10",u4:"?",se3:"S10"}],
+    ["Стекло", {s12:"Ceramic Shield 2, на 60% прочнее",s11:"Ion-X",s10:"Ion-X",u4:"сапфир",se3:"Ion-X"}],
+    ["Батарея", {s12:"до 24 ч",s11:"до 24 ч",s10:"до 18 ч",u4:"дольше всех",se3:"до 18 ч"}],
+    ["Размеры", {s12:"42 / 46 мм",s11:"42 / 46 мм",s10:"42 / 46 мм",u4:"49 мм",se3:"40 / 44 мм"}]
+  ]
+};
+
 const DYSON = {
   v16:{n:"V16 Piston Animal", sub:"флагман", msrp:1099.99, bf:[150,300], o:[
-    ["dyson",1099.99,U.dysonV16,{rak:true,note:"две насадки в комплекте"}],
-    ["bestbuy",1099.99,U.bbV16,{note:"одна насадка, модель 640975-01"}],
-    ["ct",1099.99,U.ctV16],
-    ["mkt",999.99,"",{note:"продавец Electro Emporium"}]]},
+    ["dyson",1099.99,U.dysonV16,{rak:true,note:"две насадки в комплекте"}],["bestbuy",1099.99,U.bbV16,{note:"одна насадка, модель 640975-01"}],
+    ["ct",1099.99,U.ctV16],["mkt",999.99,"",{note:"продавец Electro Emporium"}]]},
   v16s:{n:"V16 Submarine", sub:"+ мойка пола", msrp:1299.99, bf:[150,300], o:[
-    ["dyson",1299.99,U.dysonCordless,{rak:true}],["bestbuy",1299.99,U.bbSub],["ct",1299.99,U.ctSub],
-    ["mkt",1104.99,U.bbSubOB,{note:"open box, продавец PRO OB"}]]},
-  v16d:{n:"V16 + Auto-Empty Dok", sub:"автоочистка", msrp:1299.99, o:[
-    ["dyson",1299.99,U.dysonCordless,{rak:true}],["bestbuy",1299.99,U.bbDok,{note:"предзаказ"}]]},
-  v15:{n:"V15 Detect", sub:"прошлый флагман", msrp:999.99, o:[
-    ["dyson",999.99,U.dysonCordless,{rak:true}],["bestbuy",999.99,U.bbV15]]},
-  v15r:{n:"V15 Detect восст.", sub:"гарантия 1 год", msrp:999.99, o:[
-    ["outlet",499.99,U.dysonOutlet,{note:"кэшбэк Rakuten не начисляется"}],["bbOutlet",499.99,U.bbV15core,{note:"версия V15 Core"}]]},
-  pv:{n:"PencilVac", sub:"тонкий, 2026", msrp:699.99, o:[
-    ["dyson",499.99,U.dysonDeals,{note:"скидка $200, кэшбэк Rakuten не начисляется"}],
-    ["costcoStore",199.97,U.costcoDyson,{cond:true,note:"распродажа была в одном складе (Оттава)"}]]}
+    ["dyson",1299.99,U.dysonCordless,{rak:true}],["bestbuy",1299.99,U.bbSub],["ct",1299.99,U.ctSub],["mkt",1104.99,U.bbSubOB,{note:"open box, продавец PRO OB"}]]},
+  v16d:{n:"V16 + Auto-Empty Dok", sub:"автоочистка", msrp:1299.99, o:[["dyson",1299.99,U.dysonCordless,{rak:true}],["bestbuy",1299.99,U.bbDok,{note:"предзаказ"}]]},
+  v15:{n:"V15 Detect", sub:"прошлый флагман", msrp:999.99, o:[["dyson",999.99,U.dysonCordless,{rak:true}],["bestbuy",999.99,U.bbV15]]},
+  v15r:{n:"V15 Detect восст.", sub:"гарантия 1 год", msrp:999.99, o:[["outlet",499.99,U.dysonOutlet,{note:"кэшбэк Rakuten не начисляется"}],["bbOutlet",499.99,U.bbV15core,{note:"версия V15 Core"}]]},
+  pv:{n:"PencilVac", sub:"тонкий, 2026", msrp:699.99, o:[["dyson",499.99,U.dysonDeals,{note:"скидка $200, кэшбэк Rakuten не начисляется"}],["costcoStore",199.97,U.costcoDyson,{cond:true,note:"распродажа была в одном складе (Оттава)"}]]}
+};
+const DFEAT = {
+  order:["v16","v16s","v16d","v15","v15r","pv"],
+  icon:{v16:"stick", v16s:"wet", v16d:"dock", v15:"stick", v15r:"stick", pv:"slim"},
+  rows:[
+    ["Мощность всасывания", {v16:"315 AW",v16s:"315 AW",v16d:"315 AW",v15:"240 AW",v15r:"240 AW",pv:"≈ 50 AW"}],
+    ["Работа на заряде", {v16:"до 70 мин",v16s:"до 70 мин",v16d:"до 70 мин",v15:"до 60 мин",v15r:"до 60 мин",pv:"до 30 мин"}],
+    ["Контейнер", {v16:"1,3 л, со сжатием",v16s:"1,3 л, со сжатием",v16d:"1,3 л, со сжатием",v15:"0,77 л",v15r:"0,77 л",pv:"маленький"}],
+    ["Вес", {v16:"3,4 кг",v16s:"?",v16d:"3,4 кг",v15:"3,0 кг",v15r:"3,0 кг",pv:"самый лёгкий"}],
+    ["Не наматывает волосы", {v16:"y",v16s:"y",v16d:"y",v15:"частично",v15r:"частично",pv:"y"}],
+    ["Подсветка пыли на полу", {v16:"y",v16s:"y",v16d:"y",v15:"y",v15r:"y",pv:"y"}],
+    ["Влажная уборка", {v16:"n",v16s:"y",v16d:"n",v15:"n",v15r:"n",pv:"n"}],
+    ["Сам выгружает пыль", {v16:"n",v16s:"n",v16d:"y",v15:"n",v15r:"n",pv:"n"}],
+    ["Гарантия", {v16:"2 года",v16s:"2 года",v16d:"2 года",v15:"2 года",v15r:"1 год",pv:"2 года"}]
+  ]
 };
 
 /* ===================================================================== */
@@ -471,57 +603,46 @@ const money = n => (n<0?"−":"") + "$" + Math.abs(n).toLocaleString("en-US",{mi
 const pct = r => String(r).replace(".",",") + "%";
 const S = { prov:"ON", member:true, exec:true, rak:true, wm:"s12", wsize:"42", wconn:"gps", dm:"v16" };
 try{ const saved = localStorage.getItem("deals-prov"); if(saved && TAX[saved]) S.prov = saved; }catch(e){}
-
 const rate = () => TAX[S.prov].p.reduce((a,[,r])=>a+r,0)/100;
 const taxName = () => TAX[S.prov].p.map(([n,r])=>n+" "+pct(r)).join(" + ");
 
 function calc(o, msrp){
   const [sk, price, url, ex={}] = o; const st = STORE[sk];
-  const tax = price*rate();
-  const pay = price + tax;
-  const back = [];
+  const tax = price*rate(), pay = price + tax, back = [];
   if(ex.rak && S.rak) back.push({n:"Rakuten "+RAKUTEN_DYSON+"%", v:price*RAKUTEN_DYSON/100});
   if(st.exec && S.member && S.exec) back.push({n:"Executive "+EXEC_PCT+"%", v:price*EXEC_PCT/100});
-  const backSum = back.reduce((a,b)=>a+b.v,0);
-  const final = pay - backSum;
-  const base = msrp*(1+rate());
+  const backSum = back.reduce((a,b)=>a+b.v,0), final = pay - backSum, base = msrp*(1+rate());
   const kind = st.risk ? "risk" : ex.cond ? "cond" : (st.member && !S.member) ? "off" : "ok";
   return {sk, st, price, url, ex, tax, pay, back, backSum, final, base, save:base-final, kind};
 }
-function rank(list){
-  const order = {ok:0, cond:1, off:2, risk:3};
-  return list.sort((a,b)=> order[a.kind]-order[b.kind] || a.final-b.final);
-}
-function goButtons(c, small){
-  if(!c.url) return '<span class="muted" style="font-size:12px">не рекомендую</span>';
-  if(c.ex.rak && S.rak) return '<div class="stack"><div class="act"><a class="btn" href="'+U.rakDyson+'" target="_blank" rel="noopener">Через Rakuten</a>'+(small?'':'<small>кэшбэк '+RAKUTEN_DYSON+'%</small>')+'</div><a class="btn ghost" href="'+c.url+'" target="_blank" rel="noopener">Dyson.ca</a></div>';
-  const cls = c.kind==="ok" ? "btn" : "btn ghost";
-  return '<div class="stack"><div class="act"><a class="'+cls+'" href="'+c.url+'" target="_blank" rel="noopener">Открыть</a>'+(small?'':'<small>'+c.st.dom+'</small>')+'</div></div>';
+function rank(list){ const order={ok:0,cond:1,off:2,risk:3}; return list.sort((a,b)=> order[a.kind]-order[b.kind] || a.final-b.final); }
+function bestOf(cfgOffers, msrp){ const l = rank(cfgOffers.map(o=>calc(o,msrp))); return l.find(c=>c.kind==="ok") || l[0]; }
+
+function goButtons(c, small, hot){
+  if(!c.url || c.kind==="risk") return '<span class="muted s12">не рекомендую</span>';
+  const main = hot ? "btn hot" : "btn ghost";
+  if(c.ex.rak && S.rak) return '<div class="stack"><div class="act"><a class="'+main+'" href="'+U.rakDyson+'" target="_blank" rel="noopener">Через Rakuten</a>'+(small?'':'<small>кэшбэк '+RAKUTEN_DYSON+'%</small>')+'</div><a class="btn ghost" href="'+c.url+'" target="_blank" rel="noopener">Dyson.ca</a></div>';
+  return '<div class="stack"><div class="act"><a class="'+main+'" href="'+c.url+'" target="_blank" rel="noopener">Открыть</a>'+(small?'':'<small>'+c.st.dom+'</small>')+'</div></div>';
 }
 function row(c, isBest){
-  const pill = isBest ? ' <span class="pill best">лучшая цена</span>'
-    : c.kind==="risk" ? ' <span class="pill risk">риск</span>'
-    : c.kind==="cond" ? ' <span class="pill cond">если найдёте</span>'
-    : c.kind==="off" ? ' <span class="pill off">нужно членство</span>' : '';
-  const sub = c.st.terms + (c.ex.note ? '; ' + c.ex.note : '');
-  const saveTxt = c.kind==="risk" ? '<small>без надёжной гарантии</small>'
-    : c.save >= 1 ? '<small class="g">дешевле на '+money(c.save)+'</small>'
+  const pill = isBest ? ' <span class="pill best">лучшая цена</span>' : c.kind==="risk" ? ' <span class="pill risk">риск</span>'
+    : c.kind==="cond" ? ' <span class="pill cond">если найдёте</span>' : c.kind==="off" ? ' <span class="pill off">нужно членство</span>' : '';
+  const sub = c.ex.note ? '<span class="sub">'+c.ex.note+'</span>' : '';
+  const saveTxt = c.kind==="risk" ? '<small>без надёжной гарантии</small>' : c.save >= 1 ? '<small class="g">дешевле на '+money(c.save)+'</small>'
     : c.save <= -1 ? '<small class="r">дороже на '+money(-c.save)+'</small>' : '<small>обычная цена</small>';
   const backCell = c.back.length ? '−'+money(c.backSum)+'<small>'+c.back.map(b=>b.n).join(', ')+'</small>' : '<span class="muted">—</span>';
   return '<tr class="'+(isBest?'best':c.kind==='ok'?'':c.kind)+'">'
-    + '<th scope="row"><span class="sn">'+c.st.n+'</span>'+pill+'<span class="sub">'+sub+'</span></th>'
-    + '<td class="num price" data-label="Цена">'+money(c.price)+'</td>'
-    + '<td class="num tax" data-label="'+taxName()+'">'+money(c.tax)+'</td>'
-    + '<td class="num back" data-label="Кэшбэк">'+backCell+'</td>'
-    + '<td class="num total" data-label="Итог"><b>'+money(c.final)+'</b>'+saveTxt+'</td>'
-    + '<td class="go">'+goButtons(c, true)+'</td></tr>';
+    + '<th scope="row"><span class="sn">'+c.st.n+'</span><button class="tip" type="button" data-tip="'+c.st.terms+'">?</button>'+pill+sub+'</th>'
+    + '<td class="num price" data-label="Цена">'+money(c.price)+'</td><td class="num tax" data-label="'+taxName()+'">'+money(c.tax)+'</td>'
+    + '<td class="num back" data-label="Кэшбэк">'+backCell+'</td><td class="num total" data-label="Итог"><b>'+money(c.final)+'</b>'+saveTxt+'</td>'
+    + '<td class="go">'+goButtons(c, true, isBest)+'</td></tr>';
 }
-function bestCard(el, title, conf, c){
+function bestCard(el, label, title, conf, c, hot=true){
   const parts = [money(c.price), "+ "+taxName()+" "+money(c.tax)].concat(c.back.map(b=>"− "+b.n+" "+money(b.v)));
-  el.innerHTML = '<div><div class="what"><span class="pill best">лучшая цена</span>'+title+' <span class="c">'+conf+'</span></div>'
-    + '<div class="where">в '+c.st.n+'</div><div class="calc n">'+parts.join(" ")+'</div></div>'
-    + '<div class="sum"><b class="n">'+money(c.final)+'</b>'+(c.save>=1?'<span class="save">экономия '+money(c.save)+'</span>':'<span class="muted" style="font-size:12px">обычная цена</span>')+'</div>'
-    + '<div class="go">'+goButtons(c, false)+'</div>';
+  el.innerHTML = '<div class="k">'+label+'</div>'
+    + '<div><div class="what">'+title+' <span>'+conf+'</span></div><div class="where">в '+c.st.n+'</div></div>'
+    + '<div class="sum"><b class="n">'+money(c.final)+'</b>'+(c.save>=1?'<span class="save">экономия '+money(c.save)+'</span>':'<span class="muted s12">обычная цена</span>')+'</div>'
+    + '<div class="calc n">'+parts.join(" ")+'</div><div class="go">'+goButtons(c, false, hot)+'</div>';
 }
 function bfBox(el, bf, msrp, best){
   if(!bf){ el.innerHTML = '<p class="muted">По этой модели прогноза нет.</p>'; return; }
@@ -532,18 +653,54 @@ function bfBox(el, bf, msrp, best){
   else { v="На Black Friday скорее дешевле — берите там, где вернут разницу."; cls="c"; }
   el.innerHTML = '<p>Ожидаем <b class="n">'+money(lo)+'–'+money(hi)+'</b> с налогом, сейчас лучший итог <b class="n">'+money(best.final)+'</b>.</p><span class="badge '+cls+'">'+v+'</span>';
 }
-function optList(el, name, items, cur){
-  el.innerHTML = items.map(([v,l,s])=>'<label class="opt"><input type="radio" name="'+name+'" value="'+v+'"'+(v===cur?' checked':'')+'><span>'+l+(s?'<small>'+s+'</small>':'')+'</span></label>').join('');
+function optList(el, name, items, cur){ el.innerHTML = items.map(([v,l,s])=>'<label class="opt"><input type="radio" name="'+name+'" value="'+v+'"'+(v===cur?' checked':'')+'><span>'+l+(s?'<small>'+s+'</small>':'')+'</span></label>').join(''); }
+function seg(el, name, items, cur){ el.innerHTML = items.map(([v,l])=>'<label><input type="radio" name="'+name+'" value="'+v+'"'+(v===cur?' checked':'')+'><span>'+l+'</span></label>').join(''); }
+const mark = v => v==="y" ? '<span class="y">✓</span>' : v==="n" ? '<span class="no">✕</span>' : v==="?" ? '<span class="na">н/д</span>' : v;
+
+/* Схематичные рисунки (не фото): часы в масштабе по высоте корпуса, пылесосы по типу */
+function watchSVG(mm, label){
+  const k = 2.1, h = mm*k, w = h*0.84, x = (120-w)/2, y = 30;
+  return '<figure><svg viewBox="0 0 120 '+(h+60)+'"><rect class="w-band" x="'+(x+w*0.18)+'" y="2" width="'+(w*0.64)+'" height="'+(h+56)+'" rx="6"/><rect class="w-body" x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="'+(w*0.22)+'"/><rect class="w-screen" x="'+(x+5)+'" y="'+(y+5)+'" width="'+(w-10)+'" height="'+(h-10)+'" rx="'+(w*0.18)+'"/><rect class="w-body" x="'+(x+w-1)+'" y="'+(y+h*0.25)+'" width="5" height="'+(h*0.16)+'" rx="2"/></svg><b>'+label+'</b></figure>';
 }
-function seg(el, name, items, cur){
-  el.innerHTML = items.map(([v,l])=>'<label><input type="radio" name="'+name+'" value="'+v+'"'+(v===cur?' checked':'')+'><span>'+l+'</span></label>').join('');
+function vacSVG(type){
+  const head = type==="wet" ? '<rect class="v-acc" x="10" y="92" width="34" height="10" rx="4"/>' : '<rect class="v-fill" x="10" y="92" width="34" height="10" rx="4"/>';
+  const body = type==="slim" ? '<rect class="v-fill" x="24" y="10" width="7" height="34" rx="3"/>' : '<rect class="v-fill" x="19" y="10" width="17" height="26" rx="5"/><rect class="v-fill" x="22" y="36" width="11" height="10" rx="2"/>';
+  const dock = type==="dock" ? '<rect class="v-acc" x="40" y="54" width="14" height="50" rx="3"/>' : '';
+  return '<svg width="34" height="64" viewBox="0 0 58 108" aria-hidden="true">'+body+'<line class="v-line" x1="27" y1="46" x2="27" y2="92"/>'+head+dock+'</svg>';
 }
-function setTaxHead(){ document.querySelectorAll(".taxh").forEach(th=>th.textContent = taxName()); }
+
+function renderWatchCompare(){
+  const cols = WFEAT.order;
+  const priceRow = cols.map(k=>{
+    if(!WATCH[k]) return '<td class="'+(k===S.wm?'sel':'')+'"><span class="na">Apple снял с продажи</span></td>';
+    const m = WATCH[k], c = m.cfg[m.def], b = bestOf(c.o, c.msrp);
+    return '<td class="'+(k===S.wm?'sel':'')+'"><b class="n">'+money(b.final)+'</b><br><span class="muted">'+m.def.split("|")[0]+' мм, '+b.st.n+'</span></td>';
+  }).join('');
+  let h = '<thead><tr><th>Модель</th>' + cols.map(k=>{
+    const [n,y] = WFEAT.head[k], selectable = !!WATCH[k];
+    return '<th class="'+(k===S.wm?'sel':'')+'"><button type="button" class="mbtn'+(selectable?'':' static')+'" data-wm="'+k+'"'+(selectable?'':' disabled')+'>'+n+'<small>'+y+'</small></button></th>';
+  }).join('') + '</tr></thead><tbody>';
+  h += '<tr class="price"><th>Лучшая цена с налогом</th>'+priceRow+'</tr>';
+  WFEAT.rows.forEach(([label, vals, cls])=>{ h += '<tr class="'+(cls==='bp'?'bprow':'')+'"><th>'+(cls==='bp'?'♥ ':'')+label+'</th>'+cols.map(k=>'<td class="'+(k===S.wm?'sel':'')+'">'+mark(vals[k])+'</td>').join('')+'</tr>'; });
+  $("wCompare").innerHTML = h + '</tbody>';
+}
+function renderDysonCompare(){
+  const cols = DFEAT.order;
+  let h = '<thead><tr><th>Модель</th>' + cols.map(k=>'<th class="'+(k===S.dm?'sel':'')+'"><button type="button" class="mbtn" data-dm="'+k+'">'+vacSVG(DFEAT.icon[k])+DYSON[k].n+'<small>'+DYSON[k].sub+'</small></button></th>').join('') + '</tr></thead><tbody>';
+  h += '<tr class="price"><th>Лучшая цена с налогом</th>' + cols.map(k=>{ const b = bestOf(DYSON[k].o, DYSON[k].msrp); return '<td class="'+(k===S.dm?'sel':'')+'"><b class="n">'+money(b.final)+'</b><br><span class="muted">'+b.st.n+'</span></td>'; }).join('') + '</tr>';
+  DFEAT.rows.forEach(([label, vals])=>{ h += '<tr><th>'+label+'</th>'+cols.map(k=>'<td class="'+(k===S.dm?'sel':'')+'">'+mark(vals[k])+'</td>').join('')+'</tr>'; });
+  $("dCompare").innerHTML = h + '</tbody>';
+}
+function renderSizes(){
+  $("sizeArt").innerHTML = watchSVG(42,"42 мм") + watchSVG(46,"46 мм") + watchSVG(49,"49 мм Ultra");
+  const c42 = bestOf(WATCH.s12.cfg["42|gps"].o, 549), c46 = bestOf(WATCH.s12.cfg["46|gps"].o, 619);
+  $("sizeDiff").innerHTML = 'Series 12: 46 мм дороже на <b class="n">'+money(c46.final - c42.final)+'</b> с налогом (лучшие цены)';
+}
 
 function renderWatch(){
   const m = WATCH[S.wm], keys = Object.keys(m.cfg);
   const sizes = [...new Set(keys.map(k=>k.split("|")[0]))];
-  if(!sizes.includes(S.wsize)) S.wsize = sizes[0];
+  if(!sizes.includes(S.wsize)) S.wsize = m.def.split("|")[0];
   const conns = keys.filter(k=>k.startsWith(S.wsize+"|")).map(k=>k.split("|")[1]);
   if(!conns.includes(S.wconn)) S.wconn = conns[0];
   optList($("wModel"), "wm", Object.entries(WATCH).map(([k,v])=>[k,v.n,v.sub]), S.wm);
@@ -553,9 +710,18 @@ function renderWatch(){
   const list = rank(cfg.o.map(o=>calc(o,cfg.msrp)));
   const best = list.find(c=>c.kind==="ok") || list[0];
   $("wList").innerHTML = list.map(c=>row(c, c===best)).join("");
-  bestCard($("bWatch"), "Apple Watch "+m.n, S.wsize+" мм, "+(S.wconn==="gps"?"GPS":"GPS + сотовая"), best);
+  const conf = S.wsize+" мм, "+(S.wconn==="gps"?"GPS":"GPS + сотовая");
+  bestCard($("bWatch"), '<span class="pill best">лучшая цена</span> выбранная модель', "Apple Watch "+m.n, conf, best);
+  /* Альтернатива: то же давление дешевле */
+  const altKey = S.wm==="s11" ? "s12" : "s11";
+  const alt = WATCH[altKey], altCfgKey = alt.cfg[S.wsize+"|gps"] ? S.wsize+"|gps" : alt.def, altCfg = alt.cfg[altCfgKey];
+  const altBest = bestOf(altCfg.o, altCfg.msrp);
+  const lbl = S.wm==="se3" ? '<span class="pill ok">♥ с давлением</span> в SE 3 его нет'
+    : altKey==="s11" ? '<span class="pill ok">♥ давление то же</span> дешевле' : '<span class="pill ok">♥ давление то же</span> новее';
+  bestCard($("bAlt"), lbl, "Apple Watch "+alt.n, altCfgKey.split("|")[0]+" мм, GPS", altBest, false);
   $("wSteps").innerHTML = best.st.steps.map(s=>"<li>"+s+"</li>").join("");
   bfBox($("wBF"), m.bf, cfg.msrp, best);
+  renderWatchCompare(); renderSizes();
 }
 function renderDyson(){
   const m = DYSON[S.dm];
@@ -563,12 +729,13 @@ function renderDyson(){
   const list = rank(m.o.map(o=>calc(o,m.msrp)));
   const best = list.find(c=>c.kind==="ok") || list[0];
   $("dList").innerHTML = list.map(c=>row(c, c===best)).join("");
-  bestCard($("bDyson"), "Dyson "+m.n, m.sub, best);
+  bestCard($("bDyson"), '<span class="pill best">лучшая цена</span> пылесос', "Dyson "+m.n, m.sub, best);
   const steps = (best.sk==="dyson" && !(best.ex.rak && S.rak)) ? best.st.stepsNoRak : best.st.steps;
   $("dSteps").innerHTML = steps.map(s=>"<li>"+s+"</li>").join("");
   bfBox($("dBF"), m.bf, m.msrp, best);
+  renderDysonCompare();
 }
-function renderAll(){ setTaxHead(); renderWatch(); renderDyson(); }
+function renderAll(){ document.querySelectorAll(".taxh").forEach(th=>th.textContent = taxName()); renderWatch(); renderDyson(); }
 
 /* Controls */
 $("checked").textContent = CHECKED;
@@ -577,22 +744,22 @@ $("prov").addEventListener("change", e=>{ S.prov=e.target.value; try{localStorag
 ["member","exec","rak"].forEach(id=> $(id).addEventListener("change", e=>{ S[id]=e.target.checked; renderAll(); }));
 $("wOpts").addEventListener("change", e=>{ const t=e.target; if(t.name==="wm") S.wm=t.value; if(t.name==="ws") S.wsize=t.value; if(t.name==="wc") S.wconn=t.value; renderWatch(); });
 $("dOpts").addEventListener("change", e=>{ if(e.target.name==="dm") S.dm=e.target.value; renderDyson(); });
+$("wCompare").addEventListener("click", e=>{ const b=e.target.closest("[data-wm]"); if(b && WATCH[b.dataset.wm]){ S.wm=b.dataset.wm; renderWatch(); } });
+$("dCompare").addEventListener("click", e=>{ const b=e.target.closest("[data-dm]"); if(b){ S.dm=b.dataset.dm; renderDyson(); } });
 
 /* Share */
-const shareUrl = (location.protocol.startsWith("http") && location.hostname.endsWith("github.io")) ? location.href.split("#")[0] : PUBLIC_URL;
+const shareUrl = (location.protocol.startsWith("http") && location.hostname.endsWith("github.io")) ? location.href.split("#")[0].split("?")[0] : PUBLIC_URL;
 $("waBtn").href = "https://wa.me/?text=" + encodeURIComponent("Где купить дешевле Apple Watch и Dyson: " + shareUrl);
 function toast(t){ const el=$("toast"); el.textContent=t; el.classList.add("on"); setTimeout(()=>el.classList.remove("on"),1800); }
 $("copyBtn").addEventListener("click", async ()=>{ try{ await navigator.clipboard.writeText(shareUrl); toast("Ссылка скопирована"); }catch(e){ toast(shareUrl); } });
 
-/* Tooltips: one fixed bubble, also works for rows drawn later */
+/* Tooltips */
 const tt = $("tt");
 function showTip(el){
   tt.textContent = el.getAttribute("data-tip"); tt.classList.add("on");
   const r = el.getBoundingClientRect(), w = Math.min(300, innerWidth-24);
-  tt.style.maxWidth = w+"px";
-  tt.style.left = Math.min(Math.max(12, r.left + r.width/2 - w/2), innerWidth - w - 12) + "px";
-  const h = tt.offsetHeight;
-  tt.style.top = (r.top - h - 8 > 8 ? r.top - h - 8 : r.bottom + 8) + "px";
+  tt.style.maxWidth = w+"px"; tt.style.left = Math.min(Math.max(12, r.left + r.width/2 - w/2), innerWidth - w - 12) + "px";
+  const h = tt.offsetHeight; tt.style.top = (r.top - h - 8 > 8 ? r.top - h - 8 : r.bottom + 8) + "px";
 }
 function hideTip(){ tt.classList.remove("on"); }
 document.addEventListener("mouseover", e=>{ const t=e.target.closest(".tip"); if(t) showTip(t); });
