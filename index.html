@@ -116,7 +116,7 @@ select{font:500 14px var(--font); color:var(--ink); background:var(--soft); bord
 .meter{display:grid; gap:10px}
 .meter .row{display:grid; gap:4px}
 .meter .lab{display:flex; justify-content:space-between; gap:8px; font-size:12px}
-.meter .lab b{font-size:14px}
+.meter .lab b{font-size:14px; white-space:nowrap; flex:none}
 .bar{height:10px; border-radius:999px; background:var(--surface); border:1px solid var(--save-line); overflow:hidden}
 .bar i{display:block; height:100%; background:var(--save); border-radius:999px}
 .bp .verdict{grid-column:1 / -1; font-size:14px; font-weight:600; background:var(--surface); border-radius:8px; padding:8px 12px}
@@ -264,11 +264,18 @@ svg .v-acc{fill:var(--save)}
   .opts .list.models{grid-template-columns:1fr 1fr}
   .after, .two, .bp{grid-template-columns:1fr}
 }
-@media (max-width:640px){ .best-row{grid-template-columns:1fr} .rej{grid-template-columns:1fr} }
+@media (max-width:640px){
+  .best-row{grid-template-columns:1fr} .rej{grid-template-columns:1fr}
+  .cmpf{min-width:0}
+  .cmpf tbody th{white-space:normal; width:104px; min-width:104px; max-width:104px; padding:6px 8px}
+  .cmpf thead th:first-child{width:104px}
+  .cmpf td{min-width:86px; padding:6px}
+}
 @media (max-width:520px){
   .top{flex-direction:column}
   .top .stack{flex-direction:row; width:100%; min-width:0}
-  .top .stack .act{flex:1}
+  .top .stack .act{flex:1; min-width:0}
+  .top .stack .btn{white-space:normal; padding:6px 8px}
   .cond .prov{width:100%; justify-content:space-between}
   .cond select{flex:1; min-width:0}
 }
