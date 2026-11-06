@@ -347,7 +347,7 @@ svg .v-acc{fill:var(--save)}
     <div class="row"><div class="lab"><span>Из 100 человек с нормальным давлением не потревожат</span><b>≈ 92</b></div><div class="bar"><i style="width:92%"></i></div></div>
     <p class="s12 muted">Если уведомление пришло, это повод проверить давление тонометром. Если не пришло, это ещё не гарантия нормы.</p>
   </div>
-  <p class="verdict">Для давления Series 12 не лучше Series 11: функция одинаковая. Новые Series 11 на OpenBox.ca стоят от C$399.99 — на C$100 дешевле Series 12 там же. По данным Apple, в Канаде функция работает без ограничений, включая Series 12.</p>
+  <p class="verdict">Для давления Series 12 не лучше Series 11: функция одинаковая. Новые Series 11 на OpenBox.ca стоят от C$399.99 — на C$100 дешевле Series 12 там же. Ещё дешевле — запечатанные Series 10 на Kijiji за C$350 без налога: давление работает и на Series 10. По данным Apple, в Канаде функция работает без ограничений, включая Series 12.</p>
 </section>
 
 <section class="panel" id="hidden">
@@ -366,7 +366,7 @@ svg .v-acc{fill:var(--save)}
     </tbody>
   </table></div>
   <div class="after">
-    <div class="box"><h3>Мой совет</h3><p>Для давления хватает Series 11. На OpenBox.ca это новые канадские модели (CL/A) с гарантией Apple: если сломаются, Apple бесплатно починит или заменит. Минус: если просто передумали, магазин удержит 15%. Самый спокойный вариант по возврату — Costco, 90 дней.</p><p style="margin-top:6px"><b>Частные объявления (Kijiji) — только так:</b> 1) до встречи проверить серийный номер на checkcoverage.apple.com — часы не активированы; 2) коробка с бумажными язычками Apple, без плёнки; 3) встреча в зоне безопасного обмена полиции Peel или в Apple Square One; 4) оплата только после того, как часы подключились к вашему iPhone без чужого Apple ID.</p><p class="muted" style="margin-top:6px">Taobao, Tmall, Pinduoduo не подходят: у китайских часов нет функции давления.</p></div>
+    <div class="box"><h3>Мой совет</h3><p>Для давления хватает Series 11. На OpenBox.ca это новые канадские модели (CL/A) с гарантией Apple: если сломаются, Apple бесплатно починит или заменит. Минус: если просто передумали, магазин удержит 15%. Самый спокойный вариант по возврату — Costco, 90 дней.</p><p style="margin-top:6px"><b>Самое дешёвое с давлением:</b> запечатанные Series 10 на Kijiji за C$350 без налога — на C$102 дешевле OpenBox, но без возврата. Покупать только по правилам ниже.</p><p style="margin-top:6px"><b>Частные объявления (Kijiji) — только так:</b> 1) до встречи проверить серийный номер на checkcoverage.apple.com — часы не активированы; 2) коробка с бумажными язычками Apple, без плёнки; 3) встреча в зоне безопасного обмена полиции Peel или в Apple Square One; 4) оплата только после того, как часы подключились к вашему iPhone без чужого Apple ID.</p><p class="muted" style="margin-top:6px">Taobao, Tmall, Pinduoduo не подходят: у китайских часов нет функции давления.</p></div>
     <div class="box"><h3>Обмен старых часов (trade-in) <button class="tip" type="button" data-tip="У Series 3 не было размера 40 мм, только 38 и 42. Модель видна на часах: Настройки → Основные → Об этом устройстве.">?</button></h3>
       <table class="mini">
         <thead><tr><th>Ваши часы</th><th>Apple (зачёт в покупку)</th></tr></thead>
@@ -502,7 +502,7 @@ svg .v-acc{fill:var(--save)}
 <details class="more">
   <summary>Проверено и не подходит</summary>
   <div class="in"><ul class="rej">
-    <li><b>Kijiji, Dyson.</b> Запечатанные V15 C$550–750 — дороже восстановленного с гарантией; новых V16 нет.</li>
+    <li><b>Kijiji, Dyson.</b> Запечатанные V15 стоят C$750–900 — дороже восстановленного с гарантией. Все 9 найденных объявлений «новый V16 за C$849–950» уже сняты.</li>
     <li><b>Покупка в США.</b> Series 12 US$389.99 (≈ C$550) + HST на границе ≈ C$622; выгодно только при цене ниже US$303. Dyson из США: пошлина 8% + HST, гарантия только американская.</li>
     <li><b>Китай (JD, Tmall, Pinduoduo).</b> У часов для Китая нет функции давления; Series 11 с доставкой ≈ C$505–530 — дороже OpenBox.ca.</li>
     <li><b>Азия и ОАЭ.</b> Series 12 от C$576 (Гонконг) — дороже Канады; в Японии, Корее, ОАЭ давление на S12 может не работать.</li>
@@ -654,8 +654,9 @@ const WCOL = {
 };
 /* Таблица «Дешевле, чем в обычных магазинах»: price без налога, base = цена Apple для той же модели */
 const HIDDEN = [
-  {best:true, how:"OpenBox.ca, новые", what:"Series 11 · 42 мм · GPS, 4 цвета", price:399.99, base:549, prot:"гарантия Apple 1 год; возврат без причины 7 дней, −15%", url:U.obS11},
-  {how:"Kijiji, частный продавец (налога нет)", what:"Series 12 · 42 мм · чёрный, запечатаны, MJEA4CL/A (канадские)", price:499, notax:true, base:549, prot:"гарантия Apple, если часы не активированы; без возврата. Есть объявление за C$449, но модель и доп. расходы не подтверждены", url:"https://www.kijiji.ca/v-jewelry-watch/city-of-toronto/apple-watch-12-gps-42mm-black-s-m-brand-new-sealed/1745439917"},
+  {best:true, how:"Kijiji, частный продавец (налога нет)", what:"Series 10 · 42 мм · GPS, розовое золото, запечатаны (внутренняя коробка)", price:350, notax:true, base:549, prot:"давление работает (Series 9 и новее); без возврата; встреча у Mitchell Field CC, Yonge и Finch. До встречи проверить серийный номер на checkcoverage.apple.com", url:"https://www.kijiji.ca/v-jewelry-watch/city-of-toronto/brand-new-sealed-apple-watch-series-10-42mm-rose-gold-m-l/1744169794"},
+  {how:"OpenBox.ca, новые", what:"Series 11 · 42 мм · GPS, 4 цвета", price:399.99, base:549, prot:"гарантия Apple 1 год; возврат без причины 7 дней, −15%", url:U.obS11},
+  {how:"Kijiji, частный продавец (налога нет)", what:"Series 12 · 42 мм · чёрный, запечатаны, MJEA4CL/A (канадские)", price:499, notax:true, base:549, prot:"гарантия Apple, если часы не активированы; без возврата. Дилер на Kijiji просит C$449 за запечатанные, но номер модели не указал — спросить: должен заканчиваться на CL/A", url:"https://www.kijiji.ca/v-jewelry-watch/city-of-toronto/apple-watch-12-gps-42mm-black-s-m-brand-new-sealed/1745439917"},
   {how:"Apple, цены для образования", what:"Series 12 · 42 мм · новые от Apple, 1 шт. в год", price:489, base:549, prot:"гарантия Apple 1 год, возврат 14 дней; для студентов и их родителей, работников школ и колледжей (проверка UNiDAYS)", url:"https://www.apple.com/ca-edu/shop/buy-watch/apple-watch"},
   {how:"Best Buy, продавец GoRecell", what:"Series 11 · 46 мм · восстановлены, «Excellent»", price:399.99, base:589, prot:"гарантия продавца 1 год, возврат 30 дней; цена до 30 ноября", url:"https://www.bestbuy.ca/en-ca/product/-/19496070"},
   {how:"Dyson Official Outlet на Best Buy", what:"Dyson V15 Detect · восстановлен (V15 Core)", price:499.99, base:999.99, prot:"гарантия Dyson 1 год", url:U.bbV15core},
@@ -667,7 +668,10 @@ const HIDDEN = [
   {how:"Amazon Resale, «как новые»", what:"Series 11 · 46 мм · розовое золото", price:414.62, base:589, prot:"продаёт Amazon.ca; возврат 30 дней", url:U.amzR11r46},
   {how:"Amazon Resale, «как новые»", what:"Series 12 · 42 мм · чёрный", price:508.51, base:549, prot:"продаёт Amazon.ca; возврат 30 дней", url:U.amz42},
   {how:"Amazon.ca, другой цвет", what:"Series 12 · 46 мм · чёрный S/M или серый M/L", price:589, base:619, prot:"новые; возврат 30 дней", url:U.amz46},
-  {how:"Best Buy, продавец OpenBox", what:"Series 11 · 46 мм · состояние «Good»", price:349.99, base:589, prot:"возврат через продавца, не в магазине Best Buy", url:U.bbmS11}
+  {how:"Best Buy, продавец OpenBox", what:"Series 11 · 46 мм · состояние «Good»", price:349.99, base:589, prot:"возврат через продавца, не в магазине Best Buy", url:U.bbmS11},
+  {how:"Kijiji, частный продавец, Миссиссога", what:"Series 12 · 42 мм · б/у «как новые», батарея 100%, тёмная бронза или чёрный", price:449, notax:true, base:549, prot:"без возврата; продавец может приехать к вам, оплата после проверки", url:"https://www.kijiji.ca/v-general-electronics/mississauga-peel-region/apple-watch-series-12-42-mm-brand-new-condition-100-battery/1745727321"},
+  {how:"Kijiji, частный продавец, Гамильтон", what:"Dyson V15 Detect · не использовался, мелкие следы на корпусе", price:440, notax:true, base:999.99, prot:"без гарантии и возврата; оплата на месте после проверки; фото из каталога — попросить своё", url:"https://www.kijiji.ca/v-vacuum/hamilton/dyson-v15-detect-cordless-vacuum-unused-minor-cosmetic-marks/1745825569"},
+  {how:"Kijiji, продавец с 800+ отзывами, Ошава", what:"Dyson V15 Detect · открытая коробка, выставочный образец", price:450, notax:true, base:999.99, prot:"без гарантии и возврата; можно проверить при получении", url:"https://www.kijiji.ca/v-vacuum/oshawa-durham-region/dyson-v15-detect-vacuum-open-box/1744636438"}
 ];
 /* Функции для таблицы сравнения: y = есть, n = нет, ? = нет данных, иначе текст */
 const WFEAT = {
