@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Где купить дешевле: Apple Watch и Dyson</title>
+<meta name="description" content="Apple Watch и Dyson в Канаде: лучшая цена с налогами провинции и кэшбэком, магазины, гарантии, прогноз Black Friday.">
+<meta property="og:title" content="Где купить дешевле: Apple Watch и Dyson">
+<meta property="og:description" content="Выберите модель и опции, страница сразу покажет самый дешёвый надёжный магазин и итог с налогами.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#10233F">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:wght@500;600;700&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Layout idea: a quiet left-aligned page whose one loud element is the store receipt
+     with a yellow shelf tag; choosers put inputs on the left, ranked offers on the right. */
+  --ground:#E7ECF2;   /* page */
+  --paper:#FFFFFF;    /* receipt + panels */
+  --ink:#10233F;      /* text, primary buttons */
+  --muted:#5A6A7D;
+  --line:#D3DCE6;
+  --tag:#FFC928;      /* shelf-tag yellow: only the winner */
+  --save:#0E7A52;     /* savings */
+  --save-bg:#E2F3EB;
+  --cond:#9A5B00; --cond-bg:#FFF2D6;
+  --risk:#BE3A26; --risk-bg:#FBE7E3;
+  --f-num:"Fira Sans Extra Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --f-body:"Golos Text", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --r-panel:14px; --r-ctl:9px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#0C1520; --paper:#15202E; --ink:#E5EDF6; --muted:#97A7B9; --line:#26354A;
+    --tag:#FFC928; --save:#43CC92; --save-bg:#10301F; --cond:#F2B54F; --cond-bg:#33260E; --risk:#FF7F6B; --risk-bg:#3A1915;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0C1520; --paper:#15202E; --ink:#E5EDF6; --muted:#97A7B9; --line:#26354A;
+  --tag:#FFC928; --save:#43CC92; --save-bg:#10301F; --cond:#F2B54F; --cond-bg:#33260E; --risk:#FF7F6B; --risk-bg:#3A1915;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--ground); color:var(--ink); font:400 15px/1.5 var(--f-body); -webkit-text-size-adjust:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ink); outline-offset:2px}
+.wrap{max-width:1160px; margin:0 auto; padding:24px 18px 64px; display:flex; flex-direction:column; gap:22px}
+h1,h2,h3{text-wrap:balance; margin:0}
+h1{font:700 34px/1.05 var(--f-num); letter-spacing:.005em}
+h2{font:600 26px/1.1 var(--f-num)}
+h3{font:600 15px/1.3 var(--f-body)}
+p{margin:0}
+.muted{color:var(--muted)}
+.num{font-family:var(--f-num); font-variant-numeric:tabular-nums}
+
+/* Header */
+.top{display:grid; grid-template-columns:1fr auto; gap:18px; align-items:start}
+.top p{margin-top:8px; color:var(--muted); max-width:62ch}
+.stack{display:flex; flex-direction:column; gap:10px; min-width:178px}
+.act{display:flex; flex-direction:column; gap:3px}
+.act small{font-size:11.5px; color:var(--muted); text-align:center}
+.btn{display:block; width:100%; text-align:center; text-decoration:none; padding:10px 14px; border-radius:var(--r-ctl); font:600 14px/1.2 var(--f-body); border:1px solid var(--ink); background:var(--ink); color:var(--paper); cursor:pointer}
+.btn:hover{filter:brightness(1.12)}
+.btn.alt{background:transparent; color:var(--ink)}
+.btn.wa{background:#1F8F55; border-color:#1F8F55; color:#fff}
+
+/* Conditions bar */
+.cond{background:var(--paper); border:1px solid var(--line); border-radius:var(--r-panel); padding:14px 16px; display:flex; flex-wrap:wrap; gap:14px 26px; align-items:center}
+.cond .lbl{font-size:13px; font-weight:600; display:flex; align-items:center; gap:6px}
+.field{display:flex; flex-direction:column; gap:6px}
+select{font:500 14px var(--f-body); color:var(--ink); background:var(--paper); border:1px solid var(--line); border-radius:var(--r-ctl); padding:8px 10px; min-width:230px}
+.sw{display:flex; align-items:center; gap:9px; font-size:14px; cursor:pointer; user-select:none}
+.sw input{position:absolute; opacity:0; width:1px; height:1px}
+.sw .track{width:38px; height:22px; border-radius:999px; background:var(--line); position:relative; flex:none; transition:background .15s}
+.sw .track::after{content:""; position:absolute; top:3px; left:3px; width:16px; height:16px; border-radius:50%; background:var(--paper); box-shadow:0 1px 2px rgba(0,0,0,.25); transition:transform .15s}
+.sw input:checked + .track{background:var(--save)}
+.sw input:checked + .track::after{transform:translateX(16px)}
+.sw input:focus-visible + .track{outline:2px solid var(--ink); outline-offset:2px}
+
+/* Winners: receipts */
+.winners{display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:22px; padding-bottom:10px}
+.receipt{position:relative; background:var(--paper); border-radius:var(--r-panel) var(--r-panel) 0 0; padding:22px 22px 18px; box-shadow:0 1px 0 var(--line), 0 10px 26px -18px rgba(16,35,63,.45)}
+.receipt::after{content:""; position:absolute; left:0; right:0; bottom:-10px; height:10px;
+  background:radial-gradient(circle at 10px 0, transparent 7px, var(--paper) 7.5px) 0 0/20px 10px repeat-x}
+.shelf{display:inline-flex; align-items:center; gap:8px; background:var(--tag); color:#2B2100; font:700 13px/1 var(--f-body); padding:7px 12px 7px 20px;
+  clip-path:polygon(12px 0,100% 0,100% 100%,12px 100%,0 50%); position:relative}
+.shelf::before{content:""; position:absolute; left:9px; top:50%; width:5px; height:5px; margin-top:-2.5px; border-radius:50%; background:rgba(0,0,0,.35)}
+.r-head{display:grid; grid-template-columns:1fr auto; gap:6px 12px; align-items:end; margin:14px 0 4px}
+.r-prod{font:600 22px/1.1 var(--f-num)}
+.r-conf{font-size:13px; color:var(--muted)}
+.r-store{font-size:13px; font-weight:600; text-align:right}
+.lines{margin:14px 0 0; padding:12px 0 0; border-top:1px dashed var(--line); display:flex; flex-direction:column; gap:6px; font-size:14px}
+.ln{display:flex; align-items:baseline; gap:6px}
+.ln .f{flex:1; border-bottom:1px dotted var(--line); transform:translateY(-4px)}
+.ln .v{font-family:var(--f-num); font-size:17px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.ln.back .v{color:var(--save)}
+.ln.paid{font-weight:600}
+.total{display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-top:12px; padding-top:12px; border-top:2px solid var(--ink)}
+.total b{font-size:14px; display:flex; align-items:center; gap:6px}
+.total .v{font:700 44px/1 var(--f-num); font-variant-numeric:tabular-nums; letter-spacing:-.01em}
+.r-save{margin-top:8px; display:inline-block; background:var(--save-bg); color:var(--save); font-weight:600; font-size:13px; padding:4px 10px; border-radius:999px}
+.r-foot{display:grid; grid-template-columns:1fr auto; gap:14px; align-items:end; margin-top:16px}
+.r-foot p{font-size:13px; color:var(--muted)}
+
+/* Product sections */
+.panel{background:var(--paper); border:1px solid var(--line); border-radius:var(--r-panel); padding:20px}
+.panel > header{display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:6px 16px; margin-bottom:16px}
+.panel > header p{color:var(--muted); font-size:14px}
+.chooser{display:grid; grid-template-columns:300px 1fr; gap:22px}
+.opts{display:flex; flex-direction:column; gap:16px; align-self:start; background:var(--ground); border-radius:12px; padding:14px}
+.chips{display:flex; flex-wrap:wrap; gap:8px}
+.chip-in{position:relative}
+.chip-in input{position:absolute; opacity:0; inset:0}
+.chip-in span{display:flex; flex-direction:column; padding:8px 12px; border:1px solid var(--line); border-radius:var(--r-ctl); background:var(--paper); cursor:pointer; font-size:14px; font-weight:600; line-height:1.2}
+.chip-in span small{font-weight:400; font-size:11.5px; color:var(--muted); margin-top:2px}
+.chip-in input:checked + span{border-color:var(--ink); box-shadow:inset 0 0 0 1px var(--ink)}
+.chip-in input:focus-visible + span{outline:2px solid var(--ink); outline-offset:2px}
+
+/* Offers */
+.offers{list-style:none; margin:0; padding:0; border:1px solid var(--line); border-radius:12px; overflow:hidden}
+.offer{display:grid; grid-template-columns:34px 1fr auto 168px; gap:14px; align-items:center; padding:14px 16px; border-top:1px solid var(--line); background:var(--paper)}
+.offer:first-child{border-top:none}
+.offer .rk{font:700 22px/1 var(--f-num); color:var(--muted); text-align:center}
+.offer.best{background:linear-gradient(90deg, rgba(255,201,40,.22), rgba(255,201,40,.06) 40%, transparent)}
+.offer.best .rk{color:var(--ink)}
+.offer.cond{box-shadow:inset 4px 0 0 var(--cond)}
+.offer.risk{box-shadow:inset 4px 0 0 var(--risk); background:var(--risk-bg)}
+.offer.off{opacity:.62}
+.st{font-weight:600; font-size:15px; display:flex; flex-wrap:wrap; align-items:center; gap:8px}
+.mini{display:inline-block; font:700 11.5px/1 var(--f-body); padding:4px 8px; border-radius:999px}
+.mini.best{background:var(--tag); color:#2B2100}
+.mini.cond{background:var(--cond-bg); color:var(--cond)}
+.mini.risk{background:var(--risk); color:#fff}
+.mini.off{background:var(--line); color:var(--ink)}
+.perks{display:flex; flex-wrap:wrap; gap:6px; margin-top:6px}
+.perk{font-size:12px; padding:3px 8px; border-radius:6px; background:var(--ground); color:var(--ink)}
+.perk.g{background:var(--save-bg); color:var(--save); font-weight:600}
+.note{font-size:12.5px; color:var(--muted); margin-top:6px}
+.fig{text-align:right; min-width:120px}
+.fig .v{font:700 28px/1 var(--f-num); font-variant-numeric:tabular-nums; display:inline-flex; align-items:center; gap:6px}
+.fig .s{font-size:12px; color:var(--muted); margin-top:3px}
+.fig .d{font-size:12.5px; font-weight:600; margin-top:3px}
+.fig .d.g{color:var(--save)} .fig .d.r{color:var(--risk)}
+
+.after{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px}
+.box{border:1px solid var(--line); border-radius:12px; padding:14px 16px}
+.box ol{margin:8px 0 0; padding-left:20px; display:flex; flex-direction:column; gap:6px; font-size:14px}
+.verdict{margin-top:8px; font-size:14px}
+.verdict b{font-family:var(--f-num); font-size:18px; font-variant-numeric:tabular-nums}
+.badge{display:inline-block; font-weight:600; font-size:12.5px; padding:3px 9px; border-radius:999px; margin-top:8px}
+.badge.g{background:var(--save-bg); color:var(--save)} .badge.c{background:var(--cond-bg); color:var(--cond)}
+
+/* Tables */
+.tw{overflow-x:auto; border:1px solid var(--line); border-radius:12px}
+table{border-collapse:collapse; width:100%; min-width:680px; font-size:14px}
+th,td{text-align:left; vertical-align:top; padding:11px 14px; border-top:1px solid var(--line)}
+thead th{border-top:none; background:var(--ground); font-size:12.5px; font-weight:600; color:var(--muted)}
+td:first-child{font-weight:600}
+tr.hl td{background:var(--save-bg)}
+.rej{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:10px; margin:0; padding:0; list-style:none}
+.rej li{border:1px solid var(--line); border-radius:10px; padding:12px 14px; font-size:14px}
+.rej li b{display:block; margin-bottom:3px}
+.src{columns:2 300px; column-gap:28px; margin:0; padding-left:18px; font-size:13px}
+.src li{margin-bottom:5px; break-inside:avoid}
+.src a{color:var(--ink)}
+footer.small{font-size:12.5px; color:var(--muted)}
+
+/* Tooltip */
+.tip{display:inline-grid; place-items:center; width:18px; height:18px; border-radius:50%; border:1px solid currentColor; font:700 11px/1 var(--f-body); color:var(--muted); cursor:help; flex:none; background:transparent; padding:0}
+#tt{position:fixed; z-index:99; max-width:310px; background:var(--ink); color:var(--paper); font-size:12.5px; line-height:1.45; padding:9px 11px; border-radius:9px; pointer-events:none; opacity:0; transition:opacity .12s; white-space:pre-line}
+#tt.on{opacity:1}
+.toast{position:fixed; left:50%; bottom:22px; transform:translateX(-50%); background:var(--ink); color:var(--paper); padding:10px 16px; border-radius:999px; font-size:14px; opacity:0; transition:opacity .2s; pointer-events:none}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion: reduce){ *{transition:none !important} }
+
+@media (max-width:860px){
+  .chooser{grid-template-columns:1fr}
+  .after{grid-template-columns:1fr}
+  .offer{grid-template-columns:30px 1fr auto}
+  .offer .go{grid-column:2 / -1}
+  .offer .go .stack{flex-direction:row; min-width:0}
+  .offer .go .act{flex:1}
+}
+@media (max-width:560px){
+  .top{grid-template-columns:1fr}
+  .top .stack{flex-direction:row; min-width:0}
+  .top .stack .act{flex:1}
+  h1{font-size:30px}
+  .total .v{font-size:38px}
+  .r-foot{grid-template-columns:1fr}
+  .offer{grid-template-columns:26px 1fr}
+  .offer .fig{grid-column:2; text-align:left}
+  .fig .v{font-size:26px}
+  select{min-width:0; width:100%}
+  .cond .field{width:100%}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div>
+    <h1>Где купить дешевле: Apple Watch и Dyson</h1>
+    <p>Выберите модель и опции, и страница сразу покажет самый дешёвый надёжный магазин. Итог уже с налогами вашей провинции и кэшбэком. Цены проверены <span id="checked"></span>.</p>
+  </div>
+  <div class="stack">
+    <div class="act"><a class="btn wa" id="waBtn" href="#" target="_blank" rel="noopener">Отправить в WhatsApp</a><small>ссылка на эту страницу</small></div>
+    <div class="act"><button class="btn alt" id="copyBtn" type="button">Скопировать ссылку</button><small>для любого мессенджера</small></div>
+  </div>
+</header>
+
+<section class="cond" aria-label="Ваши условия">
+  <div class="field">
+    <label class="lbl" for="prov">Провинция доставки <button class="tip" type="button" data-tip="Налог считается по провинции, куда доставляют товар. В Онтарио HST 13% (5% GST + 8% провинции).">?</button></label>
+    <select id="prov"></select>
+  </div>
+  <label class="sw"><input type="checkbox" id="member" checked><span class="track"></span>Есть членство Costco <button class="tip" type="button" data-tip="Без членства Costco цены Costco не учитываются в выборе лучшего варианта.">?</button></label>
+  <label class="sw"><input type="checkbox" id="exec" checked><span class="track"></span>Costco Executive <button class="tip" type="button" data-tip="Executive-членство возвращает 2% от покупок раз в год. Обычное членство этого не даёт.">?</button></label>
+  <label class="sw"><input type="checkbox" id="rak" checked><span class="track"></span>Покупаю через Rakuten <button class="tip" type="button" data-tip="Rakuten.ca возвращает часть цены за покупку по его ссылке. Сейчас на Dyson.ca 18% вместо обычных 2.5%. Кэшбэк приходит позже, раз в квартал.">?</button></label>
+</section>
+
+<div class="winners" aria-label="Лучшие цены сейчас">
+  <article class="receipt" id="rcWatch"></article>
+  <article class="receipt" id="rcDyson"></article>
+</div>
+
+<section class="panel" id="watch">
+  <header><h2>Apple Watch</h2><p>Последние модели вышли в сентябре 2026: Series 12 и Ultra 4.</p></header>
+  <div class="chooser">
+    <form class="opts" id="wOpts" onsubmit="return false">
+      <div class="field"><span class="lbl">Модель</span><div class="chips" id="wModel"></div></div>
+      <div class="field"><span class="lbl">Размер корпуса <button class="tip" type="button" data-tip="Меньший корпус для тонкого запястья, больший для крупного экрана. Ремешок S/M подходит на 130–180 мм, M/L на 150–200 мм.">?</button></span><div class="chips" id="wSize"></div></div>
+      <div class="field"><span class="lbl">Связь <button class="tip" type="button" data-tip="GPS работает в паре с iPhone. С сотовой связью часы звонят без телефона, но нужен тариф оператора.">?</button></span><div class="chips" id="wConn"></div></div>
+    </form>
+    <div>
+      <ol class="offers" id="wList"></ol>
+    </div>
+  </div>
+  <div class="after">
+    <div class="box"><h3>Как получить лучшую цену</h3><ol id="wSteps"></ol></div>
+    <div class="box"><h3>Ждать ли Black Friday</h3><div class="verdict" id="wBF"></div></div>
+  </div>
+</section>
+
+<section class="panel" id="dyson">
+  <header><h2>Пылесос Dyson</h2><p>Флагман сейчас V16 Piston Animal. На IFA 2026 нового флагмана среди беспроводных не показали.</p></header>
+  <div class="chooser">
+    <form class="opts" id="dOpts" onsubmit="return false">
+      <div class="field"><span class="lbl">Модель</span><div class="chips" id="dModel"></div></div>
+    </form>
+    <div>
+      <ol class="offers" id="dList"></ol>
+    </div>
+  </div>
+  <div class="after">
+    <div class="box"><h3>Как получить лучшую цену</h3><ol id="dSteps"></ol></div>
+    <div class="box"><h3>Ждать ли Black Friday</h3><div class="verdict" id="dBF"></div></div>
+  </div>
+</section>
+
+<section class="panel" id="bf">
+  <header><h2>Чего ждать на Black Friday</h2><p>Black Friday 27 ноября 2026. Даты и скидки ниже это прогноз по прошлым годам.</p></header>
+  <div class="tw"><table>
+    <thead><tr><th>Событие</th><th>Когда</th><th>Чего ждать</th><th>Почему так</th><th>Что делать</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td>Кэшбэк Rakuten 18% на Dyson</td><td>идёт сейчас</td><td>может закончиться в любой день</td><td>обычная ставка 2.5%</td><td>покупать сейчас</td></tr>
+      <tr><td>Скидки на Series 12</td><td>около 20 ноября – 1 декабря</td><td>минус $50–100</td><td>на Series 11 в Канаде было минус $100 в Costco и на Amazon.ca</td><td>заказать в Costco сейчас и запросить корректировку цены</td></tr>
+      <tr><td>Распродажа Dyson</td><td>середина ноября – 1 декабря</td><td>V16 минус $150–300</td><td>во Франции V16 уже €649 вместо €849</td><td>сравнить с покупкой с кэшбэком; если выйдет дешевле, вернуть и купить заново</td></tr>
+      <tr><td>Распродажа Apple</td><td>около 27–30 ноября</td><td>подарочная карта Apple ≈ $70 к часам</td><td>в 2025 году давали $70 к Series 11 и SE 3</td><td>выгодно только вместе с бонусом PC Optimum</td></tr>
+      <tr><td>Бонус PC Optimum на карты Apple</td><td>когда объявят</td><td>10% баллами, иногда 15%, до ~$500 за визит</td><td>бывало перед Black Friday 2023 и в январе 2022</td><td>смотреть приложение PC Optimum раз в неделю</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="panel" id="trust">
+  <header><h2>Если что-то пойдёт не так</h2><p>Покупайте только у самого магазина, не у сторонних продавцов маркетплейса. Платите кредиткой: при проблеме деньги можно вернуть через банк.</p></header>
+  <div class="tw"><table>
+    <thead><tr><th>Магазин</th><th>Возврат</th><th>Если цена упадёт</th><th>Гарантия</th><th>Оплата частями</th></tr></thead>
+    <tbody>
+      <tr><td>Dyson.ca</td><td>30 дней бесплатно, на праздники продлён</td><td>30 дней: вернут разницу, если та же модель дешевле у авторизованного продавца</td><td>2 года от Dyson</td><td>Affirm, 6 платежей от 0%</td></tr>
+      <tr><td>Costco</td><td>90 дней на электронику</td><td>30 дней: вернут разницу, если снизит свою цену</td><td>от производителя, бесплатная техподдержка</td><td>нет</td></tr>
+      <tr><td>Best Buy</td><td>по правилам Best Buy, на праздники продлён</td><td>30 дней: своя цена и цены конкурентов</td><td>от производителя</td><td>карта Best Buy, бывает комиссия</td></tr>
+      <tr><td>Amazon.ca</td><td>30 дней</td><td>нет</td><td>от производителя</td><td>Affirm, 0–32%</td></tr>
+      <tr><td>Apple.ca</td><td>14 дней</td><td>нет</td><td>1 год от Apple</td><td>Affirm, в примере Apple 7.99%</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="panel" id="rejected">
+  <header><h2>Проверено и не подходит</h2></header>
+  <ul class="rej">
+    <li><b>Kijiji в Миссиссоге</b>Series 12 за $600 с AppleCare+, объявлений с V16 нет. Не дешевле магазина, а риск выше.</li>
+    <li><b>Купить в США</b>Series 12 $399 USD по курсу ≈ 1.40 выходит как здесь, V16 за $979.99 USD дороже.</li>
+    <li><b>Кэшбэк Rakuten в Apple</b>На часы не начисляется, только на аксессуары, AppleCare и восстановленные товары.</li>
+    <li><b>Rakuten 20% на Walmart</b>Только на раздел Flash Deals, Apple Watch туда не входит.</li>
+    <li><b>Gen5detect Absolute за $679.95</b>Best Buy, распродан онлайн и в магазинах.</li>
+    <li><b>Восстановленные часы от Apple</b>В канадском магазине восстановленных Apple Watch нет.</li>
+  </ul>
+</section>
+
+<section class="panel">
+  <header><h2>Источники</h2></header>
+  <ul class="src">
+    <li><a href="https://www.iphoneincanada.ca/2026/09/09/apple-watch-series-12-and-ultra-4-canadian-pricing-revealed-starting-at-549/" target="_blank" rel="noopener">iPhone in Canada: цены Series 12 и Ultra 4 в Канаде</a></li>
+    <li><a href="https://www.apple.com/ca/shop/buy-watch/apple-watch" target="_blank" rel="noopener">Apple Canada: Apple Watch, рассрочка</a></li>
+    <li><a href="https://www.costco.ca/p/-/apple-watch-series-12-gps/4201049502" target="_blank" rel="noopener">Costco.ca: Series 12 GPS</a></li>
+    <li><a href="https://www.bestbuy.ca/en-ca/help/holiday-shopping-at-best-buy/making-sure-you-get-the-best-price" target="_blank" rel="noopener">Best Buy: гарантия низкой цены</a></li>
+    <li><a href="https://moneygenius.ca/personal-finance/how-to-save-money/costco-price-adjustment-canada" target="_blank" rel="noopener">Costco: корректировка цены 30 дней</a></li>
+    <li><a href="https://maplemoney.com/costco-canada-return-policy/" target="_blank" rel="noopener">Costco: возврат электроники 90 дней</a></li>
+    <li><a href="https://www.rakuten.ca/dyson" target="_blank" rel="noopener">Rakuten.ca: Dyson 18% и исключения</a></li>
+    <li><a href="https://www.dysoncanada.ca/en/the-dyson-difference" target="_blank" rel="noopener">Dyson Canada: защита цены и возврат</a></li>
+    <li><a href="https://dysoncanada.ca/en/offers/dyson-financing" target="_blank" rel="noopener">Dyson Canada: рассрочка Affirm</a></li>
+    <li><a href="https://www.cgmagonline.com/news/dyson-launches-purifier-v16-piston/" target="_blank" rel="noopener">CGMagazine: цены V16 в Канаде</a></li>
+    <li><a href="https://www.clubic.com/bons-plans-636772-boulanger-avance-le-black-friday-le-dyson-v16-piston-animal-passe-a--23.html" target="_blank" rel="noopener">Clubic: V16 со скидкой во Франции</a></li>
+    <li><a href="https://www.iphoneincanada.ca/2025/11/28/apple-black-friday-canada-is-live-now-and-gift-cards-hit-350/" target="_blank" rel="noopener">Распродажа Apple 2025 в Канаде</a></li>
+    <li><a href="https://www.iphoneincanada.ca/2023/11/17/apple-gift-cards-black-friday-bonus/" target="_blank" rel="noopener">PC Optimum: бонус на карты Apple</a></li>
+    <li><a href="https://www.taxtips.ca/salestaxes/sales-tax-rates-2026.htm" target="_blank" rel="noopener">TaxTips: налоги по провинциям 2026</a></li>
+    <li><a href="https://forums.redflagdeals.com/tags/apple%20watch/" target="_blank" rel="noopener">RedFlagDeals: история цен Apple Watch</a></li>
+    <li><a href="https://forums.redflagdeals.com/tags/dyson/" target="_blank" rel="noopener">RedFlagDeals: история цен Dyson</a></li>
+  </ul>
+</section>
+
+<footer class="small">Цены меняются. Перед покупкой сверьте цену по ссылке магазина. Прогнозы Black Friday основаны на прошлых годах, это не обещание магазинов. Страница не связана ни с одним магазином.</footer>
+</div>
+<div id="tt" role="tooltip"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* =====================================================================
+   DATA: всё, что меняется, редактируется здесь.
+   Цена = без налога, CAD. URL = страница товара.
+   ===================================================================== */
+const PUBLIC_URL = "https://incomesbook.github.io/deals/";
+const CHECKED = "6 ноября 2026";
+const RAKUTEN_DYSON = 18;     // % кэшбэка Rakuten на Dyson.ca сейчас
+const EXEC_PCT = 2;           // % Costco Executive
+
+const TAX = {
+  ON:{n:"Онтарио", p:[["HST",13]]},
+  BC:{n:"Британская Колумбия", p:[["GST",5],["PST",7]]},
+  AB:{n:"Альберта", p:[["GST",5]]},
+  QC:{n:"Квебек", p:[["GST",5],["QST",9.975]]},
+  MB:{n:"Манитоба", p:[["GST",5],["PST",7]]},
+  SK:{n:"Саскачеван", p:[["GST",5],["PST",6]]},
+  NS:{n:"Новая Шотландия", p:[["HST",14]]},
+  NB:{n:"Нью-Брансуик", p:[["HST",15]]},
+  NL:{n:"Ньюфаундленд и Лабрадор", p:[["HST",15]]},
+  PE:{n:"Остров Принца Эдуарда", p:[["HST",15]]},
+  YT:{n:"Юкон", p:[["GST",5]]},
+  NT:{n:"Северо-Западные территории", p:[["GST",5]]},
+  NU:{n:"Нунавут", p:[["GST",5]]}
+};
+
+const U = {
+  costcoS12:"https://www.costco.ca/p/-/apple-watch-series-12-gps/4201049502",
+  costcoW:"https://www.costco.ca/s?keyword=apple%20watch",
+  costcoDyson:"https://www.costco.ca/s?keyword=dyson%20vacuum",
+  amz42:"https://www.amazon.ca/dp/B0HJB23HFR", amz46:"https://www.amazon.ca/dp/B0HJ9QCWM7", amzS11:"https://www.amazon.ca/dp/B0FQG8Y4V9",
+  bbS12:"https://www.bestbuy.ca/en-ca/collection/apple-watch-series-12/blt280565f8612df673",
+  bbS11:"https://www.bestbuy.ca/en-ca/search?search=apple%20watch%20series%2011",
+  walmart:"https://www.walmart.ca/en/search?q=apple%20watch%20series%2012",
+  apple:"https://www.apple.com/ca/shop/buy-watch/apple-watch",
+  appleUltra:"https://www.apple.com/ca/shop/buy-watch/apple-watch-ultra",
+  appleSE:"https://www.apple.com/ca/shop/buy-watch/apple-watch-se",
+  rakDyson:"https://www.rakuten.ca/dyson",
+  dysonV16:"https://www.dysoncanada.ca/en/vacuum-cleaners/cordless/v16-piston-animal/copper",
+  dysonCordless:"https://www.dysoncanada.ca/en/vacuum-cleaners/cordless",
+  dysonDeals:"https://www.dysoncanada.ca/en/deals/dyson-canada-sale",
+  dysonOutlet:"https://www.dysoncanada.ca/en/dyson-outlet",
+  bbV16:"https://www.bestbuy.ca/en-ca/product/-/19339632",
+  bbSub:"https://www.bestbuy.ca/en-ca/product/-/19339633",
+  bbSubOB:"https://www.bestbuy.ca/en-ca/product/-/19743372",
+  bbDok:"https://www.bestbuy.ca/en-ca/product/-/20167772",
+  bbV15:"https://www.bestbuy.ca/en-ca/product/-/17183862",
+  bbV15core:"https://www.bestbuy.ca/en-ca/product/-/20204384",
+  ctV16:"https://www.canadiantire.ca/en/pdp/dyson-v16-piston-animal-cordless-stick-vacuum-0437267p.html",
+  ctSub:"https://www.canadiantire.ca/en/pdp/dyson-v16-piston-submarine-cordless-stick-vacuum-0437268p.html"
+};
+
+/* Магазины: условия и шаги покупки */
+const STORE = {
+  costco:{n:"Costco.ca", dom:"costco.ca", member:true, exec:true, perks:["Возврат 90 дней","Корректировка цены 30 дней"],
+    steps:["Откройте товар на Costco.ca, выберите размер, цвет и ремешок.","Оплатите кредиткой, лучше с дополнительной гарантией.","До 6 декабря проверяйте цену. Если Costco её снизит, запросите корректировку в Customer Service на сайте или в любом складе.","Если в другом магазине станет намного дешевле, верните часы в Costco (90 дней) и купите там."]},
+  costcoStore:{n:"Costco, склад", dom:"только в складе", member:true, exec:true, perks:["Возврат 90 дней"],
+    steps:["Позвоните в ближайший Costco и спросите наличие.","Распродажа в одном складе не значит, что товар есть в других."]},
+  amazon:{n:"Amazon.ca", dom:"amazon.ca", perks:["Возврат 30 дней"],
+    steps:["Проверьте, что продаёт Amazon.ca, а не сторонний продавец.","Защиты цены нет, но 30 дней можно вернуть, если найдёте дешевле."]},
+  bestbuy:{n:"Best Buy", dom:"bestbuy.ca", perks:["Сравняет цену с конкурентом","Защита цены 30 дней"],
+    steps:["Откройте товар на Best Buy.","Если у Amazon.ca или Walmart дешевле, попросите сравнять цену в онлайн-чате или на кассе.","30 дней следите за ценой: если Best Buy её снизит, вернут разницу."]},
+  walmart:{n:"Walmart", dom:"walmart.ca", perks:["Стандартный возврат"],
+    steps:["Проверьте, что продавец Walmart, а не маркетплейс.","Оформите заказ с доставкой или самовывозом."]},
+  apple:{n:"Apple.ca", dom:"apple.com/ca", perks:["Возврат 14 дней","Гарантия Apple 1 год"],
+    steps:["Оформите заказ на Apple.ca или в Apple Square One.","Выгодно только с акциями: бонус PC Optimum на подарочные карты Apple и подарочная карта Apple на Black Friday."]},
+  dyson:{n:"Dyson.ca", dom:"dysoncanada.ca", perks:["Возврат 30 дней бесплатно","Защита цены 30 дней","Гарантия 2 года","Affirm 0%"],
+    steps:["Войдите на Rakuten.ca, отключите блокировщик рекламы, очистите корзину на Dyson.ca.","Нажмите «Через Rakuten», на странице Rakuten выберите Shop и в той же вкладке оформите заказ на Dyson.ca.","Оплатите через Affirm (6 платежей от 0%, нужна проверка) или кредиткой.","Через 1–7 дней в Rakuten появится ожидаемый кэшбэк. Если нет, подайте заявку Missing Cash Back.","До 6 декабря: если на Black Friday выйдет сильно дешевле, позвоните в Dyson 1-877-397-6622 или верните бесплатно и купите заново."],
+    stepsNoRak:["Оформите заказ на Dyson.ca.","Оплатите через Affirm (6 платежей от 0%) или кредиткой.","30 дней: если та же модель станет дешевле у авторизованного продавца, Dyson вернёт разницу."]},
+  ct:{n:"Canadian Tire", dom:"canadiantire.ca", perks:["CT Money 0.4–4%"],
+    steps:["Оформите на canadiantire.ca с картой Triangle, чтобы получить CT Money.","CT Money тратится только в магазинах Canadian Tire."]},
+  outlet:{n:"Dyson Outlet", dom:"dysoncanada.ca", perks:["Гарантия 1 год","Без возврата"],
+    steps:["Восстановлен Dyson, гарантия 1 год.","Возврат не принимают: проверьте комплектацию до оплаты."]},
+  bbOutlet:{n:"Dyson Outlet на Best Buy", dom:"bestbuy.ca", perks:["Гарантия 1 год"],
+    steps:["Это официальный магазин Dyson на маркетплейсе Best Buy.","Проверьте, что продавец именно Dyson Official Outlet."]},
+  mkt:{n:"Маркетплейс Best Buy", dom:"bestbuy.ca", risk:true, perks:["Сторонний продавец"], steps:["Не рекомендую: гарантия и состояние на совести продавца."]}
+};
+
+/* Каталог. offers: [магазин, цена, url, {note, rak, cond}] */
+const WATCH = {
+  s12:{n:"Series 12", sub:"новая, 2026", bf:[50,100], cfg:{
+    "42|gps":{msrp:549, o:[["costco",548.99,U.costcoS12],["amazon",548.99,U.amz42],["bestbuy",549.99,U.bbS12],["apple",549,U.apple],["mkt",464.99,U.bbS12,{note:"Open box, продавец PRO OB"}]]},
+    "46|gps":{msrp:619, o:[["costco",588.99,U.costcoS12],["amazon",589,U.amz46],["walmart",589,U.walmart],["apple",619,U.apple],["bestbuy",619.99,U.bbS12],["mkt",524.99,U.bbS12,{note:"Open box, продавец PRO OB"}]]},
+    "42|cell":{msrp:679, o:[["apple",679,U.apple],["bestbuy",679.99,U.bbS12]]},
+    "46|cell":{msrp:749, o:[["apple",749,U.apple],["bestbuy",749.99,U.bbS12]]}
+  }},
+  u4:{n:"Ultra 4", sub:"новая, 2026", cfg:{
+    "49|cell":{msrp:1099, o:[["costco",1098.99,U.costcoW],["apple",1099,U.appleUltra]]}
+  }},
+  se3:{n:"SE 3", sub:"бюджетная, 2025", cfg:{
+    "40|gps":{msrp:329, o:[["costco",328.99,U.costcoW],["apple",329,U.appleSE]]},
+    "44|gps":{msrp:369, o:[["costco",368.99,U.costcoW],["apple",369,U.appleSE]]},
+    "40|cell":{msrp:399, o:[["apple",399,U.appleSE]]}
+  }},
+  s11:{n:"Series 11", sub:"прошлая, 2025", cfg:{
+    "42|gps":{msrp:549, o:[["bestbuy",499.99,U.bbS11,{note:"Цена до 13 ноября"}]]},
+    "46|gps":{msrp:589, o:[["amazon",489.97,U.amzS11],["bestbuy",549.99,U.bbS11,{note:"Цена до 13 ноября"}]]}
+  }}
+};
+const DYSON = {
+  v16:{n:"V16 Piston Animal", sub:"флагман", msrp:1099.99, bf:[150,300], o:[
+    ["dyson",1099.99,U.dysonV16,{rak:true,note:"Две насадки в комплекте"}],
+    ["bestbuy",1099.99,U.bbV16,{note:"Другая комплектация: одна насадка (модель 640975-01)"}],
+    ["ct",1099.99,U.ctV16],
+    ["mkt",999.99,"",{note:"Продавец Electro Emporium"}]]},
+  v16s:{n:"V16 Submarine", sub:"+ влажная уборка", msrp:1299.99, bf:[150,300], o:[
+    ["dyson",1299.99,U.dysonCordless,{rak:true}],["bestbuy",1299.99,U.bbSub],["ct",1299.99,U.ctSub],
+    ["mkt",1104.99,U.bbSubOB,{note:"Open box, продавец PRO OB"}]]},
+  v16d:{n:"V16 + Auto-Empty Dok", sub:"с автоочисткой", msrp:1299.99, o:[
+    ["dyson",1299.99,U.dysonCordless,{rak:true}],["bestbuy",1299.99,U.bbDok,{note:"Предзаказ"}]]},
+  v15:{n:"V15 Detect", sub:"прошлый флагман", msrp:999.99, o:[
+    ["dyson",999.99,U.dysonCordless,{rak:true}],["bestbuy",999.99,U.bbV15]]},
+  v15r:{n:"V15 Detect восст.", sub:"гарантия 1 год", msrp:999.99, o:[
+    ["outlet",499.99,U.dysonOutlet,{note:"Кэшбэк Rakuten не начисляется"}],["bbOutlet",499.99,U.bbV15core,{note:"Версия V15 Core"}]]},
+  pv:{n:"PencilVac", sub:"новая, тонкая", msrp:699.99, o:[
+    ["dyson",499.99,U.dysonDeals,{note:"Скидка $200. Кэшбэк Rakuten на эту модель не начисляется"}],
+    ["costcoStore",199.97,U.costcoDyson,{cond:true,note:"Распродажа была в одном складе (Оттава), наличие не гарантировано"}]]}
+};
+
+/* ===================================================================== */
+const $ = id => document.getElementById(id);
+const money = n => (n<0?"−":"") + "$" + Math.abs(n).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
+const S = { prov:"ON", member:true, exec:true, rak:true, wm:"s12", wsize:"42", wconn:"gps", dm:"v16" };
+try{ const saved = JSON.parse(localStorage.getItem("deals-prov")||"null"); if(saved && TAX[saved]) S.prov = saved; }catch(e){}
+
+function rate(){ return TAX[S.prov].p.reduce((a,[,r])=>a+r,0)/100; }
+function taxLabel(){ return TAX[S.prov].p.map(([n,r])=>n+" "+String(r).replace(".",",")+"%").join(" + "); }
+
+function calc(o, msrp){
+  const [sk, price, url, ex={}] = o; const st = STORE[sk];
+  const taxes = TAX[S.prov].p.map(([n,r])=>({n, r, v: price*r/100}));
+  const tax = taxes.reduce((a,t)=>a+t.v,0);
+  const pay = price + tax;
+  const back = [];
+  if(ex.rak && S.rak) back.push({n:"Кэшбэк Rakuten "+RAKUTEN_DYSON+"%", v: price*RAKUTEN_DYSON/100});
+  if(st.exec && S.member && S.exec) back.push({n:"Costco Executive "+EXEC_PCT+"%", v: price*EXEC_PCT/100});
+  const final = pay - back.reduce((a,b)=>a+b.v,0);
+  const base = msrp*(1+rate());
+  const blocked = st.member && !S.member;
+  const kind = st.risk ? "risk" : ex.cond ? "cond" : blocked ? "off" : "ok";
+  return {sk, st, price, url, ex, taxes, tax, pay, back, final, base, save: base-final, kind};
+}
+function rank(list){
+  const order = {ok:0, cond:1, off:2, risk:3};
+  return list.sort((a,b)=> order[a.kind]-order[b.kind] || a.final-b.final);
+}
+function breakdown(c){
+  let s = "Цена в магазине " + money(c.price);
+  c.taxes.forEach(t=> s += "\n+ " + t.n + " " + String(t.r).replace(".",",") + "% " + money(t.v));
+  s += "\n= платите " + money(c.pay);
+  c.back.forEach(b=> s += "\n− " + b.n + " " + money(b.v));
+  return s + "\nИтог " + money(c.final);
+}
+function buttons(c){
+  if(!c.url) return '<div class="stack"><div class="act"><span class="btn alt" aria-disabled="true">Не рекомендую</span><small>сторонний продавец</small></div></div>';
+  if(c.ex.rak && S.rak) return '<div class="stack"><div class="act"><a class="btn" href="'+U.rakDyson+'" target="_blank" rel="noopener">Через Rakuten</a><small>кэшбэк '+RAKUTEN_DYSON+'%</small></div><div class="act"><a class="btn alt" href="'+c.url+'" target="_blank" rel="noopener">Dyson.ca</a><small>страница товара</small></div></div>';
+  return '<div class="stack"><div class="act"><a class="btn'+(c.kind==="ok"?"":" alt")+'" href="'+c.url+'" target="_blank" rel="noopener">Открыть</a><small>'+c.st.dom+'</small></div></div>';
+}
+function offerRow(c, i, isBest){
+  const tags = isBest ? '<span class="mini best">лучшая цена</span>'
+    : c.kind==="cond" ? '<span class="mini cond">если найдёте</span>'
+    : c.kind==="off" ? '<span class="mini off">нужно членство Costco</span>'
+    : c.kind==="risk" ? '<span class="mini risk">риск</span>' : '';
+  const perks = c.st.perks.map(p=>'<span class="perk">'+p+'</span>').join('') + c.back.map(b=>'<span class="perk g">'+b.n+' = '+money(b.v)+'</span>').join('');
+  const d = c.kind==="risk" ? '<div class="d">дешевле, но без надёжной гарантии</div>'
+    : c.save >= 1 ? '<div class="d g">дешевле обычной цены на '+money(c.save)+'</div>'
+    : c.save <= -1 ? '<div class="d r">дороже обычной на '+money(-c.save)+'</div>' : '<div class="d">обычная цена</div>';
+  return '<li class="offer '+(isBest?"best":c.kind==="ok"?"":c.kind)+'">'
+    + '<div class="rk">'+(i+1)+'</div>'
+    + '<div><div class="st">'+c.st.n+tags+'</div><div class="perks">'+perks+'</div>'+(c.ex.note?'<div class="note">'+c.ex.note+'</div>':'')+'</div>'
+    + '<div class="fig"><div class="v">'+money(c.final)+'<button class="tip" type="button" data-tip="'+breakdown(c).replace(/"/g,"&quot;")+'">?</button></div><div class="s">цена '+money(c.price)+' + налоги'+(c.back.length?' − возвраты':'')+'</div>'+d+'</div>'
+    + '<div class="go">'+buttons(c)+'</div></li>';
+}
+function receipt(el, prodName, conf, c){
+  const lines = '<div class="ln"><span>Цена в магазине</span><span class="f"></span><span class="v">'+money(c.price)+'</span></div>'
+    + c.taxes.map(t=>'<div class="ln"><span>'+t.n+' '+String(t.r).replace(".",",")+'%</span><span class="f"></span><span class="v">'+money(t.v)+'</span></div>').join('')
+    + '<div class="ln paid"><span>Платите на кассе</span><span class="f"></span><span class="v">'+money(c.pay)+'</span></div>'
+    + c.back.map(b=>'<div class="ln back"><span>'+b.n+'</span><span class="f"></span><span class="v">−'+money(b.v)+'</span></div>').join('');
+  el.innerHTML = '<span class="shelf">Лучшая цена сейчас</span>'
+    + '<div class="r-head"><div><div class="r-prod">'+prodName+'</div><div class="r-conf">'+conf+'</div></div><div class="r-store">'+c.st.n+'</div></div>'
+    + '<div class="lines">'+lines+'</div>'
+    + '<div class="total"><b>Итог для вас <button class="tip" type="button" data-tip="Цена + налоги провинции '+TAX[S.prov].n+' − кэшбэк и возвраты. Кэшбэк и 2% Executive приходят позже.">?</button></b><span class="v">'+money(c.final)+'</span></div>'
+    + (c.save>0.005?'<span class="r-save">Экономия '+money(c.save)+' против обычной цены</span>':'')
+    + '<div class="r-foot"><p>'+(c.st.perks.join(". "))+'.</p>'+buttons(c)+'</div>';
+}
+function bfVerdict(el, bf, msrp, best){
+  if(!bf){ el.innerHTML = '<p class="muted">Прогноза по этой модели нет: в прошлые годы заметных скидок не было или данных мало.</p>'; return; }
+  const lo = (msrp-bf[1])*(1+rate()), hi = (msrp-bf[0])*(1+rate());
+  let v, cls;
+  if(best.final <= lo){ v = "Уже сейчас дешевле любого прогноза. Берите сейчас."; cls="g"; }
+  else if(best.final <= hi){ v = "Сейчас цена уже внутри прогноза. Берите сейчас, а если на Black Friday выйдет дешевле, верните и купите заново."; cls="g"; }
+  else { v = "На Black Friday скорее всего будет дешевле. Заказывайте там, где вернут разницу при снижении цены."; cls="c"; }
+  el.innerHTML = '<p>В магазинах ожидаем <b>'+money(lo)+' – '+money(hi)+'</b> с налогом (скидка $'+bf[0]+'–'+bf[1]+').</p><p style="margin-top:6px">Лучший итог сейчас <b>'+money(best.final)+'</b>.</p><span class="badge '+cls+'">'+v+'</span>';
+}
+function chips(el, name, items, cur){
+  el.innerHTML = items.map(([v,l,s])=>'<label class="chip-in"><input type="radio" name="'+name+'" value="'+v+'"'+(v===cur?' checked':'')+'><span>'+l+(s?'<small>'+s+'</small>':'')+'</span></label>').join('');
+}
+
+function renderWatch(){
+  const m = WATCH[S.wm];
+  const keys = Object.keys(m.cfg);
+  const sizes = [...new Set(keys.map(k=>k.split("|")[0]))];
+  if(!sizes.includes(S.wsize)) S.wsize = sizes[0];
+  const conns = keys.filter(k=>k.startsWith(S.wsize+"|")).map(k=>k.split("|")[1]);
+  if(!conns.includes(S.wconn)) S.wconn = conns[0];
+  chips($("wModel"), "wm", Object.entries(WATCH).map(([k,v])=>[k,v.n,v.sub]), S.wm);
+  chips($("wSize"), "ws", sizes.map(s=>[s, s+" мм"]), S.wsize);
+  chips($("wConn"), "wc", conns.map(c=>[c, c==="gps"?"GPS":"GPS + сотовая"]), S.wconn);
+  const cfg = m.cfg[S.wsize+"|"+S.wconn];
+  const list = rank(cfg.o.map(o=>calc(o,cfg.msrp)));
+  const best = list.find(c=>c.kind==="ok") || list[0];
+  $("wList").innerHTML = list.map((c,i)=>offerRow(c,i,c===best)).join('');
+  receipt($("rcWatch"), "Apple Watch "+m.n, S.wsize+" мм, "+(S.wconn==="gps"?"GPS":"GPS + сотовая связь"), best);
+  $("wSteps").innerHTML = best.st.steps.map(s=>'<li>'+s+'</li>').join('');
+  bfVerdict($("wBF"), m.bf, cfg.msrp, best);
+}
+function renderDyson(){
+  const m = DYSON[S.dm];
+  chips($("dModel"), "dm", Object.entries(DYSON).map(([k,v])=>[k,v.n,v.sub]), S.dm);
+  const list = rank(m.o.map(o=>calc(o,m.msrp)));
+  const best = list.find(c=>c.kind==="ok") || list[0];
+  $("dList").innerHTML = list.map((c,i)=>offerRow(c,i,c===best)).join('');
+  receipt($("rcDyson"), "Dyson "+m.n, m.sub, best);
+  const steps = (best.sk==="dyson" && !(best.ex.rak && S.rak)) ? best.st.stepsNoRak : best.st.steps;
+  $("dSteps").innerHTML = steps.map(s=>'<li>'+s+'</li>').join('');
+  bfVerdict($("dBF"), m.bf, m.msrp, best);
+}
+function renderAll(){ renderWatch(); renderDyson(); }
+
+/* Controls */
+$("checked").textContent = CHECKED;
+$("prov").innerHTML = Object.entries(TAX).map(([k,v])=>'<option value="'+k+'"'+(k===S.prov?' selected':'')+'>'+v.n+' — '+v.p.map(([n,r])=>n+" "+String(r).replace(".",",")+"%").join(" + ")+'</option>').join('');
+$("prov").addEventListener("change", e=>{ S.prov=e.target.value; try{localStorage.setItem("deals-prov",S.prov)}catch(x){} renderAll(); });
+["member","exec","rak"].forEach(id=> $(id).addEventListener("change", e=>{ S[id]=e.target.checked; renderAll(); }));
+$("wOpts").addEventListener("change", e=>{ const t=e.target; if(t.name==="wm") S.wm=t.value; if(t.name==="ws") S.wsize=t.value; if(t.name==="wc") S.wconn=t.value; renderWatch(); });
+$("dOpts").addEventListener("change", e=>{ if(e.target.name==="dm") S.dm=e.target.value; renderDyson(); });
+
+/* Share */
+const shareUrl = (location.protocol.startsWith("http") && location.hostname.endsWith("github.io")) ? location.href.split("#")[0] : PUBLIC_URL;
+$("waBtn").href = "https://wa.me/?text=" + encodeURIComponent("Где купить дешевле Apple Watch и Dyson: " + shareUrl);
+function toast(t){ const el=$("toast"); el.textContent=t; el.classList.add("on"); setTimeout(()=>el.classList.remove("on"),1800); }
+$("copyBtn").addEventListener("click", async ()=>{
+  try{ await navigator.clipboard.writeText(shareUrl); toast("Ссылка скопирована"); }
+  catch(e){ toast(shareUrl); }
+});
+
+/* Tooltips: one fixed bubble, works for dynamic rows */
+const tt = $("tt");
+function showTip(el){
+  tt.textContent = el.getAttribute("data-tip"); tt.classList.add("on");
+  const r = el.getBoundingClientRect(), w = Math.min(310, innerWidth-24);
+  tt.style.maxWidth = w+"px";
+  tt.style.left = Math.min(Math.max(12, r.left + r.width/2 - w/2), innerWidth - w - 12) + "px";
+  const h = tt.offsetHeight;
+  tt.style.top = (r.top - h - 8 > 8 ? r.top - h - 8 : r.bottom + 8) + "px";
+}
+function hideTip(){ tt.classList.remove("on"); }
+document.addEventListener("mouseover", e=>{ const t=e.target.closest(".tip"); if(t) showTip(t); });
+document.addEventListener("mouseout", e=>{ if(e.target.closest(".tip")) hideTip(); });
+document.addEventListener("focusin", e=>{ const t=e.target.closest(".tip"); if(t) showTip(t); });
+document.addEventListener("focusout", e=>{ if(e.target.closest(".tip")) hideTip(); });
+document.addEventListener("click", e=>{ const t=e.target.closest(".tip"); if(t){ e.preventDefault(); showTip(t); } else hideTip(); });
+addEventListener("scroll", hideTip, {passive:true});
+
+renderAll();
+</script>
+</body>
+</html>
