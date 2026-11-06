@@ -162,6 +162,27 @@ select{font:500 14px var(--font); color:var(--ink); background:var(--soft); bord
 .mini th, .mini td{text-align:left; padding:6px 8px; border-top:1px solid var(--line); vertical-align:top}
 .mini thead th{border-top:none; color:var(--muted); font-weight:600}
 
+/* Watch picker: picture + model, colour, size on top of the Apple Watch section */
+.picker{display:grid; grid-template-columns:240px 1fr; gap:16px; align-items:start; margin-bottom:14px}
+.pic{background:var(--soft); border-radius:12px; padding:12px; display:flex; flex-direction:column; align-items:center; gap:6px}
+.pic svg{width:100%; max-width:170px; height:auto; display:block}
+.pic .cap{font-size:12px; color:var(--muted); text-align:center}
+.pic .cap b{display:block; font-size:14px; color:var(--ink)}
+.pic a{font-size:12px; color:var(--ink)}
+.ctrls{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+.ctrls .full{grid-column:1 / -1}
+.ctrls .list.models{grid-template-columns:repeat(4,1fr)}
+.swatches{display:flex; flex-wrap:wrap; gap:6px}
+.swatch{position:relative}
+.swatch input{position:absolute; opacity:0; inset:0; margin:0}
+.swatch span{display:flex; align-items:center; gap:6px; padding:4px 10px 4px 4px; border:1px solid var(--line); border-radius:999px; cursor:pointer; font-size:12px; font-weight:600; background:var(--surface)}
+.swatch i{width:20px; height:20px; border-radius:50%; border:1px solid rgba(0,0,0,.25); flex:none}
+.swatch small{font-weight:400; color:var(--muted)}
+.swatch input:checked + span{border-color:var(--ink); box-shadow:inset 0 0 0 1px var(--ink)}
+.swatch input:focus-visible + span{outline:2px solid var(--ink); outline-offset:2px}
+.pill.ob{background:var(--soft); color:var(--ink); border:1px solid var(--line)}
+.cmp tr.nocolor{opacity:.5}
+
 /* Chooser + store table */
 .chooser{display:grid; grid-template-columns:220px 1fr; gap:16px; align-items:start}
 .opts{display:flex; flex-direction:column; gap:12px}
@@ -263,6 +284,8 @@ svg .v-acc{fill:var(--save)}
   .chooser{grid-template-columns:1fr}
   .opts .list.models{grid-template-columns:1fr 1fr}
   .after, .two, .bp{grid-template-columns:1fr}
+  .picker, .ctrls{grid-template-columns:1fr}
+  .ctrls .list.models{grid-template-columns:1fr 1fr}
 }
 @media (max-width:640px){
   .best-row{grid-template-columns:1fr} .rej{grid-template-columns:1fr}
@@ -324,11 +347,52 @@ svg .v-acc{fill:var(--save)}
     <div class="row"><div class="lab"><span>Из 100 человек с нормальным давлением не потревожат</span><b>≈ 92</b></div><div class="bar"><i style="width:92%"></i></div></div>
     <p class="s12 muted">Если уведомление пришло, это повод проверить давление тонометром. Если не пришло, это ещё не гарантия нормы.</p>
   </div>
-  <p class="verdict">Для давления Series 12 не лучше Series 11: функция одинаковая. Если нужна именно она, Series 11 дешевле на $50–100 в зависимости от размера.</p>
+  <p class="verdict">Для давления Series 12 не лучше Series 11: функция одинаковая. Новые Series 11 на OpenBox.ca стоят от $399.99 — на $100 дешевле Series 12 там же.</p>
+</section>
+
+<section class="panel" id="hidden">
+  <div class="ph"><h2>Дешевле, чем в обычных магазинах</h2><p>Реальные цены на 6 ноября, итог с налогом провинции</p></div>
+  <div class="scroll"><table class="tbl">
+    <thead><tr><th>Где</th><th>Что</th><th>Итог</th><th>Экономия к цене Apple</th><th>Гарантия и возврат</th><th></th></tr></thead>
+    <tbody id="hidList"></tbody>
+  </table></div>
+  <div class="after">
+    <div class="box"><h3>Мой совет</h3><p>Для давления хватает Series 11. На OpenBox.ca это новые канадские модели (CL/A) с гарантией Apple: если сломаются, Apple бесплатно починит или заменит. Минус: если просто передумали, магазин удержит 15%. Самый спокойный вариант по возврату — Costco, 90 дней.</p><p class="muted" style="margin-top:6px">Taobao, AliExpress и частные объявления не советую: высокий риск подделки и нет защиты покупателя.</p></div>
+    <div class="box"><h3>Обмен старых часов (trade-in) <button class="tip" type="button" data-tip="У Series 3 не было размера 40 мм, только 38 и 42. Модель видна на часах: Настройки → Основные → Об этом устройстве.">?</button></h3>
+      <table class="mini">
+        <thead><tr><th>Ваши часы</th><th>Apple (зачёт в покупку)</th></tr></thead>
+        <tbody>
+          <tr><td>Series 3</td><td>не принимает, только бесплатная переработка</td></tr>
+          <tr><td>SE 1-го поколения, 40 мм</td><td>до ≈ $30</td></tr>
+          <tr><td>Series 4 или 5, 40 мм</td><td>не принимает</td></tr>
+          <tr><td>Series 6, 40 мм</td><td>до ≈ $45</td></tr>
+        </tbody>
+      </table>
+      <p class="muted" style="margin-top:6px">Суммы Apple — для США на август 2026, в Канаде близко. Best Buy принимает только в магазине, даёт подарочную карту; цены опубликованы только для Series 9 и новее. Вывод: обмен почти ничего не даст, выгоднее купить на OpenBox.ca. <a href="https://www.apple.com/ca/shop/trade-in" target="_blank" rel="noopener">Калькулятор Apple</a></p>
+    </div>
+  </div>
 </section>
 
 <section class="panel" id="watch">
-  <div class="ph"><h2>Apple Watch: сравнение моделей</h2><p>Нажмите на модель, чтобы выбрать её ниже</p></div>
+  <div class="ph"><h2>Apple Watch: модель, цвет и размер</h2><p>Все цены ниже пересчитываются сразу</p></div>
+  <form class="picker" id="wOpts" onsubmit="return false">
+    <div class="pic"><div id="wPic" style="width:100%;display:flex;justify-content:center"></div><div class="cap" id="wPicCap"></div><a id="wPhoto" href="#" target="_blank" rel="noopener">Фото этого цвета у магазина ↗</a></div>
+    <div class="ctrls">
+      <div class="full"><div class="lbl">Модель</div><div class="list models" id="wModel"></div></div>
+      <div class="full"><div class="lbl">Цвет корпуса <button class="tip" type="button" data-tip="У Apple цвет алюминиевого корпуса на цену не влияет. В магазинах влияет: скидки часто дают на отдельные цвета, и в наличии бывают не все. Рядом с цветом — лучшая цена новых с налогом.">?</button></div><div class="swatches" id="wColor"></div></div>
+      <div><div class="lbl">Размер <button class="tip" type="button" data-tip="42 мм легче и лучше на тонком запястье, 46 мм — крупнее экран. Ремешок S/M примерно на запястье 130–190 мм, M/L на 150–210 мм.">?</button></div><div class="seg" id="wSize"></div></div>
+      <div><div class="lbl">Связь <button class="tip" type="button" data-tip="GPS работает в паре с iPhone. С сотовой связью часы звонят без телефона, нужен тариф оператора.">?</button></div><div class="seg" id="wConn"></div></div>
+    </div>
+  </form>
+  <div class="tw" tabindex="0" role="region" aria-labelledby="wCap"><table class="cmp"><caption id="wCap">Сравнение магазинов: Apple Watch</caption>
+    <thead><tr><th scope="col">Магазин</th><th scope="col">Цена</th><th scope="col" class="taxh">Налог</th><th scope="col">Кэшбэк</th><th scope="col">Итог</th><th scope="col"><span class="muted">Купить</span></th></tr></thead>
+    <tbody id="wList"></tbody></table></div>
+  <div class="after">
+    <div class="box"><h3>Как получить лучшую цену</h3><ol id="wSteps"></ol></div>
+    <div class="box"><h3>Ждать ли Black Friday</h3><div id="wBF"></div></div>
+  </div>
+
+  <div class="ph" style="margin:16px 0 8px"><h3 class="sub-h" style="margin:0">Сравнение моделей: за что вы платите</h3><p>Нажмите на модель, чтобы выбрать её выше</p></div>
   <div class="tw2" tabindex="0" role="region" aria-label="Сравнение моделей Apple Watch"><table class="cmpf" id="wCompare"></table></div>
 
   <div class="two" style="margin-top:12px">
@@ -361,23 +425,6 @@ svg .v-acc{fill:var(--save)}
     </div>
   </div>
 
-  <h3 class="sub-h">Где купить выбранную модель</h3>
-  <div class="chooser">
-    <form class="opts" id="wOpts" onsubmit="return false">
-      <div><div class="lbl">Модель</div><div class="list models" id="wModel"></div></div>
-      <div><div class="lbl">Размер <button class="tip" type="button" data-tip="Ремешок S/M примерно на запястье 130–190 мм, M/L на 150–210 мм.">?</button></div><div class="seg" id="wSize"></div></div>
-      <div><div class="lbl">Связь <button class="tip" type="button" data-tip="GPS работает в паре с iPhone. С сотовой связью часы звонят без телефона, нужен тариф оператора.">?</button></div><div class="seg" id="wConn"></div></div>
-    </form>
-    <div>
-      <div class="tw" tabindex="0" role="region" aria-labelledby="wCap"><table class="cmp"><caption id="wCap">Сравнение магазинов: Apple Watch</caption>
-        <thead><tr><th scope="col">Магазин</th><th scope="col">Цена</th><th scope="col" class="taxh">Налог</th><th scope="col">Кэшбэк</th><th scope="col">Итог</th><th scope="col"><span class="muted">Купить</span></th></tr></thead>
-        <tbody id="wList"></tbody></table></div>
-      <div class="after">
-        <div class="box"><h3>Как получить лучшую цену</h3><ol id="wSteps"></ol></div>
-        <div class="box"><h3>Ждать ли Black Friday</h3><div id="wBF"></div></div>
-      </div>
-    </div>
-  </div>
 </section>
 
 <section class="panel" id="dyson">
@@ -452,6 +499,11 @@ svg .v-acc{fill:var(--save)}
     <li><b>Rakuten 20% на Walmart.</b> Только Flash Deals, часов там нет.</li>
     <li><b>Gen5detect Absolute за $679.95.</b> Распродан.</li>
     <li><b>Восстановленные часы Apple.</b> В Канаде не продаются.</li>
+    <li><b>Reebelo.ca.</b> Восстановленные Series 11 от $450.99 — дороже новых на OpenBox.ca. Series 12 нет.</li>
+    <li><b>Back Market Canada.</b> Сайт не открылся.</li>
+    <li><b>Amazon.com (США).</b> Series 12, 42 мм — $349.99 USD; по курсу Банка Канады 1.4113 и с HST на границе ≈ $558. Не дешевле OpenBox.ca, возврат через границу.</li>
+    <li><b>Программа сотрудников Apple (EPP).</b> На часы 0–6%, только через работодателя.</li>
+    <li><b>Подарочные карты Apple с бонусом.</b> PC Optimum 10–15% или Scene+ 20% бывают только в акции; сейчас акции нет.</li>
   </ul></div>
 </details>
 
@@ -478,6 +530,13 @@ svg .v-acc{fill:var(--save)}
     <li><a href="https://www.iphoneincanada.ca/2025/11/28/apple-black-friday-canada-is-live-now-and-gift-cards-hit-350/" target="_blank" rel="noopener">Распродажа Apple 2025 в Канаде</a></li>
     <li><a href="https://www.taxtips.ca/salestaxes/sales-tax-rates-2026.htm" target="_blank" rel="noopener">Налоги по провинциям 2026</a></li>
     <li><a href="https://forums.redflagdeals.com/tags/apple%20watch/" target="_blank" rel="noopener">RedFlagDeals: Apple Watch</a></li>
+    <li><a href="https://openbox.ca/products/apple-watch-series-11-gps-new-1-year-warranty" target="_blank" rel="noopener">OpenBox.ca: Series 11 новые</a></li>
+    <li><a href="https://openbox.ca/products/apple-watch-series-12-gps-new-1-year-warranty" target="_blank" rel="noopener">OpenBox.ca: Series 12 новые</a></li>
+    <li><a href="https://openbox.ca/policies/refund-policy" target="_blank" rel="noopener">OpenBox.ca: правила возврата</a></li>
+    <li><a href="https://www.amazon.ca/dp/B0FQFZNQ5B" target="_blank" rel="noopener">Amazon Resale: Series 11 46 мм</a></li>
+    <li><a href="https://bestbuy.ca/en-ca/collection/apple-watch-trade-in-offer/580703" target="_blank" rel="noopener">Best Buy: trade-in Apple Watch</a></li>
+    <li><a href="https://9to5mac.com/2026/08/06/apple-raises-trade-in-values-for-most-iphone-ipad-mac-and-apple-watch-models/" target="_blank" rel="noopener">Apple: цены trade-in, август 2026</a></li>
+    <li><a href="https://www.ithinkdiff.com/apple-watch-series-12-price-sizes-materials/" target="_blank" rel="noopener">Series 12: цвета и материалы</a></li>
   </ul></div>
 </details>
 
@@ -513,7 +572,11 @@ const U = {
   dysonDeals:"https://www.dysoncanada.ca/en/deals/dyson-canada-sale", dysonOutlet:"https://www.dysoncanada.ca/en/dyson-outlet",
   bbV16:"https://www.bestbuy.ca/en-ca/product/-/19339632", bbSub:"https://www.bestbuy.ca/en-ca/product/-/19339633", bbSubOB:"https://www.bestbuy.ca/en-ca/product/-/19743372",
   bbDok:"https://www.bestbuy.ca/en-ca/product/-/20167772", bbV15:"https://www.bestbuy.ca/en-ca/product/-/17183862", bbV15core:"https://www.bestbuy.ca/en-ca/product/-/20204384",
-  ctV16:"https://www.canadiantire.ca/en/pdp/dyson-v16-piston-animal-cordless-stick-vacuum-0437267p.html", ctSub:"https://www.canadiantire.ca/en/pdp/dyson-v16-piston-submarine-cordless-stick-vacuum-0437268p.html"
+  ctV16:"https://www.canadiantire.ca/en/pdp/dyson-v16-piston-animal-cordless-stick-vacuum-0437267p.html", ctSub:"https://www.canadiantire.ca/en/pdp/dyson-v16-piston-submarine-cordless-stick-vacuum-0437268p.html",
+  obS12:"https://openbox.ca/products/apple-watch-series-12-gps-new-1-year-warranty", obS11:"https://openbox.ca/products/apple-watch-series-11-gps-new-1-year-warranty",
+  obS12ob:"https://openbox.ca/products/apple-watch-series-12-gps-open-box-1-year-warranty", obS11ob:"https://openbox.ca/products/apple-watch-series-11-gps-open-box-1-year-warranty",
+  amzS12g:"https://www.amazon.ca/dp/B0HJ9S5L6H", amzR11r42:"https://www.amazon.ca/dp/B0FQFW3C63", amzR11r46:"https://www.amazon.ca/dp/B0FQFZNQ5B",
+  bbmS11:"https://www.bestbuy.ca/en-ca/search?search=apple%20watch%20series%2011%20open%20box"
 };
 
 const STORE = {
@@ -533,29 +596,59 @@ const STORE = {
   ct:{n:"Canadian Tire", dom:"canadiantire.ca", terms:"CT Money 0.4–4% с картой Triangle", steps:["Оформите на canadiantire.ca с картой Triangle, чтобы получить CT Money.","CT Money тратится только в Canadian Tire."]},
   outlet:{n:"Dyson Outlet", dom:"dysoncanada.ca", terms:"восстановлен Dyson, гарантия 1 год, без возврата", steps:["Восстановлен Dyson, гарантия 1 год.","Возврат не принимают: проверьте комплектацию до оплаты."]},
   bbOutlet:{n:"Dyson Outlet на Best Buy", dom:"bestbuy.ca", terms:"официальный магазин Dyson, гарантия 1 год", steps:["Проверьте, что продавец Dyson Official Outlet.","Гарантия 1 год от Dyson."]},
+  openbox:{n:"OpenBox.ca", dom:"openbox.ca", terms:"Новые канадские модели (CL/A), гарантия Apple 1 год. Возврат без причины: 7 дней, удержание 15%, доставка обратно за ваш счёт. Брак: возврат оплачивает магазин.",
+    steps:["Откройте товар на OpenBox.ca, выберите цвет и размер: наличие видно сразу.","Оплатите кредиткой: если что-то пойдёт не так, банк поможет вернуть деньги.","При получении проверьте, что коробка запечатана, а модель канадская (CL/A).","Сломались — гарантия Apple 1 год, ремонт или замена в Apple. Передумали — 7 дней, удержат 15%."]},
+  openboxOB:{n:"OpenBox.ca, открытая коробка", dom:"openbox.ca", ob:true, obl:"открытая коробка", terms:"Вскрытая упаковка или возврат покупателя, гарантия 1 год. Возврат 7 дней, удержание 15%.",
+    steps:["Выберите цвет и размер на OpenBox.ca.","В первый день проверьте внешний вид, комплект и аккумулятор: Настройки → Аккумулятор → Состояние.","Проблема — пишите магазину в течение 7 дней."]},
+  amzR:{n:"Amazon Resale", dom:"amazon.ca", ob:true, obl:"б/у, проверено Amazon", terms:"Продаёт и отправляет Amazon.ca (Warehouse Deals), возврат 30 дней.",
+    steps:["Откройте товар на Amazon.ca, под кнопкой покупки найдите «Used» или «Other sellers».","Выберите продавца Amazon Resale (Warehouse Deals) и состояние «Used – Like New».","Иногда при оформлении даётся дополнительная скидка — проверьте итог в корзине.","Проверьте, что часы отвязаны от чужого Apple ID; если нет — верните в течение 30 дней."]},
+  bbm:{n:"Best Buy, продавец OpenBox", dom:"bestbuy.ca", ob:true, obl:"открытая коробка", terms:"Marketplace: продаёт OpenBox, не Best Buy. В магазине Best Buy не вернуть.",
+    steps:["На Best Buy выберите предложение продавца OpenBox, состояние Good или Excellent.","Возврат оформляется через продавца, не в магазине Best Buy."]},
   mkt:{n:"Маркетплейс Best Buy", dom:"bestbuy.ca", risk:true, terms:"сторонний продавец", steps:["Не рекомендую: гарантия и состояние на совести продавца."]}
 };
 
 const WATCH = {
-  s12:{n:"Series 12", sub:"2026, новая", def:"42|gps", bf:[50,100], cfg:{
-    "42|gps":{msrp:549, o:[["costco",548.99,U.costcoS12],["amazon",548.99,U.amz42],["bestbuy",549.99,U.bbS12],["apple",549,U.apple],["mkt",464.99,U.bbS12,{note:"open box, продавец PRO OB"}]]},
-    "46|gps":{msrp:619, o:[["costco",588.99,U.costcoS12],["amazon",589,U.amz46],["walmart",589,U.walmart],["apple",619,U.apple],["bestbuy",619.99,U.bbS12],["mkt",524.99,U.bbS12,{note:"open box, продавец PRO OB"}]]},
+  s12:{n:"Series 12", sub:"2026, новая", def:"42|gps", bf:[50,100], photo:"https://www.apple.com/ca/shop/buy-watch/apple-watch", cfg:{
+    "42|gps":{msrp:549, o:[["openbox",499.99,U.obS12,{only:["gold"],warn:"возврат −15%",note:"новые, канадская модель, S/M"}],["costco",548.99,U.costcoS12],["amazon",548.99,U.amz42],["bestbuy",549.99,U.bbS12],["apple",549,U.apple],
+      ["openboxOB",449.99,U.obS12ob,{only:["gold"],note:"S/M"}],["amzR",475.02,U.amzS12g,{only:["grey"],note:"состояние «очень хорошее», S/M"}],["amzR",508.51,U.amz42,{only:["black"],note:"состояние «как новые», S/M"}],["mkt",464.99,U.bbS12,{only:["black","bronze"],note:"open box, продавец PRO OB"}]]},
+    "46|gps":{msrp:619, o:[["costco",588.99,U.costcoS12],["amazon",619,U.amz46,{cp:{black:589,grey:589},note:"$589 — чёрный S/M или серый M/L"}],["walmart",589,U.walmart],["apple",619,U.apple],["bestbuy",619.99,U.bbS12],
+      ["openboxOB",499.99,U.obS12ob,{only:["black","bronze"]}],["mkt",524.99,U.bbS12,{only:["black","bronze"],note:"open box, продавец PRO OB"}]]},
     "42|cell":{msrp:679, o:[["apple",679,U.apple],["bestbuy",679.99,U.bbS12]]},
     "46|cell":{msrp:749, o:[["apple",749,U.apple],["bestbuy",749.99,U.bbS12]]}
   }},
-  s11:{n:"Series 11", sub:"2025, прошлая", def:"46|gps", cfg:{
-    "42|gps":{msrp:549, o:[["bestbuy",499.99,U.bbS11,{note:"цена до 13 ноября"}]]},
-    "46|gps":{msrp:589, o:[["amazon",489.97,U.amzS11],["bestbuy",549.99,U.bbS11,{note:"цена до 13 ноября"}]]}
+  s11:{n:"Series 11", sub:"2025, прошлая", def:"42|gps", photo:"https://www.amazon.ca/dp/B0FQG8Y4V9", cfg:{
+    "42|gps":{msrp:549, o:[["openbox",399.99,U.obS11,{warn:"возврат −15%",note:"новые, канадская модель"}],["bestbuy",499.99,U.bbS11,{note:"цена до 13 ноября"}],
+      ["openboxOB",349.99,U.obS11ob],["amzR",474.99,U.amzR11r42,{only:["rose"],note:"состояние «как новые», S/M"}]]},
+    "46|gps":{msrp:589, o:[["openbox",429.99,U.obS11,{only:["black","grey"],warn:"возврат −15%",note:"новые, канадская модель"}],["amazon",489.97,U.amzS11,{only:["black"],note:"M/L"}],["bestbuy",549.99,U.bbS11,{note:"цена до 13 ноября"}],
+      ["openboxOB",379.99,U.obS11ob],["amzR",414.62,U.amzR11r46,{only:["rose"],note:"состояние «как новые», S/M"}],["bbm",349.99,U.bbmS11,{only:["black"],note:"состояние «Good»"}]]}
   }},
-  u4:{n:"Ultra 4", sub:"2026, спорт", def:"49|cell", cfg:{
+  u4:{n:"Ultra 4", sub:"2026, спорт", def:"49|cell", photo:"https://www.apple.com/ca/shop/buy-watch/apple-watch-ultra", cfg:{
     "49|cell":{msrp:1099, o:[["costco",1098.99,U.costcoW],["apple",1099,U.appleUltra]]}
   }},
-  se3:{n:"SE 3", sub:"2025, бюджетная", def:"40|gps", cfg:{
+  se3:{n:"SE 3", sub:"2025, бюджетная", def:"40|gps", photo:"https://www.apple.com/ca/shop/buy-watch/apple-watch-se", cfg:{
     "40|gps":{msrp:329, o:[["costco",328.99,U.costcoW],["apple",329,U.appleSE]]},
     "44|gps":{msrp:369, o:[["costco",368.99,U.costcoW],["apple",369,U.appleSE]]},
     "40|cell":{msrp:399, o:[["apple",399,U.appleSE]]}
   }}
 };
+/* Цвета корпуса: [ключ, название, цвет корпуса, цвет ремешка в комплекте]. В предложении only = только эти цвета, cp = другая цена для цвета */
+const WCOL = {
+  s12:[["black","Чёрный","#1f1f22","#1f1f22"],["grey","Космический серый","#5a5d63","#2c3e5c"],["gold","Светлое золото","#e4d2b6","#d6c4a4"],["bronze","Тёмная бронза","#6b5446","#5e6741"]],
+  s11:[["black","Чёрный","#151515","#151515"],["grey","Космический серый","#5a5d63","#1f1f22"],["rose","Розовое золото","#e9c5ba","#f1d6cf"],["silver","Серебристый","#d9dadd","#9b90b6"]],
+  u4:[["black","Чёрный титан","#2b2b2b","#2b2b2b"],["natural","Натуральный титан","#c8c2b7","#6e7d6a"]],
+  se3:[["midnight","Тёмная ночь","#262c37","#262c37"],["starlight","Сияющая звезда","#e8e0d2","#e8e0d2"]]
+};
+/* Таблица «Дешевле, чем в обычных магазинах»: price без налога, base = цена Apple для той же модели */
+const HIDDEN = [
+  {best:true, how:"OpenBox.ca, новые", what:"Series 11 · 42 мм · GPS, 4 цвета", price:399.99, base:549, prot:"гарантия Apple 1 год; возврат без причины 7 дней, −15%", url:U.obS11},
+  {how:"OpenBox.ca, новые", what:"Series 11 · 46 мм · чёрный или серый", price:429.99, base:589, prot:"гарантия Apple 1 год; возврат 7 дней, −15%", url:U.obS11},
+  {how:"OpenBox.ca, новые", what:"Series 12 · 42 мм · только светлое золото", price:499.99, base:549, prot:"гарантия Apple 1 год; возврат 7 дней, −15%", url:U.obS12},
+  {how:"OpenBox.ca, открытая коробка", what:"Series 11 · 42 мм · GPS", price:349.99, base:549, prot:"гарантия 1 год; возврат 7 дней, −15%", url:U.obS11ob},
+  {how:"Amazon Resale, «как новые»", what:"Series 11 · 46 мм · розовое золото", price:414.62, base:589, prot:"продаёт Amazon.ca; возврат 30 дней", url:U.amzR11r46},
+  {how:"Amazon Resale, «как новые»", what:"Series 12 · 42 мм · чёрный", price:508.51, base:549, prot:"продаёт Amazon.ca; возврат 30 дней", url:U.amz42},
+  {how:"Amazon.ca, другой цвет", what:"Series 12 · 46 мм · чёрный S/M или серый M/L", price:589, base:619, prot:"новые; возврат 30 дней", url:U.amz46},
+  {how:"Best Buy, продавец OpenBox", what:"Series 11 · 46 мм · состояние «Good»", price:349.99, base:589, prot:"возврат через продавца, не в магазине Best Buy", url:U.bbmS11}
+];
 /* Функции для таблицы сравнения: y = есть, n = нет, ? = нет данных, иначе текст */
 const WFEAT = {
   order:["s12","s11","s10","u4","se3"],
@@ -608,7 +701,7 @@ const DFEAT = {
 const $ = id => document.getElementById(id);
 const money = n => (n<0?"−":"") + "$" + Math.abs(n).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
 const pct = r => String(r).replace(".",",") + "%";
-const S = { prov:"ON", member:true, exec:true, rak:true, wm:"s12", wsize:"42", wconn:"gps", dm:"v16" };
+const S = { prov:"ON", member:true, exec:true, rak:true, wm:"s12", wsize:"42", wconn:"gps", wcolor:"any", dm:"v16" };
 try{ const saved = localStorage.getItem("deals-prov"); if(saved && TAX[saved]) S.prov = saved; }catch(e){}
 const rate = () => TAX[S.prov].p.reduce((a,[,r])=>a+r,0)/100;
 const taxName = () => TAX[S.prov].p.map(([n,r])=>n+" "+pct(r)).join(" + ");
@@ -619,11 +712,22 @@ function calc(o, msrp){
   if(ex.rak && S.rak) back.push({n:"Rakuten "+RAKUTEN_DYSON+"%", v:price*RAKUTEN_DYSON/100});
   if(st.exec && S.member && S.exec) back.push({n:"Executive "+EXEC_PCT+"%", v:price*EXEC_PCT/100});
   const backSum = back.reduce((a,b)=>a+b.v,0), final = pay - backSum, base = msrp*(1+rate());
-  const kind = st.risk ? "risk" : ex.cond ? "cond" : (st.member && !S.member) ? "off" : "ok";
+  const kind = st.risk ? "risk" : ex.nocolor ? "nocolor" : ex.cond ? "cond" : (st.member && !S.member) ? "off" : st.ob ? "ob" : "ok";
   return {sk, st, price, url, ex, tax, pay, back, backSum, final, base, save:base-final, kind};
 }
-function rank(list){ const order={ok:0,cond:1,off:2,risk:3}; return list.sort((a,b)=> order[a.kind]-order[b.kind] || a.final-b.final); }
-function bestOf(cfgOffers, msrp){ const l = rank(cfgOffers.map(o=>calc(o,msrp))); return l.find(c=>c.kind==="ok") || l[0]; }
+function rank(list){ const order={ok:0,ob:1,cond:2,off:3,nocolor:4,risk:5}; return list.sort((a,b)=> order[a.kind]-order[b.kind] || a.final-b.final); }
+/* Применяет выбранный цвет: цена для цвета, «нет этого цвета», названия цветов для подписи */
+function colorize(o, col, cols){
+  const ex = Object.assign({}, o[3]||{}); let p = o[1];
+  const nm = k => ((cols||[]).find(c=>c[0]===k)||[k,k])[1];
+  if(ex.only){ ex.colNames = ex.only.map(nm).join(", "); if(col!=="any" && !ex.only.includes(col)) ex.nocolor = true; }
+  if(ex.cp){
+    if(col==="any"){ const e = Object.entries(ex.cp).sort((a,b)=>a[1]-b[1])[0]; if(e && e[1] < p){ p = e[1]; ex.only = Object.keys(ex.cp).filter(k=>ex.cp[k]===e[1]); ex.colNames = ex.only.map(nm).join(", "); } }
+    else if(ex.cp[col]!=null) p = ex.cp[col];
+  }
+  return [o[0], p, o[2], ex];
+}
+function bestOf(cfgOffers, msrp, col="any", cols=null){ const l = rank(cfgOffers.map(o=>calc(colorize(o,col,cols),msrp))); return l.find(c=>c.kind==="ok") || l.find(c=>c.kind==="ob") || l[0]; }
 
 function goButtons(c, small, hot){
   if(!c.url || c.kind==="risk") return '<span class="muted s12">не рекомендую</span>';
@@ -632,9 +736,12 @@ function goButtons(c, small, hot){
   return '<div class="stack"><div class="act"><a class="'+main+'" href="'+c.url+'" target="_blank" rel="noopener">Открыть</a>'+(small?'':'<small>'+c.st.dom+'</small>')+'</div></div>';
 }
 function row(c, isBest){
-  const pill = isBest ? ' <span class="pill best">лучшая цена</span>' : c.kind==="risk" ? ' <span class="pill risk">риск</span>'
-    : c.kind==="cond" ? ' <span class="pill cond">если найдёте</span>' : c.kind==="off" ? ' <span class="pill off">нужно членство</span>' : '';
-  const sub = c.ex.note ? '<span class="sub">'+c.ex.note+'</span>' : '';
+  const pill = (isBest ? ' <span class="pill best">лучшая цена</span>' : c.kind==="risk" ? ' <span class="pill risk">риск</span>'
+    : c.kind==="cond" ? ' <span class="pill cond">если найдёте</span>' : c.kind==="off" ? ' <span class="pill off">нужно членство</span>'
+    : c.kind==="nocolor" ? ' <span class="pill off">нет этого цвета</span>' : c.kind==="ob" ? ' <span class="pill ob">'+(c.st.obl||'открытая коробка')+'</span>' : '')
+    + (c.ex.warn && c.kind!=="nocolor" ? ' <span class="pill cond">'+c.ex.warn+'</span>' : '');
+  const subTxt = [c.ex.note, c.ex.colNames ? 'цвет: '+c.ex.colNames : ''].filter(Boolean).join(' · ');
+  const sub = subTxt ? '<span class="sub">'+subTxt+'</span>' : '';
   const saveTxt = c.kind==="risk" ? '<small>без надёжной гарантии</small>' : c.save >= 1 ? '<small class="g">дешевле на '+money(c.save)+'</small>'
     : c.save <= -1 ? '<small class="r">дороже на '+money(-c.save)+'</small>' : '<small>обычная цена</small>';
   const backCell = c.back.length ? '−'+money(c.backSum)+'<small>'+c.back.map(b=>b.n).join(', ')+'</small>' : '<span class="muted">—</span>';
@@ -676,6 +783,21 @@ function vacSVG(type){
   return '<svg width="34" height="64" viewBox="0 0 58 108" aria-hidden="true">'+body+'<line class="v-line" x1="27" y1="46" x2="27" y2="92"/>'+head+dock+'</svg>';
 }
 
+/* Схематичный рисунок часов в выбранном цвете; корпус масштабируется по размеру в мм */
+function watchArt(mm, cc, bc){
+  const h = mm*2.7, w = h*0.84, x = (140-w)/2, y = (200-h)/2, bw = w*0.64, bx = (140-bw)/2, cy = 100;
+  const edge = 'stroke:rgba(0,0,0,.35);stroke-width:1.2';
+  return '<svg viewBox="0 0 140 200" role="img" aria-label="Схема часов '+mm+' мм">'
+    + '<rect x="'+bx+'" y="0" width="'+bw+'" height="200" rx="10" style="fill:'+bc+';'+edge+'"/>'
+    + '<rect x="'+(x+w-2)+'" y="'+(y+h*0.22)+'" width="7" height="'+(h*0.17)+'" rx="3" style="fill:'+cc+';'+edge+'"/>'
+    + '<rect x="'+(x+w-1.5)+'" y="'+(y+h*0.5)+'" width="4" height="'+(h*0.13)+'" rx="2" style="fill:'+cc+';'+edge+'"/>'
+    + '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="'+(w*0.24)+'" style="fill:'+cc+';'+edge+'"/>'
+    + '<rect x="'+(x+6)+'" y="'+(y+6)+'" width="'+(w-12)+'" height="'+(h-12)+'" rx="'+(w*0.19)+'" fill="#0b0b0c"/>'
+    + '<text x="70" y="'+(cy-h*0.16)+'" text-anchor="middle" font-family="Golos Text, sans-serif" font-size="'+(h*0.085)+'" fill="#ff9f0a">ПТ 6</text>'
+    + '<text x="70" y="'+(cy+h*0.07)+'" text-anchor="middle" font-family="Golos Text, sans-serif" font-size="'+(h*0.21)+'" font-weight="600" fill="#f2f2f2">10:09</text>'
+    + '<text x="70" y="'+(cy+h*0.25)+'" text-anchor="middle" font-family="Golos Text, sans-serif" font-size="'+(h*0.075)+'" fill="#45c98f">♥ 72</text>'
+    + '</svg>';
+}
 function renderWatchCompare(){
   const cols = WFEAT.order;
   const priceRow = cols.map(k=>{
@@ -713,16 +835,28 @@ function renderWatch(){
   optList($("wModel"), "wm", Object.entries(WATCH).map(([k,v])=>[k,v.n,v.sub]), S.wm);
   seg($("wSize"), "ws", sizes.map(s=>[s, s+" мм"]), S.wsize);
   seg($("wConn"), "wc", conns.map(c=>[c, c==="gps"?"GPS":"GPS + сотовая"]), S.wconn);
+  const cols = WCOL[S.wm] || [];
+  if(S.wcolor!=="any" && !cols.some(c=>c[0]===S.wcolor)) S.wcolor = "any";
   const cfg = m.cfg[S.wsize+"|"+S.wconn];
-  const list = rank(cfg.o.map(o=>calc(o,cfg.msrp)));
+  /* Цвета: кружок, название и лучшая цена новых в этом цвете */
+  const priceFor = col => { const b = bestOf(cfg.o, cfg.msrp, col, cols); return b && b.kind==="ok" ? money(b.final) : "—"; };
+  $("wColor").innerHTML = [["any","Любой","conic-gradient("+cols.map(c=>c[2]).join(",")+")"]].concat(cols.map(c=>[c[0],c[1],c[2]]))
+    .map(([k,n,bg])=>'<label class="swatch"><input type="radio" name="wcol" value="'+k+'"'+(k===S.wcolor?' checked':'')+'><span><i style="background:'+bg+'"></i>'+n+' <small>'+priceFor(k)+'</small></span></label>').join("");
+  const list = rank(cfg.o.map(o=>calc(colorize(o, S.wcolor, cols), cfg.msrp)));
   const best = list.find(c=>c.kind==="ok") || list[0];
   $("wList").innerHTML = list.map(c=>row(c, c===best)).join("");
-  const conf = S.wsize+" мм, "+(S.wconn==="gps"?"GPS":"GPS + сотовая");
-  bestCard($("bWatch"), '<span class="pill best">лучшая цена</span> выбранная модель', "Apple Watch "+m.n, conf, best);
+  /* Картинка: выбранный цвет, а если «любой» — цвет лучшей цены */
+  const showCol = S.wcolor!=="any" ? S.wcolor : (best.ex.only ? best.ex.only[0] : (cols[0]||[])[0]);
+  const cc = cols.find(c=>c[0]===showCol) || cols[0] || ["","","#c9c9cc","#9a9aa0"];
+  $("wPic").innerHTML = watchArt(+S.wsize, cc[2], cc[3]);
+  $("wPicCap").innerHTML = '<b>'+m.n+' · '+S.wsize+' мм · '+cc[1]+'</b>лучшая цена новых '+money(best.final)+' в '+best.st.n;
+  $("wPhoto").href = m.photo || U.apple;
+  const conf = S.wsize+" мм, "+(S.wconn==="gps"?"GPS":"GPS + сотовая")+((S.wcolor!=="any" || best.ex.only) ? ", "+cc[1].toLowerCase() : "");
+  bestCard($("bWatch"), '<span class="pill best">лучшая цена</span> новые, выбранная модель', "Apple Watch "+m.n, conf, best);
   /* Альтернатива: то же давление дешевле */
   const altKey = S.wm==="s11" ? "s12" : "s11";
   const alt = WATCH[altKey], altCfgKey = alt.cfg[S.wsize+"|gps"] ? S.wsize+"|gps" : alt.def, altCfg = alt.cfg[altCfgKey];
-  const altBest = bestOf(altCfg.o, altCfg.msrp);
+  const altBest = bestOf(altCfg.o, altCfg.msrp, "any", WCOL[altKey]);
   const lbl = S.wm==="se3" ? '<span class="pill ok">♥ с давлением</span> в SE 3 его нет'
     : altKey==="s11" ? '<span class="pill ok">♥ давление то же</span> дешевле' : '<span class="pill ok">♥ давление то же</span> новее';
   bestCard($("bAlt"), lbl, "Apple Watch "+alt.n, altCfgKey.split("|")[0]+" мм, GPS", altBest, false);
@@ -742,16 +876,24 @@ function renderDyson(){
   bfBox($("dBF"), m.bf, m.msrp, best);
   renderDysonCompare();
 }
-function renderAll(){ document.querySelectorAll(".taxh").forEach(th=>th.textContent = taxName()); renderWatch(); renderDyson(); }
+function renderHidden(){
+  const r = 1 + rate();
+  $("hidList").innerHTML = HIDDEN.map(h=>{ const tot = h.price*r, save = h.base*r - tot;
+    return '<tr'+(h.best?' class="hl"':'')+'><td>'+h.how+(h.best?' <span class="pill best">выгоднее всего</span>':'')+'</td><td>'+h.what+'</td>'
+      + '<td class="n"><b>'+money(tot)+'</b><br><span class="muted">'+money(h.price)+' + налог</span></td>'
+      + '<td class="n" style="color:var(--save);font-weight:600">'+(save>=1 ? '−'+money(save) : '—')+'</td><td>'+h.prot+'</td>'
+      + '<td><a class="btn ghost" href="'+h.url+'" target="_blank" rel="noopener">Открыть</a></td></tr>'; }).join("");
+}
+function renderAll(){ document.querySelectorAll(".taxh").forEach(th=>th.textContent = taxName()); renderHidden(); renderWatch(); renderDyson(); }
 
 /* Controls */
 $("checked").textContent = CHECKED;
 $("prov").innerHTML = Object.entries(TAX).map(([k,v])=>'<option value="'+k+'"'+(k===S.prov?' selected':'')+'>'+v.n+', '+v.p.map(([n,r])=>n+" "+pct(r)).join(" + ")+'</option>').join("");
 $("prov").addEventListener("change", e=>{ S.prov=e.target.value; try{localStorage.setItem("deals-prov",S.prov)}catch(x){} renderAll(); });
 ["member","exec","rak"].forEach(id=> $(id).addEventListener("change", e=>{ S[id]=e.target.checked; renderAll(); }));
-$("wOpts").addEventListener("change", e=>{ const t=e.target; if(t.name==="wm") S.wm=t.value; if(t.name==="ws") S.wsize=t.value; if(t.name==="wc") S.wconn=t.value; renderWatch(); });
+$("wOpts").addEventListener("change", e=>{ const t=e.target; if(t.name==="wm") S.wm=t.value; if(t.name==="ws") S.wsize=t.value; if(t.name==="wc") S.wconn=t.value; if(t.name==="wcol") S.wcolor=t.value; renderWatch(); });
 $("dOpts").addEventListener("change", e=>{ if(e.target.name==="dm") S.dm=e.target.value; renderDyson(); });
-$("wCompare").addEventListener("click", e=>{ const b=e.target.closest("[data-wm]"); if(b && WATCH[b.dataset.wm]){ S.wm=b.dataset.wm; renderWatch(); } });
+$("wCompare").addEventListener("click", e=>{ const b=e.target.closest("[data-wm]"); if(b && WATCH[b.dataset.wm]){ S.wm=b.dataset.wm; renderWatch(); $("wOpts").scrollIntoView({behavior:"smooth", block:"start"}); } });
 $("dCompare").addEventListener("click", e=>{ const b=e.target.closest("[data-dm]"); if(b){ S.dm=b.dataset.dm; renderDyson(); } });
 
 /* Share */
