@@ -92,18 +92,21 @@ select{font:500 14px var(--font); color:var(--ink); background:var(--soft); bord
 .pill.ok{background:var(--save-bg); color:var(--save)}
 
 /* Best cards */
-.best-row{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
-.bcard{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--tag); border-radius:12px; padding:12px 14px; display:grid; grid-template-columns:1fr auto; gap:6px 12px; align-content:start}
+.best-row{display:grid; grid-template-columns:repeat(4,1fr); gap:12px}
+.auc-strip{display:flex; flex-wrap:wrap; align-items:center; gap:4px 14px; margin-top:8px; padding:8px 12px; border:1px dashed var(--line); border-radius:10px; font-size:12px; color:var(--muted)}
+.auc-strip b{color:var(--ink)}
+.auc-strip a{color:inherit}
+.auc-strip a b{color:var(--save)}
+.bcard{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--tag); border-radius:12px; padding:12px 14px; display:flex; flex-direction:column; gap:6px}
 .bcard.alt{border-left-color:var(--save)}
-.bcard .k{grid-column:1 / -1; display:flex; flex-wrap:wrap; align-items:center; gap:6px; font-size:12px; color:var(--muted)}
-.bcard .what{font-weight:700; font-size:14px}
-.bcard .what span{font-weight:400; color:var(--muted); font-size:12px}
-.bcard .where{font-size:12px; color:var(--muted)}
-.bcard .sum{text-align:right}
-.bcard .sum b{display:block; font-size:20px; line-height:1.1; font-weight:700}
+.bcard .k{display:flex; flex-wrap:wrap; align-items:center; gap:6px; font-size:12px; color:var(--muted)}
+.bcard .sum{display:flex; flex-wrap:wrap; align-items:baseline; gap:2px 10px}
+.bcard .sum b{font-size:22px; line-height:1.1; font-weight:700}
 .bcard .sum .save{font-size:12px; font-weight:600; color:var(--save)}
-.bcard .calc{grid-column:1 / -1; font-size:12px; color:var(--muted)}
-.bcard .go{grid-column:1 / -1}
+.bcard .what{font-weight:700; font-size:14px}
+.bcard .where{font-size:12px; color:var(--muted)}
+.bcard .calc{font-size:12px; color:var(--muted)}
+.bcard .go{margin-top:auto; padding-top:4px}
 .bcard .go .stack{flex-direction:row}
 .bcard .go .act{flex:1}
 
@@ -279,7 +282,7 @@ svg .v-line{fill:none; stroke:var(--ink); stroke-width:2; stroke-linecap:round}
 svg .v-fill{fill:var(--soft); stroke:var(--ink); stroke-width:1.5}
 svg .v-acc{fill:var(--save)}
 @media (prefers-reduced-motion: reduce){*{transition:none !important}}
-@media (max-width:900px){ .best-row{grid-template-columns:1fr 1fr} }
+@media (max-width:1200px){ .best-row{grid-template-columns:1fr 1fr} }
 @media (max-width:820px){
   .chooser{grid-template-columns:1fr}
   .opts .list.models{grid-template-columns:1fr 1fr}
@@ -326,10 +329,12 @@ svg .v-acc{fill:var(--save)}
 </section>
 
 <section class="best-row" aria-label="Лучшие варианты сейчас">
-  <article class="bcard" id="bWatch"></article>
-  <article class="bcard alt" id="bAlt"></article>
-  <article class="bcard" id="bDyson"></article>
+  <article class="bcard" id="tW"></article>
+  <article class="bcard alt" id="tW2"></article>
+  <article class="bcard" id="tD"></article>
+  <article class="bcard alt" id="tD2"></article>
 </section>
+<div class="auc-strip" id="aucStrip"></div>
 
 <section class="bp" aria-labelledby="bpTitle">
   <h2 id="bpTitle">♥ Давление: что реально умеют Apple Watch</h2>
@@ -347,7 +352,7 @@ svg .v-acc{fill:var(--save)}
     <div class="row"><div class="lab"><span>Из 100 человек с нормальным давлением не потревожат</span><b>≈ 92</b></div><div class="bar"><i style="width:92%"></i></div></div>
     <p class="s12 muted">Если уведомление пришло, это повод проверить давление тонометром. Если не пришло, это ещё не гарантия нормы.</p>
   </div>
-  <p class="verdict">Для давления Series 12 не лучше Series 11: функция одинаковая. Новые Series 11 на OpenBox.ca стоят от C$399.99 — на C$100 дешевле Series 12 там же. Ещё дешевле — запечатанные Series 10 на Kijiji за C$350 без налога: давление работает и на Series 10. По данным Apple, в Канаде функция работает без ограничений, включая Series 12.</p>
+  <p class="verdict">Для давления Series 12 не лучше Series 11: функция одинаковая. Новые Series 11 на OpenBox.ca стоят от C$399.99 — на C$100 дешевле Series 12 там же. Давление работает и на Series 9–10, поэтому дешевле всего сейчас: <span id="bpCheap"></span>. По данным Apple, в Канаде функция работает без ограничений, включая Series 12.</p>
 </section>
 
 <section class="panel" id="hidden">
@@ -358,15 +363,11 @@ svg .v-acc{fill:var(--save)}
   </table></div>
   <h3 class="sub-h">Аукционы ликвидаторов в Онтарио (HiBid) <button class="tip" type="button" data-tip="Продаётся как есть: без гарантии и возврата. К ставке добавляются комиссия 15–16%, около C$1.50 и HST, при оплате картой ещё 2.4–3%. Часы брать только после письменного подтверждения, что нет Activation Lock.">?</button></h3>
   <div class="scroll"><table class="tbl">
-    <thead><tr><th>Лот</th><th>Где</th><th>Ставка на 6 ноября</th><th>Закрытие</th><th>Мой потолок ставки</th><th></th></tr></thead>
-    <tbody>
-      <tr class="hl"><td>Dyson V15 Detect, «как новый», мелкие царапины</td><td>Loot Bins, Скарборо</td><td>C$42</td><td>сб 7 ноября, ~18:00</td><td>C$280 (итог ≈ C$365)</td><td><a class="btn ghost" href="https://hibid.com/canada/lot/329450078/dyson-v15-detect-cordless-vacuum" target="_blank" rel="noopener">Открыть</a></td></tr>
-      <tr><td>Dyson V15s Detect, б/у, не проверен</td><td>DenDi, Миссиссога</td><td>от C$220</td><td>вт 10 ноября</td><td>C$280</td><td><a class="btn ghost" href="https://hibid.com/canada/lot/329994518/dyson-v15s-detect-sv47-vacuum-with-accessories" target="_blank" rel="noopener">Открыть</a></td></tr>
-      <tr><td>Apple Watch S11 GPS + сотовая, 42 мм, «Excellent»</td><td>Encore, Лондон (Онтарио)</td><td>C$170</td><td>вс 8 ноября, ~23:00</td><td>C$250 (итог ≈ C$330)</td><td><a class="btn ghost" href="https://hibid.com/canada/lot/329401494/apple-watch-series-11-gps---cellular-42mm" target="_blank" rel="noopener">Открыть</a></td></tr>
-    </tbody>
+    <thead><tr><th>Лот</th><th>Где</th><th>Ставка на 6 ноября</th><th>Закрытие</th><th>Потолок ставки → итог</th><th></th></tr></thead>
+    <tbody id="aucList"></tbody>
   </table></div>
   <div class="after">
-    <div class="box"><h3>Мой совет</h3><p>Для давления хватает Series 11. На OpenBox.ca это новые канадские модели (CL/A) с гарантией Apple: если сломаются, Apple бесплатно починит или заменит. Минус: если просто передумали, магазин удержит 15%. Самый спокойный вариант по возврату — Costco, 90 дней.</p><p style="margin-top:6px"><b>Самое дешёвое с давлением:</b> запечатанные Series 10 на Kijiji за C$350 без налога — на C$102 дешевле OpenBox, но без возврата. Покупать только по правилам ниже.</p><p style="margin-top:6px"><b>Частные объявления (Kijiji) — только так:</b> 1) до встречи проверить серийный номер на checkcoverage.apple.com — часы не активированы; 2) коробка с бумажными язычками Apple, без плёнки; 3) встреча в зоне безопасного обмена полиции Peel или в Apple Square One; 4) оплата только после того, как часы подключились к вашему iPhone без чужого Apple ID.</p><p class="muted" style="margin-top:6px">Taobao, Tmall, Pinduoduo не подходят: у китайских часов нет функции давления.</p></div>
+    <div class="box"><h3>Мой совет</h3><p>Для давления хватает Series 9 и новее. На OpenBox.ca это новые канадские модели (CL/A) с гарантией Apple: если сломаются, Apple бесплатно починит или заменит. Минус: если просто передумали, магазин удержит 15%. Самый спокойный вариант по возврату — Costco, 90 дней.</p><p style="margin-top:6px" id="tipCheap"></p><p style="margin-top:6px"><b>Частные объявления (Kijiji) — только так:</b> 1) до встречи проверить серийный номер на checkcoverage.apple.com — часы не активированы; 2) коробка с бумажными язычками Apple, без плёнки; 3) встреча в зоне безопасного обмена полиции Peel или в Apple Square One; 4) оплата только после того, как часы подключились к вашему iPhone без чужого Apple ID.</p><p class="muted" style="margin-top:6px">Taobao, Tmall, Pinduoduo не подходят: у китайских часов нет функции давления.</p></div>
     <div class="box"><h3>Обмен старых часов (trade-in) <button class="tip" type="button" data-tip="У Series 3 не было размера 40 мм, только 38 и 42. Модель видна на часах: Настройки → Основные → Об этом устройстве.">?</button></h3>
       <table class="mini">
         <thead><tr><th>Ваши часы</th><th>Apple (зачёт в покупку)</th></tr></thead>
@@ -502,6 +503,7 @@ svg .v-acc{fill:var(--save)}
 <details class="more">
   <summary>Проверено и не подходит</summary>
   <div class="in"><ul class="rej">
+    <li><b>Подделки на Kijiji.</b> «Новые» Apple Watch за C$200 (Оттава) — копии: продавец сам пишет «1:1» и «поддельные серийные номера». Цена ниже C$300 за новые Series 10–12 — почти всегда подделка.</li>
     <li><b>Kijiji, Dyson.</b> Запечатанные V15 стоят C$750–900 — дороже восстановленного с гарантией. Все 9 найденных объявлений «новый V16 за C$849–950» уже сняты.</li>
     <li><b>Покупка в США.</b> Series 12 US$389.99 (≈ C$550) + HST на границе ≈ C$622; выгодно только при цене ниже US$303. Dyson из США: пошлина 8% + HST, гарантия только американская.</li>
     <li><b>Китай (JD, Tmall, Pinduoduo).</b> У часов для Китая нет функции давления; Series 11 с доставкой ≈ C$505–530 — дороже OpenBox.ca.</li>
@@ -652,26 +654,37 @@ const WCOL = {
   u4:[["black","Чёрный титан","#2b2b2b","#2b2b2b"],["natural","Натуральный титан","#c8c2b7","#6e7d6a"]],
   se3:[["midnight","Тёмная ночь","#262c37","#262c37"],["starlight","Сияющая звезда","#e8e0d2","#e8e0d2"]]
 };
-/* Таблица «Дешевле, чем в обычных магазинах»: price без налога, base = цена Apple для той же модели */
+/* Находки вне обычных магазинов. price без налога, base = обычная цена той же модели.
+   cat: w — часы, d — Dyson; cond: new | ob (открытая коробка) | refurb (восстановлены) | used (б/у);
+   ret: гарантия и возврат магазина; lat: Dyson V15 и новее; elig: только для части покупателей */
 const HIDDEN = [
-  {best:true, how:"Kijiji, частный продавец (налога нет)", what:"Series 10 · 42 мм · GPS, розовое золото, запечатаны (внутренняя коробка)", price:350, notax:true, base:549, prot:"давление работает (Series 9 и новее); без возврата; встреча у Mitchell Field CC, Yonge и Finch. До встречи проверить серийный номер на checkcoverage.apple.com", url:"https://www.kijiji.ca/v-jewelry-watch/city-of-toronto/brand-new-sealed-apple-watch-series-10-42mm-rose-gold-m-l/1744169794"},
-  {how:"OpenBox.ca, новые", what:"Series 11 · 42 мм · GPS, 4 цвета", price:399.99, base:549, prot:"гарантия Apple 1 год; возврат без причины 7 дней, −15%", url:U.obS11},
-  {how:"Kijiji, частный продавец (налога нет)", what:"Series 12 · 42 мм · чёрный, запечатаны, MJEA4CL/A (канадские)", price:499, notax:true, base:549, prot:"гарантия Apple, если часы не активированы; без возврата. Дилер на Kijiji просит C$449 за запечатанные, но номер модели не указал — спросить: должен заканчиваться на CL/A", url:"https://www.kijiji.ca/v-jewelry-watch/city-of-toronto/apple-watch-12-gps-42mm-black-s-m-brand-new-sealed/1745439917"},
-  {how:"Apple, цены для образования", what:"Series 12 · 42 мм · новые от Apple, 1 шт. в год", price:489, base:549, prot:"гарантия Apple 1 год, возврат 14 дней; для студентов и их родителей, работников школ и колледжей (проверка UNiDAYS)", url:"https://www.apple.com/ca-edu/shop/buy-watch/apple-watch"},
-  {how:"Best Buy, продавец GoRecell", what:"Series 11 · 46 мм · восстановлены, «Excellent»", price:399.99, base:589, prot:"гарантия продавца 1 год, возврат 30 дней; цена до 30 ноября", url:"https://www.bestbuy.ca/en-ca/product/-/19496070"},
-  {how:"Dyson Official Outlet на Best Buy", what:"Dyson V15 Detect · восстановлен (V15 Core)", price:499.99, base:999.99, prot:"гарантия Dyson 1 год", url:U.bbV15core},
-  {how:"Dyson Official Outlet на Best Buy", what:"Dyson V12 Detect Slim · восстановлен (V12 Core)", price:449.99, base:699.97, prot:"гарантия Dyson 1 год", url:"https://www.bestbuy.ca/en-ca/product/-/20204383"},
-  {how:"Dyson.ca, восстановленные", what:"Dyson V8 · восстановлен, для квартиры", price:239.99, base:549.99, prot:"гарантия Dyson 1 год, без возврата", url:U.dysonDeals},
-  {how:"OpenBox.ca, новые", what:"Series 11 · 46 мм · чёрный или серый", price:429.99, base:589, prot:"гарантия Apple 1 год; возврат 7 дней, −15%", url:U.obS11},
-  {how:"OpenBox.ca, новые", what:"Series 12 · 42 мм · только светлое золото", price:499.99, base:549, prot:"гарантия Apple 1 год; возврат 7 дней, −15%", url:U.obS12},
-  {how:"OpenBox.ca, открытая коробка", what:"Series 11 · 42 мм · GPS", price:349.99, base:549, prot:"гарантия 1 год; возврат 7 дней, −15%", url:U.obS11ob},
-  {how:"Amazon Resale, «как новые»", what:"Series 11 · 46 мм · розовое золото", price:414.62, base:589, prot:"продаёт Amazon.ca; возврат 30 дней", url:U.amzR11r46},
-  {how:"Amazon Resale, «как новые»", what:"Series 12 · 42 мм · чёрный", price:508.51, base:549, prot:"продаёт Amazon.ca; возврат 30 дней", url:U.amz42},
-  {how:"Amazon.ca, другой цвет", what:"Series 12 · 46 мм · чёрный S/M или серый M/L", price:589, base:619, prot:"новые; возврат 30 дней", url:U.amz46},
-  {how:"Best Buy, продавец OpenBox", what:"Series 11 · 46 мм · состояние «Good»", price:349.99, base:589, prot:"возврат через продавца, не в магазине Best Buy", url:U.bbmS11},
-  {how:"Kijiji, частный продавец, Миссиссога", what:"Series 12 · 42 мм · б/у «как новые», батарея 100%, тёмная бронза или чёрный", price:449, notax:true, base:549, prot:"без возврата; продавец может приехать к вам, оплата после проверки", url:"https://www.kijiji.ca/v-general-electronics/mississauga-peel-region/apple-watch-series-12-42-mm-brand-new-condition-100-battery/1745727321"},
-  {how:"Kijiji, частный продавец, Гамильтон", what:"Dyson V15 Detect · не использовался, мелкие следы на корпусе", price:440, notax:true, base:999.99, prot:"без гарантии и возврата; оплата на месте после проверки; фото из каталога — попросить своё", url:"https://www.kijiji.ca/v-vacuum/hamilton/dyson-v15-detect-cordless-vacuum-unused-minor-cosmetic-marks/1745825569"},
-  {how:"Kijiji, продавец с 800+ отзывами, Ошава", what:"Dyson V15 Detect · открытая коробка, выставочный образец", price:450, notax:true, base:999.99, prot:"без гарантии и возврата; можно проверить при получении", url:"https://www.kijiji.ca/v-vacuum/oshawa-durham-region/dyson-v15-detect-vacuum-open-box/1744636438"}
+  {cat:"w", cond:"refurb", ret:true, how:"OpenBox.ca, восстановленные", what:"Series 9 · 41 мм · GPS, серебристый, MR903CL/A (канадские), без ремешка", price:189.99, base:549, prot:"гарантия магазина 90 дней; возврат 7 дней, −15%; есть следы износа; ремешок купить отдельно", url:"https://openbox.ca/products/apple-watch-series-9-gps-41mm-silver-bands-not-included-refurbished-90-day-warranty-1"},
+  {cat:"w", cond:"refurb", ret:true, how:"OpenBox.ca, восстановленные", what:"Series 10 · 46 мм · GPS, чёрный, MWWQ3AM/A (для США)", price:229.99, base:599, prot:"гарантия магазина 90 дней; возврат 7 дней, −15%; есть следы износа. Давление работает: США и Канада есть в списке Apple", url:"https://openbox.ca/products/apple-watch-series-10-gps-46mm-jet-black-aluminum-case-refurbished-90-day-warranty-94"},
+  {cat:"w", cond:"new", how:"Kijiji, частный продавец (налога нет)", what:"Series 9 · 45 мм · GPS, серебристый, запечатаны, MR9E3CL/A (канадские)", price:330, notax:true, base:579, prot:"без возврата; цена твёрдая; Торонто. До встречи проверить серийный номер на checkcoverage.apple.com", url:"https://www.kijiji.ca/v-cell-phone/city-of-toronto/new-apple-watch-gen-9-series-9-45mm-silver-aluminium-storm-blue/1743530643"},
+  {cat:"w", cond:"new", how:"Kijiji, частный продавец (налога нет)", what:"Series 10 · 42 мм · GPS, розовое золото, запечатаны (внутренняя коробка)", price:350, notax:true, base:549, prot:"без возврата; встреча у Mitchell Field CC, Yonge и Finch. До встречи проверить серийный номер на checkcoverage.apple.com", url:"https://www.kijiji.ca/v-jewelry-watch/city-of-toronto/brand-new-sealed-apple-watch-series-10-42mm-rose-gold-m-l/1744169794"},
+  {cat:"w", cond:"new", ret:true, how:"OpenBox.ca, новые", what:"Series 11 · 42 мм · GPS, 4 цвета", price:399.99, base:549, prot:"гарантия Apple 1 год; возврат без причины 7 дней, −15%", url:U.obS11},
+  {cat:"w", cond:"new", how:"Kijiji, частный продавец (налога нет)", what:"Series 12 · 42 мм · чёрный, запечатаны, MJEA4CL/A (канадские)", price:499, notax:true, base:549, prot:"гарантия Apple, если часы не активированы; без возврата. Дилер на Kijiji просит C$449 за запечатанные, но номер модели не указал — спросить: должен заканчиваться на CL/A", url:"https://www.kijiji.ca/v-jewelry-watch/city-of-toronto/apple-watch-12-gps-42mm-black-s-m-brand-new-sealed/1745439917"},
+  {cat:"w", cond:"new", ret:true, elig:true, how:"Apple, цены для образования", what:"Series 12 · 42 мм · новые от Apple, 1 шт. в год", price:489, base:549, prot:"гарантия Apple 1 год, возврат 14 дней; для студентов и их родителей, работников школ и колледжей (проверка UNiDAYS)", url:"https://www.apple.com/ca-edu/shop/buy-watch/apple-watch"},
+  {cat:"w", cond:"refurb", ret:true, how:"Best Buy, продавец GoRecell", what:"Series 11 · 46 мм · восстановлены, «Excellent»", price:399.99, base:589, prot:"гарантия продавца 1 год, возврат 30 дней; цена до 30 ноября", url:"https://www.bestbuy.ca/en-ca/product/-/19496070"},
+  {cat:"d", lat:true, cond:"refurb", ret:true, how:"Dyson Official Outlet на Best Buy", what:"Dyson V15 Detect · восстановлен (V15 Core)", price:499.99, base:999.99, prot:"гарантия Dyson 1 год", url:U.bbV15core},
+  {cat:"d", cond:"refurb", ret:true, how:"Dyson Official Outlet на Best Buy", what:"Dyson V12 Detect Slim · восстановлен (V12 Core)", price:449.99, base:699.97, prot:"гарантия Dyson 1 год", url:"https://www.bestbuy.ca/en-ca/product/-/20204383"},
+  {cat:"d", cond:"refurb", ret:true, how:"Dyson.ca, восстановленные", what:"Dyson V8 · восстановлен, для квартиры", price:239.99, base:549.99, prot:"гарантия Dyson 1 год, без возврата", url:U.dysonDeals},
+  {cat:"w", cond:"new", ret:true, how:"OpenBox.ca, новые", what:"Series 11 · 46 мм · чёрный или серый", price:429.99, base:589, prot:"гарантия Apple 1 год; возврат 7 дней, −15%", url:U.obS11},
+  {cat:"w", cond:"new", ret:true, how:"OpenBox.ca, новые", what:"Series 12 · 42 мм · только светлое золото", price:499.99, base:549, prot:"гарантия Apple 1 год; возврат 7 дней, −15%", url:U.obS12},
+  {cat:"w", cond:"ob", ret:true, how:"OpenBox.ca, открытая коробка", what:"Series 11 · 42 мм · GPS", price:349.99, base:549, prot:"гарантия 1 год; возврат 7 дней, −15%", url:U.obS11ob},
+  {cat:"w", cond:"used", ret:true, how:"Amazon Resale, «как новые»", what:"Series 11 · 46 мм · розовое золото", price:414.62, base:589, prot:"продаёт Amazon.ca; возврат 30 дней", url:U.amzR11r46},
+  {cat:"w", cond:"used", ret:true, how:"Amazon Resale, «как новые»", what:"Series 12 · 42 мм · чёрный", price:508.51, base:549, prot:"продаёт Amazon.ca; возврат 30 дней", url:U.amz42},
+  {cat:"w", cond:"new", ret:true, how:"Amazon.ca, другой цвет", what:"Series 12 · 46 мм · чёрный S/M или серый M/L", price:589, base:619, prot:"новые; возврат 30 дней", url:U.amz46},
+  {cat:"w", cond:"used", ret:true, how:"Best Buy, продавец OpenBox", what:"Series 11 · 46 мм · состояние «Good»", price:349.99, base:589, prot:"возврат через продавца, не в магазине Best Buy", url:U.bbmS11},
+  {cat:"w", cond:"used", how:"Kijiji, частный продавец, Миссиссога", what:"Series 12 · 42 мм · б/у «как новые», батарея 100%, тёмная бронза или чёрный", price:449, notax:true, base:549, prot:"без возврата; продавец может приехать к вам, оплата после проверки", url:"https://www.kijiji.ca/v-general-electronics/mississauga-peel-region/apple-watch-series-12-42-mm-brand-new-condition-100-battery/1745727321"},
+  {cat:"d", lat:true, cond:"ob", how:"Kijiji, частный продавец, Гамильтон", what:"Dyson V15 Detect · не использовался, мелкие следы на корпусе, коробка помята", price:440, notax:true, base:999.99, prot:"без гарантии и возврата; оплата на месте после проверки; фото из каталога — попросить своё", url:"https://www.kijiji.ca/v-vacuum/hamilton/dyson-v15-detect-cordless-vacuum-unused-minor-cosmetic-marks/1745825569"},
+  {cat:"d", lat:true, cond:"ob", how:"Kijiji, продавец с 800+ отзывами, Ошава", what:"Dyson V15 Detect · открытая коробка, выставочный образец", price:450, notax:true, base:999.99, prot:"без гарантии и возврата; можно проверить при получении", url:"https://www.kijiji.ca/v-vacuum/oshawa-durham-region/dyson-v15-detect-vacuum-open-box/1744636438"}
+];
+/* Аукционы HiBid. Итог = (ставка × (1 + комиссия) + сбор) × (1 + налог). Оплата картой — ещё 2.4–3% */
+const AUCT = [
+  {cat:"d", short:"Dyson V15", what:"Dyson V15 Detect, «как новый», мелкие царапины", where:"Loot Bins, Скарборо", bid:42, cap:280, prem:0.16, fee:1.5, close:"сб 7 ноября, ~18:00", url:"https://hibid.com/canada/lot/329450078/dyson-v15-detect-cordless-vacuum"},
+  {cat:"w", short:"Apple Watch S11 (б/у)", what:"Apple Watch S11 GPS + сотовая, 42 мм, «Excellent»", where:"Encore, Лондон (Онтарио)", bid:170, cap:250, prem:0.16, fee:1.5, close:"вс 8 ноября, ~23:00", url:"https://hibid.com/canada/lot/329401494/apple-watch-series-11-gps---cellular-42mm"},
+  {cat:"d", short:"Dyson V15s (б/у)", what:"Dyson V15s Detect, б/у, не проверен", where:"DenDi, Миссиссога", bid:220, from:true, cap:280, prem:0.16, fee:1.5, close:"вт 10 ноября", url:"https://hibid.com/canada/lot/329994518/dyson-v15s-detect-sv47-vacuum-with-accessories"}
 ];
 /* Функции для таблицы сравнения: y = есть, n = нет, ? = нет данных, иначе текст */
 const WFEAT = {
@@ -695,17 +708,17 @@ const WFEAT = {
 };
 
 const DYSON = {
-  v16:{n:"V16 Piston Animal", sub:"флагман", msrp:1099.99, bf:[150,300], o:[
+  v16:{lat:true, n:"V16 Piston Animal", sub:"флагман", msrp:1099.99, bf:[150,300], o:[
     ["dyson",1099.99,U.dysonV16,{rak:true,note:"две насадки в комплекте"}],["bestbuy",1099.99,U.bbV16,{note:"одна насадка, модель 640975-01"}],
     ["ct",1099.99,U.ctV16],["mkt",999.99,"",{note:"продавец Electro Emporium"}]]},
-  v16s:{n:"V16 Submarine", sub:"+ мойка пола", msrp:1299.99, bf:[150,300], o:[
+  v16s:{lat:true, n:"V16 Submarine", sub:"+ мойка пола", msrp:1299.99, bf:[150,300], o:[
     ["dyson",1299.99,U.dysonCordless,{rak:true}],["bestbuy",1299.99,U.bbSub],["ct",1299.99,U.ctSub],["mkt",1104.99,U.bbSubOB,{note:"open box, продавец PRO OB"}]]},
-  v16d:{n:"V16 + Auto-Empty Dok", sub:"автоочистка", msrp:1299.99, o:[["dyson",1299.99,U.dysonCordless,{rak:true}],["bestbuy",1299.99,U.bbDok,{note:"предзаказ"}]]},
-  v15:{n:"V15 Detect", sub:"прошлый флагман", msrp:999.99, o:[["dyson",999.99,U.dysonCordless,{rak:true}],["bestbuy",999.99,U.bbV15]]},
-  v15r:{n:"V15 Detect восст.", sub:"гарантия 1 год", msrp:999.99, o:[["outlet",499.99,U.dysonOutlet,{note:"кэшбэк Rakuten не начисляется"}],["bbOutlet",499.99,U.bbV15core,{note:"версия V15 Core"}]]},
-  gen5:{n:"Gen5detect Absolute", sub:"новый, если найдёте", msrp:679.95, o:[["bestbuy",679.95,"https://www.bestbuy.ca/en-ca/product/-/19323763",{cond:true,note:"продаёт Best Buy; онлайн часто нет в наличии"}],["mkt",1019.99,"",{note:"open box Gen5detect, продавец PRO OB"}]]},
-  v12r:{n:"V12 Detect Slim восст.", sub:"лёгкий, гарантия 1 год", msrp:699.97, o:[["bbOutlet",449.99,"https://www.bestbuy.ca/en-ca/product/-/20204383",{note:"версия V12 Core, Dyson Official Outlet"}]]},
-  v8r:{n:"V8 восст.", sub:"для квартиры", msrp:549.99, o:[["outlet",239.99,U.dysonDeals,{note:"восстановлен Dyson; кэшбэк Rakuten на восстановленные не начисляется"}],["bbOutlet",239.99,"https://www.bestbuy.ca/en-ca/collection/dyson-on-sale/blt8b2218f4adbddafc",{note:"Dyson Official Outlet на Best Buy"}]]},
+  v16d:{lat:true, n:"V16 + Auto-Empty Dok", sub:"автоочистка", msrp:1299.99, o:[["dyson",1299.99,U.dysonCordless,{rak:true}],["bestbuy",1299.99,U.bbDok,{note:"предзаказ"}]]},
+  v15:{lat:true, n:"V15 Detect", sub:"прошлый флагман", msrp:999.99, o:[["dyson",999.99,U.dysonCordless,{rak:true}],["bestbuy",999.99,U.bbV15]]},
+  v15r:{lat:true, cond:"refurb", n:"V15 Detect восст.", sub:"гарантия 1 год", msrp:999.99, o:[["outlet",499.99,U.dysonOutlet,{note:"кэшбэк Rakuten не начисляется"}],["bbOutlet",499.99,U.bbV15core,{note:"версия V15 Core"}]]},
+  gen5:{lat:true, n:"Gen5detect Absolute", sub:"новый, если найдёте", msrp:679.95, o:[["bestbuy",679.95,"https://www.bestbuy.ca/en-ca/product/-/19323763",{cond:true,note:"продаёт Best Buy; онлайн часто нет в наличии"}],["mkt",1019.99,"",{note:"open box Gen5detect, продавец PRO OB"}]]},
+  v12r:{cond:"refurb", n:"V12 Detect Slim восст.", sub:"лёгкий, гарантия 1 год", msrp:699.97, o:[["bbOutlet",449.99,"https://www.bestbuy.ca/en-ca/product/-/20204383",{note:"версия V12 Core, Dyson Official Outlet"}]]},
+  v8r:{cond:"refurb", n:"V8 восст.", sub:"для квартиры", msrp:549.99, o:[["outlet",239.99,U.dysonDeals,{note:"восстановлен Dyson; кэшбэк Rakuten на восстановленные не начисляется"}],["bbOutlet",239.99,"https://www.bestbuy.ca/en-ca/collection/dyson-on-sale/blt8b2218f4adbddafc",{note:"Dyson Official Outlet на Best Buy"}]]},
   pv:{n:"PencilVac", sub:"тонкий, 2026", msrp:699.99, o:[["dyson",499.99,U.dysonDeals,{note:"скидка C$200, кэшбэк Rakuten не начисляется"}],["costcoStore",199.97,U.costcoDyson,{cond:true,note:"распродажа была в одном складе (Оттава)"}]]}
 };
 const DFEAT = {
@@ -785,13 +798,6 @@ function row(c, isBest){
     + '<td class="num price" data-label="Цена">'+money(c.price)+'</td><td class="num tax" data-label="'+taxName()+'">'+money(c.tax)+'</td>'
     + '<td class="num back" data-label="Кэшбэк">'+backCell+'</td><td class="num total" data-label="Итог"><b>'+money(c.final)+'</b>'+saveTxt+'</td>'
     + '<td class="go">'+goButtons(c, true, isBest)+'</td></tr>';
-}
-function bestCard(el, label, title, conf, c, hot=true){
-  const parts = [money(c.price), "+ "+taxName()+" "+money(c.tax)].concat(c.back.map(b=>"− "+b.n+" "+money(b.v)));
-  el.innerHTML = '<div class="k">'+label+'</div>'
-    + '<div><div class="what">'+title+' <span>'+conf+'</span></div><div class="where">в '+c.st.n+'</div></div>'
-    + '<div class="sum"><b class="n">'+money(c.final)+'</b>'+(c.save>=1?'<span class="save">экономия '+money(c.save)+'</span>':'<span class="muted s12">обычная цена</span>')+'</div>'
-    + '<div class="calc n">'+parts.join(" ")+'</div><div class="go">'+goButtons(c, false, hot)+'</div>';
 }
 function bfBox(el, bf, msrp, best){
   if(!bf){ el.innerHTML = '<p class="muted">По этой модели прогноза нет.</p>'; return; }
@@ -886,15 +892,6 @@ function renderWatch(){
   $("wPic").innerHTML = watchArt(+S.wsize, cc[2], cc[3]);
   $("wPicCap").innerHTML = '<b>'+m.n+' · '+S.wsize+' мм · '+cc[1]+'</b>лучшая цена новых '+money(best.final)+' в '+best.st.n;
   $("wPhoto").href = m.photo || U.apple;
-  const conf = S.wsize+" мм, "+(S.wconn==="gps"?"GPS":"GPS + сотовая")+((S.wcolor!=="any" || best.ex.only) ? ", "+cc[1].toLowerCase() : "");
-  bestCard($("bWatch"), '<span class="pill best">лучшая цена</span> новые, выбранная модель', "Apple Watch "+m.n, conf, best);
-  /* Альтернатива: то же давление дешевле */
-  const altKey = S.wm==="s11" ? "s12" : "s11";
-  const alt = WATCH[altKey], altCfgKey = alt.cfg[S.wsize+"|gps"] ? S.wsize+"|gps" : alt.def, altCfg = alt.cfg[altCfgKey];
-  const altBest = bestOf(altCfg.o, altCfg.msrp, "any", WCOL[altKey]);
-  const lbl = S.wm==="se3" ? '<span class="pill ok">♥ с давлением</span> в SE 3 его нет'
-    : altKey==="s11" ? '<span class="pill ok">♥ давление то же</span> дешевле' : '<span class="pill ok">♥ давление то же</span> новее';
-  bestCard($("bAlt"), lbl, "Apple Watch "+alt.n, altCfgKey.split("|")[0]+" мм, GPS", altBest, false);
   $("wSteps").innerHTML = best.st.steps.map(s=>"<li>"+s+"</li>").join("");
   bfBox($("wBF"), m.bf, cfg.msrp, best);
   renderWatchCompare(); renderSizes();
@@ -905,21 +902,77 @@ function renderDyson(){
   const list = rank(m.o.map(o=>calc(o,m.msrp)));
   const best = list.find(c=>c.kind==="ok") || list[0];
   $("dList").innerHTML = list.map(c=>row(c, c===best)).join("");
-  bestCard($("bDyson"), '<span class="pill best">лучшая цена</span> пылесос', "Dyson "+m.n, m.sub, best);
   const steps = (best.sk==="dyson" && !(best.ex.rak && S.rak)) ? best.st.stepsNoRak : best.st.steps;
   $("dSteps").innerHTML = steps.map(s=>"<li>"+s+"</li>").join("");
   bfBox($("dBF"), m.bf, m.msrp, best);
   renderDysonCompare();
 }
+const COND = {new:"новые", ob:"открытая коробка", refurb:"восстановлены", used:"б/у"};
+const host = u => { try{ return new URL(u).hostname.replace(/^www\./,""); }catch(e){ return ""; } };
+const aucEst = a => (a.cap*(1+a.prem)+a.fee)*(1+rate());
+/* Все предложения одним списком: магазины из таблиц моделей + находки вне магазинов */
+function allOffers(){
+  const r = rate(), out = [];
+  const sCond = c => c.kind==="ok" ? "new" : /б\/у/.test(c.st.obl||"") ? "used" : "ob";
+  for(const [mk,m] of Object.entries(WATCH)){ if(mk==="se3") continue;
+    for(const [ck,cfg] of Object.entries(m.cfg)){ const [sz,cn] = ck.split("|");
+      for(const o of cfg.o){ const c = calc(colorize(o,"any",WCOL[mk]), cfg.msrp); if(c.kind!=="ok" && c.kind!=="ob") continue;
+        out.push({cat:"w", cond:sCond(c), ret:true, t:"Apple Watch "+m.n, conf:sz+" мм · "+(cn==="gps"?"GPS":"GPS + сотовая")+(c.ex.colNames?" · "+c.ex.colNames.toLowerCase():""), where:c.st.n, final:c.final, save:c.save, c}); } } }
+  for(const m of Object.values(DYSON)) for(const o of m.o){ const c = calc(o, m.msrp); if(c.kind!=="ok" && c.kind!=="ob") continue;
+    out.push({cat:"d", lat:!!m.lat, cond:m.cond || (c.kind==="ok"?"new":"ob"), ret:true, t:"Dyson "+m.n, conf:m.sub, where:c.st.n, final:c.final, save:c.save, c}); }
+  for(const h of HIDDEN){ if(h.elig) continue; const tot = h.notax ? h.price : h.price*(1+r), p = h.what.split(" · ");
+    out.push({cat:h.cat, lat:!!h.lat, cond:h.cond, ret:!!h.ret, t:(h.cat==="w"?"Apple Watch ":"")+p[0], conf:p.slice(1).join(" · "), where:h.how, final:tot, save:h.base*(1+r)-tot, h}); }
+  return out;
+}
+let WIN = new Map();
+function topCard(el, label, x, ref){
+  if(!x){ el.innerHTML = '<div class="k">'+label+'</div><p class="muted s12">нет предложений</p>'; return; }
+  const c = x.c, h = x.h, cf = x.conf.split(" · ");
+  if(x.cat!=="w") cf.unshift("");
+  const calcTxt = c ? [money(c.price), "+ "+taxName()+" "+money(c.tax)].concat(c.back.map(b=>"− "+b.n+" "+money(b.v))).join(" ")
+    : h.notax ? money(h.price)+" · частная продажа, налога нет" : money(h.price)+" + "+taxName()+" "+money(h.price*rate());
+  const go = c ? goButtons(c, false, true)
+    : '<div class="stack"><div class="act"><a class="btn hot" href="'+h.url+'" target="_blank" rel="noopener">Открыть</a><small>'+host(h.url)+'</small></div></div>';
+  el.innerHTML = '<div class="k">'+label+' <span class="pill '+(x.ret?'ok':'cond')+'">'+COND[x.cond]+(x.ret?'':' · без возврата')+'</span></div>'
+    + '<div class="sum"><b class="n">'+money(x.final)+'</b>'+(ref && ref!==x && ref.final-x.final>=1 ? '<span class="save">экономия '+money(ref.final-x.final)+' <button class="tip" type="button" data-tip="К самому дешёвому новому из магазина с гарантией: '+ref.t+', '+ref.where+', '+money(ref.final)+'">?</button></span>' : '')+'</div>'
+    + '<div class="what">'+x.t+(cf[0]?' · '+cf[0]:'')+'</div><div class="where">'+(cf.slice(1).filter(Boolean).length?cf.slice(1).filter(Boolean).join(" · ")+' · ':'')+x.where+'</div>'
+    + '<div class="calc n">'+calcTxt+'</div><div class="calc">'+(c ? c.st.terms : h.prot)+'</div><div class="go">'+go+'</div>';
+}
+/* Карточки сверху: всегда самые низкие цены из всех найденных, пересчёт при любом изменении */
+function renderTop(){
+  const all = allOffers(), min = l => l.slice().sort((a,b)=>a.final-b.final)[0];
+  const w = all.filter(x=>x.cat==="w"), d = all.filter(x=>x.cat==="d" && x.lat);
+  const wAny = min(w), wNew = min(w.filter(x=>x.cond==="new")), wRet = min(w.filter(x=>x.ret));
+  const dAny = min(d), dRet = min(d.filter(x=>x.ret)), dNew = min(d.filter(x=>x.cond==="new"));
+  const w2 = wAny===wNew ? wRet : wNew, d2 = dAny===dRet ? dNew : dRet;
+  const bp = '<span class="pill best">♥ давление</span> ', dy = '<span class="pill best">Dyson V15 и новее</span> ';
+  const l2 = (x, n, r) => x===n ? "новые, дешевле всего" : x===r ? "с гарантией" : "";
+  const refW = min(w.filter(x=>x.cond==="new" && x.ret)), refD = min(d.filter(x=>x.cond==="new" && x.ret));
+  topCard($("tW"), bp+"дешевле всего", wAny, refW);
+  topCard($("tW2"), bp+l2(w2, wNew, wRet), w2, refW);
+  topCard($("tD"), dy+"дешевле всего", dAny, refD);
+  topCard($("tD2"), dy+l2(d2, dNew, dRet), d2, refD);
+  WIN = new Map([[wAny,"дешевле всего"],[w2,l2(w2,wNew,wRet)],[dAny,"дешевле всего"],[d2,l2(d2,dNew,dRet)]].filter(([x])=>x && x.h).map(([x,l])=>[x.h,l]));
+  const s = x => x.t+" "+x.conf.split(" · ")[0]+" — <b>"+money(x.final)+"</b> ("+COND[x.cond]+", "+x.where.replace(/ \(налога нет\)/,"")+")";
+  $("bpCheap").innerHTML = s(wAny);
+  $("tipCheap").innerHTML = "<b>Сейчас дешевле всего с давлением:</b> "+s(wAny)+". Новые: "+s(wNew)+".";
+}
+function renderAuc(){
+  $("aucList").innerHTML = AUCT.map(a=>'<tr'+(a.cat==="d"&&!a.from?' class="hl"':'')+'><td>'+a.what+'</td><td>'+a.where+'</td><td class="n">'+(a.from?'от ':'')+money(a.bid)+'</td><td>'+a.close+'</td>'
+    + '<td class="n">до '+money(a.cap)+' → <b>≈ '+money(aucEst(a))+'</b></td><td><a class="btn ghost" href="'+a.url+'" target="_blank" rel="noopener">Открыть</a></td></tr>').join("");
+  $("aucStrip").innerHTML = '<b>Аукционы HiBid</b><button class="tip" type="button" data-tip="Итог = ставка + комиссия 16% + C$1.50 + налог провинции. При оплате картой ещё 2.4–3%. Без гарантии и возврата. Ставки делаете сами.">?</button>'
+    + AUCT.map(a=>'<a href="'+a.url+'" target="_blank" rel="noopener">'+a.short+': ставка до '+money(a.cap)+' → итог <b>≈ '+money(aucEst(a))+'</b>, '+a.close+'</a>').join("");
+}
 function renderHidden(){
-  const r = 1 + rate();
-  $("hidList").innerHTML = HIDDEN.map(h=>{ const tot = h.notax ? h.price : h.price*r, save = h.base*r - tot;
-    return '<tr'+(h.best?' class="hl"':'')+'><td>'+h.how+(h.best?' <span class="pill best">выгоднее всего</span>':'')+'</td><td>'+h.what+'</td>'
-      + '<td class="n"><b>'+money(tot)+'</b><br><span class="muted">'+(h.notax ? 'налога нет' : money(h.price)+' + налог')+'</span></td>'
+  const r = 1 + rate(), tot = h => h.notax ? h.price : h.price*r;
+  const list = HIDDEN.slice().sort((a,b)=> (a.cat===b.cat ? 0 : a.cat==="w" ? -1 : 1) || tot(a)-tot(b));
+  $("hidList").innerHTML = list.map(h=>{ const t = tot(h), save = h.base*r - t, win = WIN.get(h);
+    return '<tr'+(win?' class="hl"':'')+'><td>'+h.how+(win?' <span class="pill best">'+win+'</span>':'')+'</td><td>'+h.what+' <span class="pill '+(h.ret?'ok':'cond')+'">'+COND[h.cond]+'</span></td>'
+      + '<td class="n"><b>'+money(t)+'</b><br><span class="muted">'+(h.notax ? 'налога нет' : money(h.price)+' + налог')+'</span></td>'
       + '<td class="n" style="color:var(--save);font-weight:600">'+(save>=1 ? '−'+money(save) : '—')+'</td><td>'+h.prot+'</td>'
       + '<td><a class="btn ghost" href="'+h.url+'" target="_blank" rel="noopener">Открыть</a></td></tr>'; }).join("");
 }
-function renderAll(){ document.querySelectorAll(".taxh").forEach(th=>th.textContent = taxName()); renderHidden(); renderWatch(); renderDyson(); }
+function renderAll(){ document.querySelectorAll(".taxh").forEach(th=>th.textContent = taxName()); renderTop(); renderAuc(); renderHidden(); renderWatch(); renderDyson(); }
 
 /* Controls */
 $("checked").textContent = CHECKED;
