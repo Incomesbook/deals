@@ -108,6 +108,8 @@ select{font:500 14px var(--font); color:var(--ink); background:var(--soft); bord
 .bcard .sum .save{font-size:12px; font-weight:600; color:var(--save)}
 .bcard .what{font-weight:700; font-size:14px}
 .bcard .where{font-size:12px; color:var(--muted)}
+.bcard .seller{font-size:12px; line-height:1.35}
+.bcard .seller b{color:var(--ink)}
 .bcard .calc{font-size:12px; color:var(--muted)}
 .bcard .go{margin-top:auto; padding-top:4px}
 .bcard .pic{position:relative; display:block; aspect-ratio:4 / 3; background:#fff; border-radius:8px; overflow:hidden; margin:-2px 0 2px}
@@ -338,7 +340,7 @@ svg .v-acc{fill:var(--save)}
   <label class="prov" for="prov">Провинция <select id="prov"></select> <button class="tip" type="button" data-tip="Налог считается по провинции доставки. Онтарио: HST 13% (5% GST + 8% провинции).">?</button></label>
   <label class="sw"><input type="checkbox" id="member" checked><span class="tr"></span>Членство Costco <button class="tip" type="button" data-tip="Без членства Costco его цены не участвуют в выборе лучшего варианта.">?</button></label>
   <label class="sw"><input type="checkbox" id="exec" checked><span class="tr"></span>Executive <button class="tip" type="button" data-tip="Costco Executive возвращает 2% от покупок раз в год.">?</button></label>
-  <label class="sw"><input type="checkbox" id="rak" checked><span class="tr"></span>Через Rakuten <button class="tip" type="button" data-tip="Кэшбэк Rakuten.ca на Dyson.ca сейчас 18% (обычно 2.5%). Приходит позже, раз в квартал.">?</button></label>
+  <label class="sw"><input type="checkbox" id="rak" checked><span class="tr"></span>Через Rakuten <button class="tip" type="button" data-tip="Кэшбэк Rakuten.ca на Dyson.ca 7 ноября — 2.5%. На Black Friday 2025 поднимали до 10%. На восстановленные не начисляется. Приходит позже, раз в квартал.">?</button></label>
 </section>
 
 <section class="best-row" aria-label="Лучшие варианты сейчас">
@@ -366,22 +368,37 @@ svg .v-acc{fill:var(--save)}
     <div class="row"><div class="lab"><span>Из 100 человек с нормальным давлением не потревожат</span><b>≈ 92</b></div><div class="bar"><i style="width:92%"></i></div></div>
     <p class="s12 muted">Если уведомление пришло, это повод проверить давление тонометром. Если не пришло, это ещё не гарантия нормы.</p>
   </div>
-  <p class="verdict">Для давления Series 12 не лучше Series 11: функция одинаковая. Новые Series 11 на OpenBox.ca стоят от C$399.99 — на C$100 дешевле Series 12 там же. Давление работает и на Series 9–10, поэтому дешевле всего сейчас: <span id="bpCheap"></span>. По данным Apple, в Канаде функция работает без ограничений, включая Series 12.</p>
+  <p class="verdict">Для давления Series 12 не лучше Series 11: функция одинаковая. Series 11 Apple больше не продаёт — остатки распродают магазины. Дешевле всего сейчас (Series 11 и новее, надёжный продавец): <span id="bpCheap"></span>. По данным Apple, в Канаде функция работает без ограничений, включая Series 12.</p>
 </section>
 
 <section class="panel" id="hidden">
-  <div class="ph"><h2>Дешевле, чем в обычных магазинах</h2><p>Реальные цены на 6 ноября, итог с налогом провинции</p></div>
+  <div class="ph"><h2>Дешевле, чем в обычных магазинах</h2><p>Цены проверены 7 ноября, итог с налогом провинции</p></div>
   <div class="scroll"><table class="tbl">
     <thead><tr><th>Где</th><th>Что</th><th>Итог, C$</th><th>Экономия к обычной цене</th><th>Гарантия и возврат</th><th></th></tr></thead>
     <tbody id="hidList"></tbody>
   </table></div>
+  <h3 class="sub-h">Нестандартные способы — проверено 7 ноября <button class="tip" type="button" data-tip="Итог для Онтарио, HST 13%. Баллы и бонусы карт приходят позже, это не скидка на кассе. Наличие остатков меняется ежедневно.">?</button></h3>
+  <div class="scroll"><table class="tbl">
+    <thead><tr><th>Способ</th><th>Что сделать</th><th>Итог, C$</th><th>Защита покупателя</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>Amazon Resale «как новые»</b></td><td>На Amazon.ca в блоке «Other sellers» выбрать «Used – Like New» от самого Amazon: Series 11, 42 мм, серый — C$400.71. <a href="https://www.amazon.ca/gp/offer-listing/B0FQFT1CHB/ref=dp_olp_ALL_mbc?ie=UTF8&condition=ALL" target="_blank" rel="noopener">Открыть</a></td><td class="n">454.21</td><td>продаёт Amazon; возврат до 15 января 2027</td></tr>
+      <tr><td><b>Восстановленные у продавца с отзывами</b></td><td>Best Buy, продавец GoRecell (4.8★ из 1 492; Trustpilot 4.7): Series 11, 46 мм «Excellent» — C$399.99; Series 12, 42 мм — C$449.99.</td><td class="n">451.99 / 508.49</td><td>гарантия продавца; возврат через продавца</td></tr>
+      <tr><td><b>Распродажа остатков Staples</b></td><td>Series 11, 42 мм, новые — C$449.97. Наличие по магазинам — позвонить в Staples Mississauga.</td><td class="n">508.47</td><td>продаёт Staples; возврат 30 дней; гарантия Apple</td></tr>
+      <tr><td><b>Карты Walmart на заправке Shell</b> <button class="tip" type="button" data-tip="Акция до 4 января 2027: 1000 Scene+ (= C$10) за каждую карту Walmart на C$50 (RedFlagDeals, 6 ноября 2026). Лимит на число карт за визит не подтверждён — уточнить на кассе. Баллы Scene+ тратятся в Sobeys, FreshCo, Cineplex и др.">?</button></td><td>Купить подарочные карты Walmart по C$50 на Shell, потом купить часы у самого Walmart (не у продавца маркетплейса) — например, на Black Friday с 18 ноября, 21:00.</td><td class="n">−20% баллами<br><span class="muted">C$620.37 − C$130 ≈ C$490</span></td><td>продаёт Walmart; возврат Walmart</td></tr>
+      <tr><td><b>Новая кредитка с бонусом</b> <button class="tip" type="button" data-tip="Scotia Momentum Visa Infinite+: 10% кэшбэка на первые C$2 000 за 3 месяца, для счетов, открытых с 2 ноября 2026 по 30 апреля 2027; первый год без платы (потом C$120). FinlyWealth платит ещё C$150 за одобрение. Нужна проверка кредитной истории. Альтернатива: Amazon.ca Rewards Mastercard — 5% на Amazon 6 месяцев.">?</button></td><td>Оформить Scotia Momentum Visa Infinite+ через FinlyWealth и оплатить ею часы.</td><td class="n">454.21 − 45.42 − 150 ≈ 258.79</td><td>кредитка: chargeback</td></tr>
+      <tr><td><b>Black Friday с защитой цены</b></td><td>Best Buy — с 19 ноября; на товары с меткой «Black Friday Price» вернут разницу, если подешевеет. Walmart онлайн — 18 ноября, 21:00. Costco — новый буклет ~23 ноября. Ожидаемо Series 11 ≈ C$399–449.</td><td class="n">≈ 451–508</td><td>возврат магазина</td></tr>
+      <tr><td><b>Склад Costco по номеру товара</b></td><td>Позвонить в Costco Mississauga (Heartland, Dundas E, Laird Rd): Series 11 — товар 1982918 (42 мм) или 1982923 (46 мм). Летом было C$415.99.</td><td class="n">≈ 470</td><td>Costco, возврат 90 дней</td></tr>
+      <tr><td><b>Уценка Walmart «DealWiz»</b></td><td>22 сентября новые Series 11, 42 мм уходили за C$298.40. Поставить уведомление RedFlagDeals на «Apple Watch Series 11» и сразу проверять, кто продаёт.</td><td class="n">≈ 337</td><td>проверить продавца перед оплатой</td></tr>
+      <tr><td><b>Цена для образования</b></td><td>Если в семье студент или работник школы: Apple Education, Series 12, 42 мм — C$489 (проверка UNiDAYS).</td><td class="n">552.57</td><td>Apple, возврат 14 дней</td></tr>
+    </tbody>
+  </table></div>
   <h3 class="sub-h">Аукционы ликвидаторов в Онтарио (HiBid) <button class="tip" type="button" data-tip="Продаётся как есть: без гарантии и возврата. К ставке добавляются комиссия 15–16%, около C$1.50 и HST, при оплате картой ещё 2.4–3%. Часы брать только после письменного подтверждения, что нет Activation Lock.">?</button></h3>
   <div class="scroll"><table class="tbl">
-    <thead><tr><th>Лот</th><th>Где</th><th>Ставка на 6 ноября</th><th>Закрытие</th><th>Потолок ставки → итог</th><th></th></tr></thead>
+    <thead><tr><th>Лот</th><th>Где</th><th>Ставка на 7 ноября</th><th>Закрытие</th><th>Потолок ставки → итог</th><th></th></tr></thead>
     <tbody id="aucList"></tbody>
   </table></div>
   <div class="after">
-    <div class="box"><h3>Мой совет</h3><p>Для давления хватает Series 9 и новее. На OpenBox.ca это новые канадские модели (CL/A) с гарантией Apple: если сломаются, Apple бесплатно починит или заменит. Минус: если просто передумали, магазин удержит 15%. Самый спокойный вариант по возврату — Costco, 90 дней.</p><p style="margin-top:6px" id="tipCheap"></p><p style="margin-top:6px"><b>Частные объявления (Kijiji) — только так:</b> 1) до встречи проверить серийный номер на checkcoverage.apple.com — часы не активированы; 2) коробка с бумажными язычками Apple, без плёнки; 3) встреча в зоне безопасного обмена полиции Peel или в Apple Square One; 4) оплата только после того, как часы подключились к вашему iPhone без чужого Apple ID.</p><p class="muted" style="margin-top:6px">Taobao, Tmall, Pinduoduo не подходят: у китайских часов нет функции давления.</p></div>
+    <div class="box"><h3>Мой совет</h3><p>Берите Series 11 или новее: у них есть уведомления о давлении, и они подключаются к iPhone 14. Покупайте только там, где можно вернуть: у самого магазина (Amazon.ca, Best Buy, Staples, Walmart, Costco) или у продавца маркетплейса с тысячами настоящих отзывов (GoRecell). Kijiji и OpenBox.ca исключены.</p><p style="margin-top:6px" id="tipCheap"></p><p style="margin-top:6px"><b>При получении, в первый же день:</b> 1) серийный номер на коробке, в часах и на checkcoverage.apple.com совпадает; 2) часы настраиваются «как новые», без чужого Apple ID; 3) Настройки → Аккумулятор → Состояние: у новых 100%; 4) снимите видео распаковки. Что-то не так — сразу возврат.</p><p class="muted" style="margin-top:6px">Платите кредиткой: если продавец подведёт, банк вернёт деньги (chargeback).</p></div>
     <div class="box"><h3>Обмен старых часов (trade-in) <button class="tip" type="button" data-tip="У Series 3 не было размера 40 мм, только 38 и 42. Модель видна на часах: Настройки → Основные → Об этом устройстве.">?</button></h3>
       <table class="mini">
         <thead><tr><th>Ваши часы</th><th>Apple (зачёт в покупку)</th></tr></thead>
@@ -392,7 +409,7 @@ svg .v-acc{fill:var(--save)}
           <tr><td>Series 6, 40 мм</td><td>до US$45 (≈ C$64)</td></tr>
         </tbody>
       </table>
-      <p class="muted" style="margin-top:6px">Суммы Apple — для США на август 2026, в Канаде близко. Best Buy принимает только в магазине, даёт подарочную карту; цены опубликованы только для Series 9 и новее. За наличные старые часы покупает PayMore (от Series 3), Costco через Phobio даёт карту Costco — возьмите лучшую из двух оценок. Вывод: обмен почти ничего не даст, выгоднее купить на OpenBox.ca. <a href="https://www.apple.com/ca/shop/trade-in" target="_blank" rel="noopener">Калькулятор Apple</a></p>
+      <p class="muted" style="margin-top:6px">Суммы Apple — для США на август 2026, в Канаде близко. Best Buy принимает только в магазине, даёт подарочную карту; цены опубликованы только для Series 9 и новее. За наличные старые часы покупает PayMore (от Series 3), Costco через Phobio даёт карту Costco — возьмите лучшую из двух оценок. Вывод: обмен почти ничего не даст. <a href="https://www.apple.com/ca/shop/trade-in" target="_blank" rel="noopener">Калькулятор Apple</a></p>
     </div>
   </div>
 </section>
@@ -490,7 +507,7 @@ svg .v-acc{fill:var(--save)}
   <div class="scroll"><table class="tbl">
     <thead><tr><th>Событие</th><th>Когда</th><th>Чего ждать</th><th>Что делать</th></tr></thead>
     <tbody>
-      <tr class="hl"><td>Кэшбэк Rakuten 18% на Dyson</td><td>сейчас</td><td>может закончиться в любой день (обычно 2.5%)</td><td>покупать сейчас</td></tr>
+      <tr class="hl"><td>Кэшбэк Rakuten на Dyson</td><td>~20–30 ноября</td><td>в 2025 поднимали до 10% (7 ноября — 2.5%)</td><td>новый Dyson брать в день повышения</td></tr>
       <tr><td>Скидки на Series 12</td><td>~20 ноября – 1 декабря</td><td>минус C$50–100 <button class="tip" type="button" data-tip="На Series 11 в Канаде было минус C$100 в Costco и на Amazon.ca. Исторический минимум S11 в Канаде — C$399 (Staples, август 2026).">?</button></td><td>заказать в Costco и запросить корректировку цены</td></tr>
       <tr><td>Распродажа Dyson</td><td>середина ноября – 1 декабря</td><td>V16 минус C$150–300 <button class="tip" type="button" data-tip="Во Франции V16 уже продают за €649 (≈ C$1,019) вместо €849. На Black Friday 2025 новый V15 с Dyson.ca + Rakuten + Perkopolis выходил C$659 с налогом.">?</button></td><td>если выйдет дешевле покупки с кэшбэком, вернуть и купить заново</td></tr>
       <tr><td>Распродажа Apple</td><td>~27–30 ноября</td><td>подарочная карта Apple ≈ C$70 к часам</td><td>выгодно только вместе с бонусом PC Optimum</td></tr>
@@ -517,21 +534,27 @@ svg .v-acc{fill:var(--save)}
 <details class="more">
   <summary>Проверено и не подходит</summary>
   <div class="in"><ul class="rej">
+    <li><b>OpenBox.ca (и продавец OpenBox на Best Buy).</b> Не Торонто, а Сарри (BC). BBB — рейтинг «F», Trustpilot 2.5 из 5 (60% — одна звезда). В 2026: отменённые после оплаты заказы, молчание поддержки, пустая коробка вместо Apple Watch (февраль 2026). Цены низкие, но риск реальный — убрал из лучших.</li>
+    <li><b>Kijiji и другие частники.</b> Нет гарантии и возврата — исключены.</li>
+    <li><b>Купоны и промокоды на Amazon.ca.</b> На Apple Watch 7 ноября нет ни одного: продаёт только сам Amazon, сторонних продавцов с купонами нет. Vipon, Honey, Capital One Shopping в Канаде на Apple не работают.</li>
+    <li><b>Кэшбэк-порталы на Apple Watch.</b> Rakuten.ca, Great Canadian Rebates: Apple исключён у Best Buy, Walmart и на Apple.ca — 0%.</li>
+    <li><b>Скидки работодателя и клубов.</b> Apple EPP, Perkopolis, Venngo, CAA — на Apple Watch 0%, скидка только на ремешки.</li>
+    <li><b>Swappa.</b> Покупать можно только с адресом и картой США.</li>
     <li><b>Подделки на Kijiji.</b> «Новые» Apple Watch за C$200 (Оттава) — копии: продавец сам пишет «1:1» и «поддельные серийные номера». Цена ниже C$300 за новые Series 10–12 — почти всегда подделка.</li>
     <li><b>Kijiji, Dyson.</b> Запечатанные V15 стоят C$750–900 — дороже восстановленного с гарантией. Все 9 найденных объявлений «новый V16 за C$849–950» уже сняты.</li>
     <li><b>Покупка в США.</b> Series 12 US$389.99 (≈ C$550) + HST на границе ≈ C$622; выгодно только при цене ниже US$303. Dyson из США: пошлина 8% + HST, гарантия только американская.</li>
-    <li><b>Китай (JD, Tmall, Pinduoduo).</b> У часов для Китая нет функции давления; Series 11 с доставкой ≈ C$505–530 — дороже OpenBox.ca.</li>
+    <li><b>Китай (JD, Tmall, Pinduoduo).</b> У часов для Китая нет функции давления; Series 11 с доставкой ≈ C$505–530 — дороже, чем в Канаде.</li>
     <li><b>Азия и ОАЭ.</b> Series 12 от C$576 (Гонконг) — дороже Канады; в Японии, Корее, ОАЭ давление на S12 может не работать.</li>
     <li><b>Операторы (Bell, Rogers, Telus).</b> Только с сотовой связью и тарифом — минимум на C$260 дороже.</li>
     <li><b>Купонные сайты из TikTok (Vipon и др.).</b> На Apple и Dyson не действуют — только безымянные бренды. Telegram-каналы «гаджеты дёшево» — мошенничество.</li>
-    <li><b>eBay.</b> Новых Series 11/12 дешевле OpenBox.ca нет; есть подделки с пометкой «copy 1:1».</li>
+    <li><b>eBay.</b> Новых Series 11/12 дешевле канадских магазинов нет; есть подделки с пометкой «copy 1:1».</li>
     <li><b>Rakuten в Apple.</b> На часы кэшбэк не начисляется.</li>
     <li><b>Rakuten 20% на Walmart.</b> Только Flash Deals, часов там нет.</li>
     <li><b>Gen5detect Absolute за C$679.95 на Best Buy.</b> Онлайн часто нет в наличии — следите, это лучшая цена на новый старший Dyson.</li>
     <li><b>Восстановленные часы Apple.</b> В Канаде не продаются.</li>
-    <li><b>Reebelo.ca.</b> Восстановленные Series 11 от C$450.99 — дороже новых на OpenBox.ca. Series 12 нет.</li>
-    <li><b>Back Market.</b> В Канаду не доставляет.</li>
-    <li><b>Amazon.com (США), Prime Day.</b> Series 12, 42 мм — US$349.99 (≈ C$494); с HST на границе ≈ C$558. Не дешевле OpenBox.ca, возврат через границу.</li>
+    <li><b>Reebelo.ca.</b> Восстановленные Series 11 от C$450.99 у сторонних продавцов, отзывы смешанные (батарея 79% на «восстановленных»). Дороже Amazon Resale.</li>
+    <li><b>Back Market.</b> В Канаду не доставляет; по Reddit 2026 — много подделок.</li>
+    <li><b>Amazon.com (США), Prime Day.</b> Series 12, 42 мм — US$349.99 (≈ C$494); с HST на границе ≈ C$558. Не дешевле Amazon Resale, возврат через границу.</li>
     <li><b>Программа сотрудников Apple (EPP).</b> На часы 0–6%, только через работодателя.</li>
     <li><b>Подарочные карты Apple с бонусом.</b> PC Optimum 10–15% или Scene+ 20% бывают только в акции; сейчас акции нет.</li>
   </ul></div>
@@ -580,8 +603,8 @@ svg .v-acc{fill:var(--save)}
    DATA: всё, что меняется, редактируется здесь. Цена без налога, CAD.
    ===================================================================== */
 const PUBLIC_URL = "https://incomesbook.github.io/deals/";
-const CHECKED = "6 ноября 2026";
-const RAKUTEN_DYSON = 18;
+const CHECKED = "7 ноября 2026";
+const RAKUTEN_DYSON = 2.5;
 const EXEC_PCT = 2;
 
 const TAX = {
@@ -610,30 +633,36 @@ const U = {
 };
 
 const STORE = {
-  costco:{n:"Costco.ca", fl:["ВОЗВРАТ 90 ДНЕЙ"], dom:"costco.ca", member:true, exec:true, terms:"возврат 90 дней, корректировка цены 30 дней",
+  costco:{n:"Costco.ca", sold:"Costco (сам магазин)", fl:["ВОЗВРАТ 90 ДНЕЙ"], dom:"costco.ca", member:true, exec:true, terms:"возврат 90 дней, корректировка цены 30 дней",
     steps:["Откройте Costco.ca и выберите размер, цвет и ремешок.","Оплатите кредиткой.","До 6 декабря следите за ценой: снизится — Costco вернёт разницу по запросу.","Стало намного дешевле в другом магазине — верните в течение 90 дней."]},
-  costcoStore:{n:"Costco, склад", fl:["ВОЗВРАТ 90 ДНЕЙ","ТОЛЬКО В СКЛАДЕ"], dom:"только в складе", member:true, exec:true, terms:"возврат 90 дней",
+  costcoStore:{n:"Costco, склад", sold:"Costco (сам магазин)", fl:["ВОЗВРАТ 90 ДНЕЙ","ТОЛЬКО В СКЛАДЕ"], dom:"только в складе", member:true, exec:true, terms:"возврат 90 дней",
     steps:["Позвоните в ближайший Costco и спросите наличие.","Распродажа в одном складе не значит, что товар есть в других."]},
-  amazon:{n:"Amazon.ca", fl:["ВОЗВРАТ 30 ДНЕЙ"], dom:"amazon.ca", terms:"возврат 30 дней", steps:["Проверьте, что продавец Amazon.ca, а не сторонний.","Защиты цены нет, но 30 дней можно вернуть."]},
-  bestbuy:{n:"Best Buy", dom:"bestbuy.ca", terms:"сравняет цену с конкурентом, защита цены 30 дней",
+  amazon:{n:"Amazon.ca", sold:"сам Amazon.ca, он же отправляет", fl:["ВОЗВРАТ 30 ДНЕЙ"], dom:"amazon.ca", terms:"возврат 30 дней", steps:["Проверьте, что продавец Amazon.ca, а не сторонний.","Защиты цены нет, но 30 дней можно вернуть."]},
+  bestbuy:{n:"Best Buy", sold:"сам Best Buy (не маркетплейс)", dom:"bestbuy.ca", terms:"сравняет цену с конкурентом, защита цены 30 дней",
     steps:["Откройте товар на Best Buy.","Дешевле на Amazon.ca или в Walmart — попросите сравнять цену в чате или на кассе.","30 дней: снизит цену — вернут разницу."]},
-  walmart:{n:"Walmart", dom:"walmart.ca", terms:"стандартный возврат", steps:["Проверьте, что продавец Walmart, а не маркетплейс.","Оформите доставку или самовывоз."]},
-  apple:{n:"Apple.ca", fl:["ГАРАНТИЯ APPLE 1 ГОД","ВОЗВРАТ 14 ДНЕЙ"], dom:"apple.com/ca", terms:"возврат 14 дней, гарантия 1 год",
+  walmart:{n:"Walmart", sold:"сам Walmart (не маркетплейс)", dom:"walmart.ca", terms:"стандартный возврат", steps:["Проверьте, что продавец Walmart, а не маркетплейс.","Оформите доставку или самовывоз."]},
+  apple:{n:"Apple.ca", sold:"Apple", fl:["ГАРАНТИЯ APPLE 1 ГОД","ВОЗВРАТ 14 ДНЕЙ"], dom:"apple.com/ca", terms:"возврат 14 дней, гарантия 1 год",
     steps:["Оформите на Apple.ca или в Apple Square One.","Выгодно только с акциями: бонус PC Optimum на карты Apple и подарочная карта на Black Friday."]},
-  dyson:{n:"Dyson.ca", fl:["ГАРАНТИЯ DYSON 2 ГОДА","ВОЗВРАТ 30 ДНЕЙ"], dom:"dysoncanada.ca", terms:"возврат 30 дней, защита цены 30 дней, гарантия 2 года, Affirm 0%",
+  dyson:{n:"Dyson.ca", sold:"Dyson", fl:["ГАРАНТИЯ DYSON 2 ГОДА","ВОЗВРАТ 30 ДНЕЙ"], dom:"dysoncanada.ca", terms:"возврат 30 дней, защита цены 30 дней, гарантия 2 года, Affirm 0%",
     steps:["Войдите на Rakuten.ca, нажмите «Через Rakuten», затем Shop.","В той же вкладке оформите заказ на Dyson.ca: Affirm 0% или кредитка.","Через 1–7 дней проверьте кэшбэк в Rakuten.","До 6 декабря: станет сильно дешевле — верните бесплатно и купите заново."],
     stepsNoRak:["Оформите заказ на Dyson.ca.","Оплатите через Affirm (6 платежей от 0%) или кредиткой.","30 дней: та же модель дешевле у авторизованного продавца — Dyson вернёт разницу."]},
-  ct:{n:"Canadian Tire", dom:"canadiantire.ca", terms:"CT Money 0.4–4% с картой Triangle", steps:["Оформите на canadiantire.ca с картой Triangle, чтобы получить CT Money.","CT Money тратится только в Canadian Tire."]},
-  outlet:{n:"Dyson Outlet", fl:["ГАРАНТИЯ DYSON 1 ГОД","БЕЗ ВОЗВРАТА"], dom:"dysoncanada.ca", terms:"восстановлен Dyson, гарантия 1 год, без возврата", steps:["Восстановлен Dyson, гарантия 1 год.","Возврат не принимают: проверьте комплектацию до оплаты."]},
-  bbOutlet:{n:"Dyson Outlet на Best Buy", fl:["ГАРАНТИЯ DYSON 1 ГОД","ПРОДАЁТ DYSON НА BEST BUY"], dom:"bestbuy.ca", terms:"официальный магазин Dyson, гарантия 1 год", steps:["Проверьте, что продавец Dyson Official Outlet.","Гарантия 1 год от Dyson."]},
-  openbox:{n:"OpenBox.ca", fl:["ГАРАНТИЯ APPLE 1 ГОД","ВОЗВРАТ 7 ДНЕЙ −15%"], dom:"openbox.ca", terms:"Новые канадские модели (CL/A), гарантия Apple 1 год. Возврат без причины: 7 дней, удержание 15%, доставка обратно за ваш счёт. Брак: возврат оплачивает магазин.",
+  ct:{n:"Canadian Tire", sold:"Canadian Tire", dom:"canadiantire.ca", terms:"CT Money 0.4–4% с картой Triangle", steps:["Оформите на canadiantire.ca с картой Triangle, чтобы получить CT Money.","CT Money тратится только в Canadian Tire."]},
+  outlet:{n:"Dyson Outlet", sold:"Dyson", fl:["ГАРАНТИЯ DYSON 1 ГОД","БЕЗ ВОЗВРАТА"], dom:"dysoncanada.ca", terms:"восстановлен Dyson, гарантия 1 год, без возврата", steps:["Восстановлен Dyson, гарантия 1 год.","Возврат не принимают: проверьте комплектацию до оплаты."]},
+  bbOutlet:{n:"Dyson Outlet на Best Buy", sold:"маркетплейс Best Buy, сам Dyson (Dyson Official Outlet)", fl:["ГАРАНТИЯ DYSON 1 ГОД","ПРОДАЁТ DYSON НА BEST BUY"], dom:"bestbuy.ca", terms:"официальный магазин Dyson, гарантия 1 год", steps:["Проверьте, что продавец Dyson Official Outlet.","Гарантия 1 год от Dyson."]},
+  openbox:{n:"OpenBox.ca", risk:true, riskWhy:"BBB «F», Trustpilot 2.5 из 5; в 2026 жалобы на неотправленные заказы и пустую коробку от Apple Watch", sold:"OpenBox.ca (Сарри, BC)", fl:["ГАРАНТИЯ APPLE 1 ГОД","ВОЗВРАТ 7 ДНЕЙ −15%"], dom:"openbox.ca", terms:"Новые канадские модели (CL/A), гарантия Apple 1 год. Возврат без причины: 7 дней, удержание 15%, доставка обратно за ваш счёт. Брак: возврат оплачивает магазин.",
     steps:["Откройте товар на OpenBox.ca, выберите цвет и размер: наличие видно сразу.","Оплатите кредиткой: если что-то пойдёт не так, банк поможет вернуть деньги.","При получении проверьте, что коробка запечатана, а модель канадская (CL/A).","Сломались — гарантия Apple 1 год, ремонт или замена в Apple. Передумали — 7 дней, удержат 15%."]},
-  openboxOB:{n:"OpenBox.ca, открытая коробка", fl:["ГАРАНТИЯ 1 ГОД","ВОЗВРАТ 7 ДНЕЙ −15%"], dom:"openbox.ca", ob:true, obl:"открытая коробка", terms:"Вскрытая упаковка или возврат покупателя, гарантия 1 год. Возврат 7 дней, удержание 15%.",
+  openboxOB:{n:"OpenBox.ca, открытая коробка", risk:true, riskWhy:"BBB «F», Trustpilot 2.5 из 5; в 2026 жалобы на неотправленные заказы и пустую коробку от Apple Watch", sold:"OpenBox.ca (Сарри, BC)", fl:["ГАРАНТИЯ 1 ГОД","ВОЗВРАТ 7 ДНЕЙ −15%"], dom:"openbox.ca", ob:true, obl:"открытая коробка", terms:"Вскрытая упаковка или возврат покупателя, гарантия 1 год. Возврат 7 дней, удержание 15%.",
     steps:["Выберите цвет и размер на OpenBox.ca.","В первый день проверьте внешний вид, комплект и аккумулятор: Настройки → Аккумулятор → Состояние.","Проблема — пишите магазину в течение 7 дней."]},
-  amzR:{n:"Amazon Resale", fl:["ПРОДАЁТ AMAZON","ВОЗВРАТ 30 ДНЕЙ"], dom:"amazon.ca", ob:true, obl:"б/у, проверено Amazon", terms:"Продаёт и отправляет Amazon.ca (Warehouse Deals), возврат 30 дней.",
+  amzR:{n:"Amazon Resale", sold:"сам Amazon.ca (Warehouse Deals), он же отправляет", fl:["ПРОДАЁТ AMAZON","ВОЗВРАТ 30 ДНЕЙ"], dom:"amazon.ca", ob:true, obl:"б/у, проверено Amazon", terms:"Продаёт и отправляет Amazon.ca (Warehouse Deals), возврат 30 дней.",
     steps:["Откройте товар на Amazon.ca, под кнопкой покупки найдите «Used» или «Other sellers».","Выберите продавца Amazon Resale (Warehouse Deals) и состояние «Used – Like New».","Иногда при оформлении даётся дополнительная скидка — проверьте итог в корзине.","Проверьте, что часы отвязаны от чужого Apple ID; если нет — верните в течение 30 дней."]},
-  bbm:{n:"Best Buy, продавец OpenBox", fl:["ВОЗВРАТ ЧЕРЕЗ ПРОДАВЦА"], dom:"bestbuy.ca", ob:true, obl:"открытая коробка", terms:"Marketplace: продаёт OpenBox, не Best Buy. В магазине Best Buy не вернуть.",
+  bbm:{n:"Best Buy, продавец OpenBox", risk:true, riskWhy:"BBB «F», Trustpilot 2.5 из 5; в 2026 жалобы на неотправленные заказы и пустую коробку от Apple Watch", sold:"маркетплейс Best Buy: OpenBox", fl:["ВОЗВРАТ ЧЕРЕЗ ПРОДАВЦА"], dom:"bestbuy.ca", ob:true, obl:"открытая коробка", terms:"Marketplace: продаёт OpenBox, не Best Buy. В магазине Best Buy не вернуть.",
     steps:["На Best Buy выберите предложение продавца OpenBox, состояние Good или Excellent.","Возврат оформляется через продавца, не в магазине Best Buy."]},
+  staples:{n:"Staples", sold:"сам Staples (не маркетплейс)", fl:["ПРОДАЁТ STAPLES","ВОЗВРАТ 30 ДНЕЙ"], dom:"staples.ca", terms:"новые, гарантия Apple 1 год; возврат 30 дней в магазине; распродажа остатков — цену не сравняют и не защитят",
+    steps:["Позвоните в Staples Mississauga и спросите наличие по названию модели.","Распродажа остатков: наличие по магазинам разное, онлайн может не быть.","Возврат 30 дней в магазине с чеком и в упаковке."]},
+  gorecell:{n:"Best Buy, продавец GoRecell", sold:"маркетплейс Best Buy: GoRecell (4.8★ из 1 492 оценок, Trustpilot 4.7)", fl:["МАРКЕТПЛЕЙС","GORECELL 4.8★"], dom:"bestbuy.ca", ob:true, obl:"восстановлены «Excellent»", terms:"Продаёт GoRecell (Монреаль), не Best Buy. Гарантия продавца; возврат через продавца в аккаунте Best Buy, не в магазине.",
+    steps:["Откройте товар на Best Buy, проверьте «Sold by Gorecell» и состояние «Refurbished (Excellent)».","Оплатите кредиткой.","При получении проверьте батарею: Настройки → Аккумулятор → Состояние. Проблема — возврат через продавца в аккаунте Best Buy."]},
+  wmDyson:{n:"Walmart, продавец Dyson", sold:"маркетплейс Walmart, сам Dyson (Dyson Official Outlet, Pro Seller)", fl:["ПРОДАЁТ DYSON","ВОЗВРАТ 30 ДНЕЙ"], dom:"walmart.ca", terms:"восстановлен Dyson, гарантия Dyson 1 год, бесплатный возврат 30 дней",
+    steps:["Откройте товар на Walmart.ca, проверьте «Sold and shipped by Dyson Official Outlet».","Сразу зарегистрируйте пылесос на dysoncanada.ca — для гарантии.","30 дней: не подошёл — бесплатный возврат."]},
   mkt:{n:"Маркетплейс Best Buy", dom:"bestbuy.ca", risk:true, terms:"сторонний продавец", steps:["Не рекомендую: гарантия и состояние на совести продавца."]}
 };
 
@@ -648,9 +677,11 @@ const WATCH = {
   }},
   s11:{n:"Series 11", sub:"2025, прошлая", def:"42|gps", photo:"https://www.amazon.ca/dp/B0FQG8Y4V9", cfg:{
     "42|gps":{msrp:549, o:[["openbox",399.99,U.obS11,{warn:"возврат −15%",note:"новые, канадская модель"}],["bestbuy",499.99,U.bbS11,{note:"цена до 13 ноября"}],
-      ["openboxOB",349.99,U.obS11ob],["amzR",474.99,U.amzR11r42,{only:["rose"],note:"состояние «как новые», S/M"}]]},
+      ["openboxOB",349.99,U.obS11ob],["amzR",474.99,U.amzR11r42,{only:["rose"],note:"состояние «как новые», S/M"}],
+      ["amzR",401.96,"https://www.amazon.ca/gp/offer-listing/B0FQFT1CHB/ref=dp_olp_ALL_mbc?ie=UTF8&condition=ALL",{only:["grey"],note:"«как новые», 1 шт., с эко-сбором C$1.25"}],["amazon",499.99,"https://www.amazon.ca/dp/B0FQFJ1T12",{only:["black"],note:"S/M, осталось 4"}],["staples",449.97,"https://www.staples.ca/products/3136028-en-apple-watch-series-11-42-mm-gps-jet-black-aluminium-case-with-black-sport-band-sm",{only:["black","grey"],note:"распродажа остатков, наличие по магазинам"}]]},
     "46|gps":{msrp:589, o:[["openbox",429.99,U.obS11,{only:["black","grey"],warn:"возврат −15%",note:"новые, канадская модель"}],["amazon",489.97,U.amzS11,{only:["black"],note:"M/L"}],["bestbuy",549.99,U.bbS11,{note:"цена до 13 ноября"}],
-      ["openboxOB",379.99,U.obS11ob],["amzR",414.62,U.amzR11r46,{only:["rose"],note:"состояние «как новые», S/M"}],["bbm",349.99,U.bbmS11,{only:["black"],note:"состояние «Good»"}]]}
+      ["openboxOB",379.99,U.obS11ob],["amzR",414.62,U.amzR11r46,{only:["rose"],note:"состояние «как новые», S/M"}],["bbm",349.99,U.bbmS11,{only:["black"],note:"состояние «Good»"}],
+      ["gorecell",399.99,"https://www.bestbuy.ca/en-ca/product/19496082",{only:["black","grey"],note:"восстановлены «Excellent», 1 шт."}],["staples",489.97,"https://www.staples.ca/search?query=apple%20watch%20series%2011",{only:["black","grey"],note:"распродажа остатков"}]]}
   }},
   u4:{n:"Ultra 4", sub:"2026, спорт", def:"49|cell", photo:"https://www.apple.com/ca/shop/buy-watch/apple-watch-ultra", cfg:{
     "49|cell":{msrp:1099, o:[["costco",1098.99,U.costcoW],["apple",1099,U.appleUltra]]}
@@ -672,27 +703,19 @@ const WCOL = {
    cat: w — часы, d — Dyson; cond: new | ob (открытая коробка) | refurb (восстановлены) | used (б/у);
    ret: гарантия и возврат магазина; lat: Dyson V15 и новее; elig: только для части покупателей */
 const HIDDEN = [
-  {cat:"w", cond:"refurb", ret:true, how:"OpenBox.ca, восстановленные", what:"Series 9 · 41 мм · GPS, серебристый, MR903CL/A (канадские), без ремешка", price:189.99, base:549, prot:"гарантия магазина 90 дней; возврат 7 дней, −15%; есть следы износа; ремешок купить отдельно", img:"https://openbox.ca/cdn/shop/files/C224CE9D-003A-4815-B8C3-4CDEF2952C74_d7f16339-7738-498e-a202-23e9022e5289_1024x.jpg?v=1791589789", imgN:"фото магазина", fl:["ВОССТАНОВЛЕНЫ", "БЕЗ РЕМЕШКА", "ЕСТЬ ЦАРАПИНЫ", "ГАРАНТИЯ 90 ДНЕЙ", "ВОЗВРАТ 7 ДНЕЙ −15%"], url:"https://openbox.ca/products/apple-watch-series-9-gps-41mm-silver-bands-not-included-refurbished-90-day-warranty-1"},
-  {cat:"w", cond:"refurb", ret:true, how:"OpenBox.ca, восстановленные", what:"Series 10 · 46 мм · GPS, чёрный, MWWQ3AM/A (для США)", price:229.99, base:599, prot:"гарантия магазина 90 дней; возврат 7 дней, −15%; есть следы износа. Давление работает: США и Канада есть в списке Apple", img:"https://openbox.ca/cdn/shop/files/1_a5110cd3-17f5-4f83-94f5-f68740142e81_1024x.jpg?v=1727813215", imgN:"фото магазина", fl:["ВОССТАНОВЛЕНЫ", "ЕСТЬ ЦАРАПИНЫ", "МОДЕЛЬ ДЛЯ США", "ГАРАНТИЯ 90 ДНЕЙ", "ВОЗВРАТ 7 ДНЕЙ −15%"], url:"https://openbox.ca/products/apple-watch-series-10-gps-46mm-jet-black-aluminum-case-refurbished-90-day-warranty-94"},
-  {cat:"w", cond:"new", how:"Kijiji, частный продавец (налога нет)", what:"Series 9 · 45 мм · GPS, серебристый, запечатаны, MR9E3CL/A (канадские)", price:330, notax:true, base:579, prot:"без возврата; цена твёрдая; Торонто. До встречи проверить серийный номер на checkcoverage.apple.com", img:"https://media.kijiji.ca/api/v1/ca-prod-fsbo-ads/images/12/1225a5af-1aa2-419c-8917-8b44229d1af6?rule=kijijica-640-jpg", imgN:"фото продавца", fl:["НОВЫЕ, ЗАПЕЧАТАНЫ", "ЧАСТНИК", "БЕЗ НАЛОГА", "ОПЛАТА ПРИ ВСТРЕЧЕ", "БЕЗ ВОЗВРАТА", "ЦЕНА ТВЁРДАЯ"], url:"https://www.kijiji.ca/v-cell-phone/city-of-toronto/new-apple-watch-gen-9-series-9-45mm-silver-aluminium-storm-blue/1743530643"},
-  {cat:"w", cond:"new", how:"Kijiji, частный продавец (налога нет)", what:"Series 10 · 42 мм · GPS, розовое золото, запечатаны (внутренняя коробка)", price:350, notax:true, base:549, prot:"без возврата; встреча у Mitchell Field CC, Yonge и Finch. До встречи проверить серийный номер на checkcoverage.apple.com", img:"https://media.kijiji.ca/api/v1/ca-prod-fsbo-ads/images/12/127f7aff-7a8a-43d5-95ee-90bfd7547794?rule=kijijica-640-jpg", imgN:"фото продавца", fl:["НОВЫЕ, ВНУТРЕННЯЯ КОРОБКА ЗАПЕЧАТАНА", "ЧАСТНИК, ПЕРЕПРОДАЁТ", "БЕЗ НАЛОГА", "ОПЛАТА ПРИ ВСТРЕЧЕ", "БЕЗ ВОЗВРАТА"], url:"https://www.kijiji.ca/v-jewelry-watch/city-of-toronto/brand-new-sealed-apple-watch-series-10-42mm-rose-gold-m-l/1744169794"},
-  {cat:"w", cond:"new", ret:true, how:"OpenBox.ca, новые", what:"Series 11 · 42 мм · GPS, 4 цвета", price:399.99, base:549, prot:"гарантия Apple 1 год; возврат без причины 7 дней, −15%", img:"https://cdn.shopify.com/s/files/1/0408/7250/9595/files/9_e2bd84d6-c27d-4513-9b8a-44a5e2c1b270.png?v=1761002212", imgN:"фото магазина", fl:["НОВЫЕ", "ГАРАНТИЯ APPLE 1 ГОД", "ВОЗВРАТ 7 ДНЕЙ −15%"], url:U.obS11},
-  {cat:"w", cond:"new", how:"Kijiji, частный продавец (налога нет)", what:"Series 12 · 42 мм · чёрный, запечатаны, MJEA4CL/A (канадские)", price:499, notax:true, base:549, prot:"гарантия Apple, если часы не активированы; без возврата. Дилер на Kijiji просит C$449 за запечатанные, но номер модели не указал — спросить: должен заканчиваться на CL/A", img:"https://media.kijiji.ca/api/v1/ca-prod-fsbo-ads/images/fc/fc2cea4b-48c9-44e3-984a-6d53e9044b43?rule=kijijica-640-jpg", imgN:"фото продавца", fl:["НОВЫЕ, ЗАПЕЧАТАНЫ", "ЧАСТНИК", "БЕЗ НАЛОГА", "ОПЛАТА ПРИ ВСТРЕЧЕ", "БЕЗ ВОЗВРАТА"], url:"https://www.kijiji.ca/v-jewelry-watch/city-of-toronto/apple-watch-12-gps-42mm-black-s-m-brand-new-sealed/1745439917"},
-  {cat:"w", cond:"new", ret:true, elig:true, how:"Apple, цены для образования", what:"Series 12 · 42 мм · новые от Apple, 1 шт. в год", price:489, base:549, prot:"гарантия Apple 1 год, возврат 14 дней; для студентов и их родителей, работников школ и колледжей (проверка UNiDAYS)", img:"https://openbox.ca/cdn/shop/files/4_002b0ad1-ae87-4374-84c7-12c1053368ff_1024x.png?v=1791915441", imgN:"фото магазина", fl:["НОВЫЕ", "ТОЛЬКО СТУДЕНТАМ И УЧИТЕЛЯМ"], url:"https://www.apple.com/ca-edu/shop/buy-watch/apple-watch"},
-  {cat:"w", cond:"refurb", ret:true, how:"Best Buy, продавец GoRecell", what:"Series 11 · 46 мм · восстановлены, «Excellent»", price:399.99, base:589, prot:"гарантия продавца 1 год, возврат 30 дней; цена до 30 ноября", img:"https://multimedia.bbycastatic.ca/multimedia/products/500x500/194/19496/19496070.jpeg", imgN:"фото магазина", fl:["ВОССТАНОВЛЕНЫ «EXCELLENT»", "ГАРАНТИЯ ПРОДАВЦА 1 ГОД", "ВОЗВРАТ 30 ДНЕЙ"], url:"https://www.bestbuy.ca/en-ca/product/-/19496070"},
-  {cat:"d", lat:true, cond:"refurb", ret:true, how:"Dyson Official Outlet на Best Buy", what:"Dyson V15 Detect · восстановлен (V15 Core)", price:499.99, base:999.99, prot:"гарантия Dyson 1 год", img:"https://multimedia.bbycastatic.ca/multimedia/products/500x500/202/20204/20204384.jpeg", imgN:"фото магазина", fl:["ВОССТАНОВЛЕН DYSON", "ГАРАНТИЯ DYSON 1 ГОД", "ПРОДАЁТ DYSON НА BEST BUY"], url:U.bbV15core},
-  {cat:"d", cond:"refurb", ret:true, how:"Dyson Official Outlet на Best Buy", what:"Dyson V12 Detect Slim · восстановлен (V12 Core)", price:449.99, base:699.97, prot:"гарантия Dyson 1 год", img:"https://multimedia.bbycastatic.ca/multimedia/products/500x500/202/20204/20204383.jpeg", imgN:"фото магазина", fl:["ВОССТАНОВЛЕН DYSON", "ГАРАНТИЯ DYSON 1 ГОД"], url:"https://www.bestbuy.ca/en-ca/product/-/20204383"},
-  {cat:"d", cond:"refurb", ret:true, how:"Dyson.ca, восстановленные", what:"Dyson V8 · восстановлен, для квартиры", price:239.99, base:549.99, prot:"гарантия Dyson 1 год, без возврата", fl:["ВОССТАНОВЛЕН DYSON", "ГАРАНТИЯ 1 ГОД", "БЕЗ ВОЗВРАТА"], url:U.dysonDeals},
-  {cat:"w", cond:"new", ret:true, how:"OpenBox.ca, новые", what:"Series 11 · 46 мм · чёрный или серый", price:429.99, base:589, prot:"гарантия Apple 1 год; возврат 7 дней, −15%", img:"https://cdn.shopify.com/s/files/1/0408/7250/9595/files/0_0f46c781-663a-42a2-999f-877f6432e5ae.png?v=1761002212", imgN:"фото магазина", fl:["НОВЫЕ", "ГАРАНТИЯ APPLE 1 ГОД", "ВОЗВРАТ 7 ДНЕЙ −15%"], url:U.obS11},
-  {cat:"w", cond:"new", ret:true, how:"OpenBox.ca, новые", what:"Series 12 · 42 мм · только светлое золото", price:499.99, base:549, prot:"гарантия Apple 1 год; возврат 7 дней, −15%", img:"https://openbox.ca/cdn/shop/files/4_002b0ad1-ae87-4374-84c7-12c1053368ff_1024x.png?v=1791915441", imgN:"фото магазина, цвет может отличаться", fl:["НОВЫЕ", "ТОЛЬКО СВЕТЛОЕ ЗОЛОТО", "ГАРАНТИЯ APPLE 1 ГОД"], url:U.obS12},
-  {cat:"w", cond:"ob", ret:true, how:"OpenBox.ca, открытая коробка", what:"Series 11 · 42 мм · GPS", price:349.99, base:549, prot:"гарантия 1 год; возврат 7 дней, −15%", img:"https://cdn.shopify.com/s/files/1/0408/7250/9595/files/9_e2bd84d6-c27d-4513-9b8a-44a5e2c1b270.png?v=1761002212", imgN:"фото магазина", fl:["ОТКРЫТАЯ КОРОБКА", "ГАРАНТИЯ 1 ГОД", "ВОЗВРАТ 7 ДНЕЙ −15%"], url:U.obS11ob},
-  {cat:"w", cond:"used", ret:true, how:"Amazon Resale, «как новые»", what:"Series 11 · 46 мм · розовое золото", price:414.62, base:589, prot:"продаёт Amazon.ca; возврат 30 дней", img:"https://cdn.shopify.com/s/files/1/0408/7250/9595/files/4_19195715-20d8-432e-af6c-76698af8186a.png?v=1775084073", imgN:"фото магазина", fl:["Б/У «КАК НОВЫЕ»", "ПРОДАЁТ AMAZON", "ВОЗВРАТ 30 ДНЕЙ"], url:U.amzR11r46},
-  {cat:"w", cond:"used", ret:true, how:"Amazon Resale, «как новые»", what:"Series 12 · 42 мм · чёрный", price:508.51, base:549, prot:"продаёт Amazon.ca; возврат 30 дней", img:"https://openbox.ca/cdn/shop/files/4_002b0ad1-ae87-4374-84c7-12c1053368ff_1024x.png?v=1791915441", imgN:"фото магазина, цвет может отличаться", fl:["Б/У «КАК НОВЫЕ»", "ПРОДАЁТ AMAZON", "ВОЗВРАТ 30 ДНЕЙ"], url:U.amz42},
-  {cat:"w", cond:"new", ret:true, how:"Amazon.ca, другой цвет", what:"Series 12 · 46 мм · чёрный S/M или серый M/L", price:589, base:619, prot:"новые; возврат 30 дней", img:"https://openbox.ca/cdn/shop/files/4_002b0ad1-ae87-4374-84c7-12c1053368ff_1024x.png?v=1791915441", imgN:"фото магазина, цвет может отличаться", fl:["НОВЫЕ", "ВОЗВРАТ 30 ДНЕЙ"], url:U.amz46},
-  {cat:"w", cond:"used", ret:true, how:"Best Buy, продавец OpenBox", what:"Series 11 · 46 мм · состояние «Good»", price:349.99, base:589, prot:"возврат через продавца, не в магазине Best Buy", img:"https://cdn.shopify.com/s/files/1/0408/7250/9595/files/9_e2bd84d6-c27d-4513-9b8a-44a5e2c1b270.png?v=1761002212", imgN:"фото магазина", fl:["Б/У «GOOD»", "ВОЗВРАТ ЧЕРЕЗ ПРОДАВЦА"], url:U.bbmS11},
-  {cat:"w", cond:"used", how:"Kijiji, частный продавец, Миссиссога", what:"Series 12 · 42 мм · б/у «как новые», батарея 100%, тёмная бронза или чёрный", price:449, notax:true, base:549, prot:"без возврата; продавец может приехать к вам, оплата после проверки", img:"https://media.kijiji.ca/api/v1/ca-prod-fsbo-ads/images/6e/6ee08203-3cd0-4fbb-8b3e-40fe8402a815?rule=kijijica-640-jpg", imgN:"фото продавца", fl:["Б/У «КАК НОВЫЕ»", "ЧАСТНИК", "БЕЗ НАЛОГА", "ОПЛАТА ПОСЛЕ ПРОВЕРКИ", "БЕЗ ВОЗВРАТА"], url:"https://www.kijiji.ca/v-general-electronics/mississauga-peel-region/apple-watch-series-12-42-mm-brand-new-condition-100-battery/1745727321"},
-  {cat:"d", lat:true, cond:"ob", how:"Kijiji, частный продавец, Гамильтон", what:"Dyson V15 Detect · не использовался, мелкие следы на корпусе, коробка помята", price:440, notax:true, base:999.99, prot:"без гарантии и возврата; оплата на месте после проверки; фото из каталога — попросить своё", img:"https://media.kijiji.ca/api/v1/ca-prod-fsbo-ads/images/67/6701412a-fd1f-438f-8e44-ff45bc6070e9?rule=kijijica-640-jpg", imgN:"фото из каталога (со слов продавца)", fl:["НЕ ИСПОЛЬЗОВАЛСЯ", "КОРОБКА ПОМЯТА", "ЧАСТНИК", "БЕЗ НАЛОГА", "ОПЛАТА НА МЕСТЕ ПОСЛЕ ПРОВЕРКИ", "БЕЗ ГАРАНТИИ"], url:"https://www.kijiji.ca/v-vacuum/hamilton/dyson-v15-detect-cordless-vacuum-unused-minor-cosmetic-marks/1745825569"},
-  {cat:"d", lat:true, cond:"ob", how:"Kijiji, продавец с 800+ отзывами, Ошава", what:"Dyson V15 Detect · открытая коробка, выставочный образец", price:450, notax:true, base:999.99, prot:"без гарантии и возврата; можно проверить при получении", img:"https://media.kijiji.ca/api/v1/ca-prod-fsbo-ads/images/15/15c5aa01-9cfd-4864-9a62-d624f95fe8db?rule=kijijica-640-jpg", imgN:"фото продавца", fl:["ВЫСТАВОЧНЫЙ ОБРАЗЕЦ", "ЧАСТНИК", "БЕЗ НАЛОГА", "БЕЗ ГАРАНТИИ"], url:"https://www.kijiji.ca/v-vacuum/oshawa-durham-region/dyson-v15-detect-vacuum-open-box/1744636438"}
+/* Только Series 11 и новее (давление + iPhone 14) и только продавцы с возвратом и настоящими отзывами.
+   Kijiji и OpenBox.ca исключены 7 ноября: частники без гарантии; OpenBox — BBB «F», Trustpilot 2.5. */
+  {cat:"w", cond:"likenew", ret:true, how:"Amazon.ca — Amazon Resale", seller:"сам Amazon.ca (Warehouse Deals), он же отправляет", what:"Series 11 · 42 мм · GPS, серый космос, S/M, «Used – Like New», 1 шт.", price:401.96, base:549, prot:"возврат через Amazon до 15 января 2027; «выглядит и работает как новые, коробка слегка потёрта»; цена с эко-сбором C$1.25; гарантию Apple проверить по серийнику после получения", fl:["КАК НОВЫЕ", "ПРОДАЁТ AMAZON", "ВОЗВРАТ ДО 15 ЯНВАРЯ", "1 ШТ."], img:"https://cdn.shopify.com/s/files/1/0408/7250/9595/files/2_a49c1388-927a-4456-8253-ccf04be02ddf.png?v=1761002212", imgN:"фото модели, не этого экземпляра", url:"https://www.amazon.ca/gp/offer-listing/B0FQFT1CHB/ref=dp_olp_ALL_mbc?ie=UTF8&condition=ALL"},
+  {cat:"w", cond:"refurb", ret:true, how:"Best Buy, маркетплейс", seller:"GoRecell (Монреаль): 4.8★ из 1 492 оценок на Best Buy, Trustpilot 4.7 из ~1 100 отзывов", what:"Series 11 · 46 мм · GPS, чёрный, M/L, «Refurbished (Excellent)», 1 шт.; серый — отдельная карточка", price:399.99, base:589, prot:"гарантия продавца (сверить срок в карточке); возврат 30 дней через продавца в аккаунте Best Buy, не в магазине; Apple-гарантии может не быть", fl:["ВОССТАНОВЛЕНЫ «EXCELLENT»", "МАРКЕТПЛЕЙС", "GORECELL 4.8★", "1 ШТ."], img:"https://multimedia.bbycastatic.ca/multimedia/products/500x500/194/19496/19496082.jpeg", imgN:"фото Best Buy", url:"https://www.bestbuy.ca/en-ca/product/19496082"},
+  {cat:"w", cond:"new", ret:true, how:"Staples, распродажа остатков", seller:"сам Staples (не маркетплейс)", what:"Series 11 · 42 мм · GPS, чёрный или серый, новые", price:449.97, base:549, prot:"гарантия Apple 1 год; возврат 30 дней в магазине; онлайн может не быть — позвонить в Staples Mississauga", fl:["НОВЫЕ", "ПРОДАЁТ STAPLES", "ВОЗВРАТ 30 ДНЕЙ", "НАЛИЧИЕ — ЗВОНИТЬ"], img:"https://www.staples.ca/cdn/shop/files/0790b753e80eee37a93b838310371cc61cbac188_square3136028_1_800x800.jpg?v=1771617072", imgN:"фото Staples", url:"https://www.staples.ca/products/3136028-en-apple-watch-series-11-42-mm-gps-jet-black-aluminium-case-with-black-sport-band-sm"},
+  {cat:"w", cond:"refurb", ret:true, how:"Best Buy, маркетплейс", seller:"GoRecell: 4.8★ из 1 492 оценок, Trustpilot 4.7", what:"Series 12 · 42 мм · GPS, чёрный, S/M, «Refurbished (Excellent)»", price:449.99, base:549, prot:"гарантия продавца; возврат 30 дней через продавца в аккаунте Best Buy", fl:["ВОССТАНОВЛЕНЫ «EXCELLENT»", "МАРКЕТПЛЕЙС", "GORECELL 4.8★"], img:"https://multimedia.bbycastatic.ca/multimedia/products/500x500/202/20265/20265779.jpeg", imgN:"фото Best Buy", url:"https://www.bestbuy.ca/en-ca/product/20265779"},
+  {cat:"w", cond:"likenew", ret:true, how:"Amazon.ca — Amazon Resale", seller:"сам Amazon.ca (Warehouse Deals), он же отправляет", what:"Series 11 · 46 мм · розовое золото, S/M, «Used – Like New»", price:414.62, base:589, prot:"возврат через Amazon до 15 января 2027", fl:["КАК НОВЫЕ", "ПРОДАЁТ AMAZON", "ВОЗВРАТ ДО 15 ЯНВАРЯ"], img:"https://cdn.shopify.com/s/files/1/0408/7250/9595/files/4_19195715-20d8-432e-af6c-76698af8186a.png?v=1775084073", imgN:"фото модели", url:U.amzR11r46},
+  {cat:"w", cond:"new", ret:true, elig:true, how:"Apple, цены для образования", seller:"Apple", what:"Series 12 · 42 мм · новые от Apple, 1 шт. в год", price:489, base:549, prot:"гарантия Apple 1 год, возврат 14 дней; для студентов и их родителей, работников школ и колледжей (проверка UNiDAYS)", fl:["НОВЫЕ", "ТОЛЬКО СТУДЕНТАМ И УЧИТЕЛЯМ"], img:"https://openbox.ca/cdn/shop/files/4_002b0ad1-ae87-4374-84c7-12c1053368ff_1024x.png?v=1791915441", imgN:"фото модели", url:"https://www.apple.com/ca-edu/shop/buy-watch/apple-watch"},
+  {cat:"w", cond:"likenew", ret:true, how:"Amazon.ca — Amazon Resale", seller:"сам Amazon.ca (Warehouse Deals), он же отправляет", what:"Series 12 · 42 мм · чёрный, «Used – Like New»", price:508.51, base:549, prot:"возврат через Amazon до 15 января 2027", fl:["КАК НОВЫЕ", "ПРОДАЁТ AMAZON"], img:"https://openbox.ca/cdn/shop/files/4_002b0ad1-ae87-4374-84c7-12c1053368ff_1024x.png?v=1791915441", imgN:"фото модели, цвет может отличаться", url:U.amz42},
+  {cat:"d", lat:true, cond:"refurb", ret:true, how:"Walmart.ca, маркетплейс", seller:"сам Dyson (Dyson Official Outlet, Pro Seller)", what:"Dyson V15 Detect · восстановлен Dyson (V15 Core)", price:499.99, base:999.99, prot:"гарантия Dyson 1 год; бесплатный возврат 30 дней; сразу зарегистрировать на dysoncanada.ca", fl:["ВОССТАНОВЛЕН DYSON", "ПРОДАЁТ DYSON", "ВОЗВРАТ 30 ДНЕЙ", "ГАРАНТИЯ 1 ГОД"], img:"https://i5.walmartimages.ca/asr/d155783b-c678-4d31-b3b2-6b5374ea1e3b.168096cb8827ca9ae2d736d581be3aa6.jpeg", imgN:"фото Walmart", url:"https://www.walmart.ca/en/ip/Dyson-Official-Outlet-V15-Core-Cordless-Vacuum-Cleaner-Refurbished-1-year-warranty/4CGXSCVZZ8XT"},
+  {cat:"d", lat:true, cond:"refurb", ret:true, how:"Best Buy, маркетплейс", seller:"сам Dyson (Dyson Official Outlet)", what:"Dyson V15 Detect · восстановлен Dyson (V15 Core)", price:499.99, base:999.99, prot:"гарантия Dyson 1 год; вернуть нельзя, только ремонт по браку", fl:["ВОССТАНОВЛЕН DYSON", "ПРОДАЁТ DYSON", "БЕЗ ВОЗВРАТА"], img:"https://multimedia.bbycastatic.ca/multimedia/products/500x500/202/20204/20204384.jpeg", imgN:"фото Best Buy", url:U.bbV15core},
+  {cat:"d", cond:"refurb", ret:true, how:"Best Buy, маркетплейс", seller:"сам Dyson (Dyson Official Outlet)", what:"Dyson V12 Detect Slim · восстановлен (V12 Core)", price:449.99, base:699.97, prot:"гарантия Dyson 1 год", fl:["ВОССТАНОВЛЕН DYSON", "ГАРАНТИЯ DYSON 1 ГОД"], img:"https://multimedia.bbycastatic.ca/multimedia/products/500x500/202/20204/20204383.jpeg", imgN:"фото Best Buy", url:"https://www.bestbuy.ca/en-ca/product/-/20204383"},
+  {cat:"d", cond:"refurb", ret:true, how:"Dyson.ca, восстановленные", seller:"Dyson", what:"Dyson V8 · восстановлен, для квартиры", price:239.99, base:549.99, prot:"гарантия Dyson 1 год, без возврата", fl:["ВОССТАНОВЛЕН DYSON", "ГАРАНТИЯ 1 ГОД", "БЕЗ ВОЗВРАТА"], url:U.dysonDeals}
 ];
 /* Фото по модели и цвету — для предложений магазинов, если у предложения нет своего фото */
 const IMGW = {
@@ -701,7 +724,7 @@ const IMGW = {
   u4:{def:"https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ultra-case-unselect-gallery-1-202609_GEO_CA?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1787876543261"},
   se3:{def:"https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/se-case-unselect-gallery-1-202609_GEO_CA?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1787709252212"}
 };
-const IMGD = {v16:"https://multimedia.bbycastatic.ca/multimedia/products/500x500/193/19339/19339632.jpeg", v16s:"https://multimedia.bbycastatic.ca/multimedia/products/500x500/193/19339/19339633.jpeg", v16d:"https://multimedia.bbycastatic.ca/multimedia/products/500x500/201/20167/20167772.jpeg", v15:"https://multimedia.bbycastatic.ca/multimedia/products/500x500/171/17183/17183862.jpeg", v15r:"https://multimedia.bbycastatic.ca/multimedia/products/500x500/202/20204/20204384.jpeg", gen5:"https://multimedia.bbycastatic.ca/multimedia/products/500x500/193/19323/19323763.jpeg", v12r:"https://multimedia.bbycastatic.ca/multimedia/products/500x500/202/20204/20204383.jpeg"};
+const IMGD = {v16:"https://multimedia.bbycastatic.ca/multimedia/products/500x500/193/19339/19339632.jpg", v16s:"https://multimedia.bbycastatic.ca/multimedia/products/500x500/193/19339/19339633.jpg", v16d:"https://multimedia.bbycastatic.ca/multimedia/products/500x500/201/20167/20167772.jpg", v15:"https://multimedia.bbycastatic.ca/multimedia/products/500x500/171/17183/17183862.jpg", v15r:"https://multimedia.bbycastatic.ca/multimedia/products/500x500/202/20204/20204384.jpeg", gen5:"https://multimedia.bbycastatic.ca/multimedia/products/500x500/193/19323/19323763.jpg", v12r:"https://multimedia.bbycastatic.ca/multimedia/products/500x500/202/20204/20204383.jpeg"};
 /* Аукционы HiBid. Итог = (ставка × (1 + комиссия) + сбор) × (1 + налог). Оплата картой — ещё 2.4–3% */
 const AUCT = [
   {cat:"d", short:"Dyson V15", what:"Dyson V15 Detect, «как новый», мелкие царапины", where:"Loot Bins, Скарборо", bid:42, cap:280, prem:0.16, fee:1.5, close:"сб 7 ноября, ~18:00", url:"https://hibid.com/canada/lot/329450078/dyson-v15-detect-cordless-vacuum"},
@@ -710,7 +733,7 @@ const AUCT = [
 ];
 /* Функции для таблицы сравнения: y = есть, n = нет, ? = нет данных, иначе текст */
 const WFEAT = {
-  order:["s12","s11","s10","s9","u4","se3"],
+  order:["s12","s11","u4","se3"],
   head:{s12:["Series 12","2026"], s11:["Series 11","2025"], s10:["Series 10","2024"], s9:["Series 9","2023"], u4:["Ultra 4","2026"], se3:["SE 3","2025"]},
   rows:[
     ["Уведомления о давлении", {s12:"y",s11:"y",s10:"y",s9:"y",u4:"y",se3:"n"}, "bp"],
@@ -738,7 +761,7 @@ const DYSON = {
     ["dyson",1299.99,U.dysonCordless,{rak:true}],["bestbuy",1299.99,U.bbSub],["ct",1299.99,U.ctSub],["mkt",1104.99,U.bbSubOB,{note:"open box, продавец PRO OB"}]]},
   v16d:{lat:true, n:"V16 + Auto-Empty Dok", sub:"автоочистка", msrp:1299.99, o:[["dyson",1299.99,U.dysonCordless,{rak:true}],["bestbuy",1299.99,U.bbDok,{note:"предзаказ"}]]},
   v15:{lat:true, n:"V15 Detect", sub:"прошлый флагман", msrp:999.99, o:[["dyson",999.99,U.dysonCordless,{rak:true}],["bestbuy",999.99,U.bbV15]]},
-  v15r:{lat:true, cond:"refurb", n:"V15 Detect восст.", sub:"гарантия 1 год", msrp:999.99, o:[["outlet",499.99,U.dysonOutlet,{cond:true,note:"на Dyson.ca 6 ноября нет в наличии"}],["bbOutlet",499.99,U.bbV15core,{note:"версия V15 Core"}]]},
+  v15r:{lat:true, cond:"refurb", n:"V15 Detect восст.", sub:"гарантия 1 год", msrp:999.99, o:[["wmDyson",499.99,"https://www.walmart.ca/en/ip/Dyson-Official-Outlet-V15-Core-Cordless-Vacuum-Cleaner-Refurbished-1-year-warranty/4CGXSCVZZ8XT",{note:"возврат 30 дней"}],["outlet",499.99,U.dysonOutlet,{cond:true,note:"на Dyson.ca 6 ноября нет в наличии"}],["bbOutlet",499.99,U.bbV15core,{note:"версия V15 Core"}]]},
   gen5:{lat:true, n:"Gen5detect Absolute", sub:"новый, если найдёте", msrp:679.95, o:[["bestbuy",679.95,"https://www.bestbuy.ca/en-ca/product/-/19323763",{cond:true,note:"продаёт Best Buy; онлайн часто нет в наличии"}],["mkt",1019.99,"",{note:"open box Gen5detect, продавец PRO OB"}]]},
   v12r:{cond:"refurb", n:"V12 Detect Slim восст.", sub:"лёгкий, гарантия 1 год", msrp:699.97, o:[["bbOutlet",449.99,"https://www.bestbuy.ca/en-ca/product/-/20204383",{note:"версия V12 Core, Dyson Official Outlet"}]]},
   v8r:{cond:"refurb", n:"V8 восст.", sub:"для квартиры", msrp:549.99, o:[["outlet",239.99,U.dysonDeals,{note:"восстановлен Dyson; кэшбэк Rakuten на восстановленные не начисляется"}],["bbOutlet",239.99,"https://www.bestbuy.ca/en-ca/collection/dyson-on-sale/blt8b2218f4adbddafc",{note:"Dyson Official Outlet на Best Buy"}]]},
@@ -813,7 +836,7 @@ function row(c, isBest){
     + (c.ex.warn && c.kind!=="nocolor" ? ' <span class="pill cond">'+c.ex.warn+'</span>' : '');
   const subTxt = [c.ex.note, c.ex.colNames ? 'цвет: '+c.ex.colNames : ''].filter(Boolean).join(' · ');
   const sub = subTxt ? '<span class="sub">'+subTxt+'</span>' : '';
-  const saveTxt = c.kind==="risk" ? '<small>без надёжной гарантии</small>' : c.save >= 1 ? '<small class="g">дешевле на '+money(c.save)+'</small>'
+  const saveTxt = c.kind==="risk" ? '<small>'+(c.st.riskWhy||'без надёжной гарантии')+'</small>' : c.save >= 1 ? '<small class="g">дешевле на '+money(c.save)+'</small>'
     : c.save <= -1 ? '<small class="r">дороже на '+money(-c.save)+'</small>' : '<small>обычная цена</small>';
   const backCell = c.back.length ? '−'+money(c.backSum)+'<small>'+c.back.map(b=>b.n).join(', ')+'</small>' : '<span class="muted">—</span>';
   return '<tr class="'+(isBest?'best':c.kind==='ok'?'':c.kind)+'">'
@@ -931,7 +954,7 @@ function renderDyson(){
   bfBox($("dBF"), m.bf, m.msrp, best);
   renderDysonCompare();
 }
-const COND = {new:"новые", ob:"открытая коробка", refurb:"восстановлены", used:"б/у"};
+const COND = {new:"новые", ob:"открытая коробка", refurb:"восстановлены", likenew:"как новые", used:"б/у"};
 const host = u => { try{ return new URL(u).hostname.replace(/^www\./,""); }catch(e){ return ""; } };
 const aucEst = a => (a.cap*(1+a.prem)+a.fee)*(1+rate());
 /* Все предложения одним списком: магазины из таблиц моделей + находки вне магазинов */
@@ -946,7 +969,7 @@ function allOffers(){
   for(const [dk,m] of Object.entries(DYSON)) for(const o of m.o){ const c = calc(o, m.msrp); if(c.kind!=="ok" && c.kind!=="ob") continue;
     const cd = m.cond || (c.kind==="ok"?"new":"ob");
     out.push({cat:"d", lat:!!m.lat, cond:cd, ret:true, img:c.ex.img || IMGD[dk], imgN:"фото магазина", fl:[COND[cd].toUpperCase(), "МАГАЗИН"].concat(c.st.fl||[]), t:"Dyson "+m.n, conf:m.sub, where:c.st.n, final:c.final, save:c.save, c}); }
-  const fitsW = s => { const m = /Series (\d+)|Ultra (\d+)|SE (\d+)/.exec(s); return !!m && (m[1] ? +m[1]>=9 : m[2] ? +m[2]>=2 : +m[3]>=3); };
+  const fitsW = s => { const m = /Series (\d+)|Ultra (\d+)|SE (\d+)/.exec(s); return !!m && (m[1] ? +m[1]>=11 : m[2] ? +m[2]>=3 : false); };
   for(const h of HIDDEN){ if(h.elig || (h.cat==='w' && !fitsW(h.what))) continue; const tot = h.notax ? h.price : h.price*(1+r), p = h.what.split(" · ");
     out.push({cat:h.cat, lat:!!h.lat, cond:h.cond, ret:!!h.ret, img:h.img, imgN:h.imgN, fl:h.fl||[COND[h.cond].toUpperCase()], t:(h.cat==="w"?"Apple Watch ":"")+p[0], conf:p.slice(1).join(" · "), where:h.how, final:tot, save:h.base*(1+r)-tot, h}); }
   return out;
@@ -965,7 +988,7 @@ function topCard(el, label, x, ref){
   const flags = '<div class="flags">'+(x.fl||[]).concat(x.cat==="w" ? ["РАБОТАЕТ С IPHONE 14"] : []).map(f=>'<span class="'+(/БЕЗ |ЧАСТНИК|ЦАРАПИН|ПОМЯТ|США|ТОЛЬКО|Б\/У|GOOD|ВЫСТАВОЧН|ЧЕРЕЗ ПРОДАВЦА/.test(f)?'w':/ГАРАНТИЯ|ВОЗВРАТ \d|^НОВЫЕ|ЗАПЕЧАТАН|IPHONE/.test(f)?'g':'')+'">'+f+'</span>').join("")+'</div>';
   el.innerHTML = pic + '<div class="k">'+label+'</div>'
     + '<div class="sum"><b class="n">'+money(x.final)+'</b>'+(ref && ref!==x && ref.final-x.final>=1 ? '<span class="save">экономия '+money(ref.final-x.final)+' <button class="tip" type="button" data-tip="К самому дешёвому новому из магазина с гарантией: '+ref.t+', '+ref.where+', '+money(ref.final)+'">?</button></span>' : '')+'</div>'
-    + '<div class="what">'+x.t+(cf[0]?' · '+cf[0]:'')+'</div><div class="where">'+(cf.slice(1).filter(Boolean).length?cf.slice(1).filter(Boolean).join(" · ")+' · ':'')+x.where+'</div>' + flags
+    + '<div class="what">'+x.t+(cf[0]?' · '+cf[0]:'')+'</div><div class="where">'+(cf.slice(1).filter(Boolean).length?cf.slice(1).filter(Boolean).join(" · ")+' · ':'')+x.where+'</div>' + '<div class="seller"><b>Продаёт:</b> '+(c ? (c.st.sold||c.st.n) : (h.seller||h.how))+'</div>' + flags
     + '<div class="calc n">'+calcTxt+'</div><div class="calc">'+(c ? c.st.terms : h.prot)+'</div><div class="go">'+go+'</div>';
 }
 /* Карточки сверху: всегда самые низкие цены из всех найденных, пересчёт при любом изменении */
@@ -997,7 +1020,7 @@ function renderHidden(){
   const r = 1 + rate(), tot = h => h.notax ? h.price : h.price*r;
   const list = HIDDEN.slice().sort((a,b)=> (a.cat===b.cat ? 0 : a.cat==="w" ? -1 : 1) || tot(a)-tot(b));
   $("hidList").innerHTML = list.map(h=>{ const t = tot(h), save = h.base*r - t, win = WIN.get(h);
-    return '<tr'+(win?' class="hl"':'')+'><td>'+h.how+(win?' <span class="pill best">'+win+'</span>':'')+'</td><td>'+h.what+' <span class="pill '+(h.ret?'ok':'cond')+'">'+COND[h.cond]+'</span></td>'
+    return '<tr'+(win?' class="hl"':'')+'><td>'+h.how+(h.seller?'<br><span class="muted s12">продаёт: '+h.seller+'</span>':'')+(win?' <span class="pill best">'+win+'</span>':'')+'</td><td>'+h.what+' <span class="pill '+(h.ret?'ok':'cond')+'">'+COND[h.cond]+'</span></td>'
       + '<td class="n"><b>'+money(t)+'</b><br><span class="muted">'+(h.notax ? 'налога нет' : money(h.price)+' + налог')+'</span></td>'
       + '<td class="n" style="color:var(--save);font-weight:600">'+(save>=1 ? '−'+money(save) : '—')+'</td><td>'+h.prot+'</td>'
       + '<td><a class="btn ghost" href="'+h.url+'" target="_blank" rel="noopener">Открыть</a></td></tr>'; }).join("");
