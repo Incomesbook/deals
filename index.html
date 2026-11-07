@@ -93,6 +93,8 @@ select{font:500 14px var(--font); color:var(--ink); background:var(--soft); bord
 
 /* Best cards */
 .best-row{display:grid; grid-template-columns:repeat(4,1fr); gap:12px}
+.compat{margin-top:8px; padding:8px 12px; border-radius:10px; font-size:13px; background:var(--save-bg); color:var(--ink)}
+.compat b{color:var(--save)}
 .auc-strip{display:flex; flex-wrap:wrap; align-items:center; gap:4px 14px; margin-top:8px; padding:8px 12px; border:1px dashed var(--line); border-radius:10px; font-size:12px; color:var(--muted)}
 .auc-strip b{color:var(--ink)}
 .auc-strip a{color:inherit}
@@ -345,6 +347,7 @@ svg .v-acc{fill:var(--save)}
   <article class="bcard" id="tD"></article>
   <article class="bcard alt" id="tD2"></article>
 </section>
+<div class="compat">✓ Все часы на странице подключаются к <b>любому iPhone 14</b> — 14, 14 Plus, 14 Pro, 14 Pro Max. Сначала обновите iPhone до <b>iOS 27</b>: Настройки → Основные → Обновление ПО. <button class="tip" type="button" data-tip="Часы Series 9–12, Ultra 2–4 и SE 3 на watchOS 27 требуют iPhone 11 или новее с iOS 27. Без iOS 27 не подключатся Series 12, Ultra 4 и любые часы, уже обновлённые до watchOS 27. Часы для США (AM/A) тоже подключаются к канадскому iPhone.">?</button></div>
 <div class="auc-strip" id="aucStrip"></div>
 
 <section class="bp" aria-labelledby="bpTitle">
@@ -707,22 +710,23 @@ const AUCT = [
 ];
 /* Функции для таблицы сравнения: y = есть, n = нет, ? = нет данных, иначе текст */
 const WFEAT = {
-  order:["s12","s11","s10","u4","se3"],
-  head:{s12:["Series 12","2026"], s11:["Series 11","2025"], s10:["Series 10","2024"], u4:["Ultra 4","2026"], se3:["SE 3","2025"]},
+  order:["s12","s11","s10","s9","u4","se3"],
+  head:{s12:["Series 12","2026"], s11:["Series 11","2025"], s10:["Series 10","2024"], s9:["Series 9","2023"], u4:["Ultra 4","2026"], se3:["SE 3","2025"]},
   rows:[
-    ["Уведомления о давлении", {s12:"y",s11:"y",s10:"y",u4:"y",se3:"n"}, "bp"],
-    ["ЭКГ", {s12:"y",s11:"y",s10:"y",u4:"y",se3:"n"}],
-    ["Кислород в крови", {s12:"y",s11:"y",s10:"y",u4:"y",se3:"n"}],
-    ["Температура запястья", {s12:"y",s11:"y",s10:"y",u4:"y",se3:"y"}],
-    ["Апноэ во сне, оценка сна", {s12:"y",s11:"y",s10:"y",u4:"y",se3:"y"}],
-    ["Пульс в фоне", {s12:"каждые 5 с",s11:"периодически",s10:"периодически",u4:"?",se3:"периодически"}],
-    ["Вариабельность пульса (HRV)", {s12:"в 24 раза чаще",s11:"обычно",s10:"обычно",u4:"?",se3:"?"}],
-    ["Оценка готовности (Readiness)", {s12:"y",s11:"n",s10:"n",u4:"?",se3:"n"}],
-    ["Падение и авария: вызов помощи", {s12:"y",s11:"y",s10:"y",u4:"y",se3:"y"}],
-    ["Процессор", {s12:"S11",s11:"S10",s10:"S10",u4:"?",se3:"S10"}],
-    ["Стекло", {s12:"Ceramic Shield 2, на 60% прочнее",s11:"Ion-X",s10:"Ion-X",u4:"сапфир",se3:"Ion-X"}],
-    ["Батарея", {s12:"до 24 ч",s11:"до 24 ч",s10:"до 18 ч",u4:"дольше всех",se3:"до 18 ч"}],
-    ["Размеры", {s12:"42 / 46 мм",s11:"42 / 46 мм",s10:"42 / 46 мм",u4:"49 мм",se3:"40 / 44 мм"}]
+    ["Уведомления о давлении", {s12:"y",s11:"y",s10:"y",s9:"y",u4:"y",se3:"n"}, "bp"],
+    ["Работает с iPhone 14, 14 Plus, 14 Pro, 14 Pro Max", {s12:"y",s11:"y",s10:"y",s9:"y",u4:"y",se3:"y"}, "ok"],
+    ["ЭКГ", {s12:"y",s11:"y",s10:"y",s9:"y",u4:"y",se3:"n"}],
+    ["Кислород в крови", {s12:"y",s11:"y",s10:"y",s9:"y",u4:"y",se3:"n"}],
+    ["Температура запястья", {s12:"y",s11:"y",s10:"y",s9:"y",u4:"y",se3:"y"}],
+    ["Апноэ во сне, оценка сна", {s12:"y",s11:"y",s10:"y",s9:"y",u4:"y",se3:"y"}],
+    ["Пульс в фоне", {s12:"каждые 5 с",s11:"периодически",s10:"периодически",s9:"периодически",u4:"?",se3:"периодически"}],
+    ["Вариабельность пульса (HRV)", {s12:"в 24 раза чаще",s11:"обычно",s10:"обычно",s9:"обычно",u4:"?",se3:"?"}],
+    ["Оценка готовности (Readiness)", {s12:"y",s11:"n",s10:"n",s9:"n",u4:"?",se3:"n"}],
+    ["Падение и авария: вызов помощи", {s12:"y",s11:"y",s10:"y",s9:"y",u4:"y",se3:"y"}],
+    ["Процессор", {s12:"S11",s11:"S10",s10:"S10",s9:"S9",u4:"?",se3:"S10"}],
+    ["Стекло", {s12:"Ceramic Shield 2, на 60% прочнее",s11:"Ion-X",s10:"Ion-X",s9:"Ion-X",u4:"сапфир",se3:"Ion-X"}],
+    ["Батарея", {s12:"до 24 ч",s11:"до 24 ч",s10:"до 18 ч",s9:"до 18 ч",u4:"дольше всех",se3:"до 18 ч"}],
+    ["Размеры", {s12:"42 / 46 мм",s11:"42 / 46 мм",s10:"42 / 46 мм",s9:"41 / 45 мм",u4:"49 мм",se3:"40 / 44 мм"}]
   ]
 };
 
@@ -860,17 +864,18 @@ function watchArt(mm, cc, bc){
 }
 function renderWatchCompare(){
   const cols = WFEAT.order;
+  const all = allOffers().filter(x=>x.cat==="w");
   const priceRow = cols.map(k=>{
-    if(!WATCH[k]) return '<td class="'+(k===S.wm?'sel':'')+'"><span class="na">Apple снял с продажи</span></td>';
-    const m = WATCH[k], c = m.cfg[m.def], b = bestOf(c.o, c.msrp);
-    return '<td class="'+(k===S.wm?'sel':'')+'"><b class="n">'+money(b.final)+'</b><br><span class="muted">'+m.def.split("|")[0]+' мм, '+b.st.n+'</span></td>';
+    const b = all.filter(x=>x.t==="Apple Watch "+WFEAT.head[k][0]).sort((a,b)=>a.final-b.final)[0];
+    if(!b) return '<td class="'+(k===S.wm?'sel':'')+'"><span class="na">нет предложений</span></td>';
+    return '<td class="'+(k===S.wm?'sel':'')+'"><b class="n">'+money(b.final)+'</b><br><span class="muted">'+b.conf.split(" · ")[0]+', '+COND[b.cond]+'<br>'+b.where.split(",")[0]+'</span></td>';
   }).join('');
   let h = '<thead><tr><th>Модель</th>' + cols.map(k=>{
     const [n,y] = WFEAT.head[k], selectable = !!WATCH[k];
     return '<th class="'+(k===S.wm?'sel':'')+'"><button type="button" class="mbtn'+(selectable?'':' static')+'" data-wm="'+k+'"'+(selectable?'':' disabled')+'>'+n+'<small>'+y+'</small></button></th>';
   }).join('') + '</tr></thead><tbody>';
-  h += '<tr class="price"><th>Лучшая цена с налогом</th>'+priceRow+'</tr>';
-  WFEAT.rows.forEach(([label, vals, cls])=>{ h += '<tr class="'+(cls==='bp'?'bprow':'')+'"><th>'+(cls==='bp'?'♥ ':'')+label+'</th>'+cols.map(k=>'<td class="'+(k===S.wm?'sel':'')+'">'+mark(vals[k])+'</td>').join('')+'</tr>'; });
+  h += '<tr class="price"><th>Дешевле всего, с налогом</th>'+priceRow+'</tr>';
+  WFEAT.rows.forEach(([label, vals, cls])=>{ h += '<tr class="'+(cls==='bp'||cls==='ok'?'bprow':'')+'"><th>'+(cls==='bp'?'♥ ':cls==='ok'?'✓ ':'')+label+(cls==='ok'?' <button class="tip" type="button" data-tip="Нужен iOS 27 на iPhone: Настройки → Основные → Обновление ПО, бесплатно. iPhone 14 его получает. Без iOS 27 не подключатся Series 12 и Ultra 4, а также любые часы, уже обновлённые до watchOS 27.">?</button>':'')+'</th>'+cols.map(k=>'<td class="'+(k===S.wm?'sel':'')+'">'+mark(vals[k])+'</td>').join('')+'</tr>'; });
   $("wCompare").innerHTML = h + '</tbody>';
 }
 function renderDysonCompare(){
@@ -933,15 +938,16 @@ const aucEst = a => (a.cap*(1+a.prem)+a.fee)*(1+rate());
 function allOffers(){
   const r = rate(), out = [];
   const sCond = c => c.kind==="ok" ? "new" : /б\/у/.test(c.st.obl||"") ? "used" : "ob";
-  for(const [mk,m] of Object.entries(WATCH)){ if(mk==="se3") continue;
+  for(const [mk,m] of Object.entries(WATCH)){
     for(const [ck,cfg] of Object.entries(m.cfg)){ const [sz,cn] = ck.split("|");
       for(const o of cfg.o){ const c = calc(colorize(o,"any",WCOL[mk]), cfg.msrp); if(c.kind!=="ok" && c.kind!=="ob") continue;
         const col = c.ex.only ? c.ex.only[0] : null, im = IMGW[mk]||{};
-        out.push({cat:"w", cond:sCond(c), ret:true, img:c.ex.img || (col && im[col]) || im.def, imgN:"фото магазина"+(col && im[col] ? "" : ", цвет может отличаться"), fl:[COND[sCond(c)].toUpperCase(), "МАГАЗИН"].concat(c.st.fl||[]), t:"Apple Watch "+m.n, conf:sz+" мм · "+(cn==="gps"?"GPS":"GPS + сотовая")+(c.ex.colNames?" · "+c.ex.colNames.toLowerCase():""), where:c.st.n, final:c.final, save:c.save, c}); } } }
+        out.push({cat:"w", nobp:mk==="se3", cond:sCond(c), ret:true, img:c.ex.img || (col && im[col]) || im.def, imgN:"фото магазина"+(col && im[col] ? "" : ", цвет может отличаться"), fl:[COND[sCond(c)].toUpperCase(), "МАГАЗИН"].concat(c.st.fl||[]), t:"Apple Watch "+m.n, conf:sz+" мм · "+(cn==="gps"?"GPS":"GPS + сотовая")+(c.ex.colNames?" · "+c.ex.colNames.toLowerCase():""), where:c.st.n, final:c.final, save:c.save, c}); } } }
   for(const [dk,m] of Object.entries(DYSON)) for(const o of m.o){ const c = calc(o, m.msrp); if(c.kind!=="ok" && c.kind!=="ob") continue;
     const cd = m.cond || (c.kind==="ok"?"new":"ob");
     out.push({cat:"d", lat:!!m.lat, cond:cd, ret:true, img:c.ex.img || IMGD[dk], imgN:"фото магазина", fl:[COND[cd].toUpperCase(), "МАГАЗИН"].concat(c.st.fl||[]), t:"Dyson "+m.n, conf:m.sub, where:c.st.n, final:c.final, save:c.save, c}); }
-  for(const h of HIDDEN){ if(h.elig) continue; const tot = h.notax ? h.price : h.price*(1+r), p = h.what.split(" · ");
+  const fitsW = s => { const m = /Series (\d+)|Ultra (\d+)|SE (\d+)/.exec(s); return !!m && (m[1] ? +m[1]>=9 : m[2] ? +m[2]>=2 : +m[3]>=3); };
+  for(const h of HIDDEN){ if(h.elig || (h.cat==='w' && !fitsW(h.what))) continue; const tot = h.notax ? h.price : h.price*(1+r), p = h.what.split(" · ");
     out.push({cat:h.cat, lat:!!h.lat, cond:h.cond, ret:!!h.ret, img:h.img, imgN:h.imgN, fl:h.fl||[COND[h.cond].toUpperCase()], t:(h.cat==="w"?"Apple Watch ":"")+p[0], conf:p.slice(1).join(" · "), where:h.how, final:tot, save:h.base*(1+r)-tot, h}); }
   return out;
 }
@@ -956,7 +962,7 @@ function topCard(el, label, x, ref){
     : '<div class="stack"><div class="act"><a class="btn hot" href="'+h.url+'" target="_blank" rel="noopener">Открыть</a><small>'+host(h.url)+'</small></div></div>';
   const url = c ? c.url : h.url, alt = x.t+" "+x.conf;
   const pic = x.img ? '<a class="pic" href="'+url+'" target="_blank" rel="noopener"><img src="'+x.img+'" alt="'+alt.replace(/"/g,"&quot;")+'" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add(\'noimg\')"><small>'+(x.imgN||"")+'</small></a>' : '<div class="pic noimg"><small>фото нет</small></div>';
-  const flags = '<div class="flags">'+(x.fl||[]).map(f=>'<span class="'+(/БЕЗ |ЧАСТНИК|ЦАРАПИН|ПОМЯТ|США|ТОЛЬКО|Б\/У|GOOD|ВЫСТАВОЧН|ЧЕРЕЗ ПРОДАВЦА/.test(f)?'w':/ГАРАНТИЯ|ВОЗВРАТ \d|^НОВЫЕ|ЗАПЕЧАТАН/.test(f)?'g':'')+'">'+f+'</span>').join("")+'</div>';
+  const flags = '<div class="flags">'+(x.fl||[]).concat(x.cat==="w" ? ["РАБОТАЕТ С IPHONE 14"] : []).map(f=>'<span class="'+(/БЕЗ |ЧАСТНИК|ЦАРАПИН|ПОМЯТ|США|ТОЛЬКО|Б\/У|GOOD|ВЫСТАВОЧН|ЧЕРЕЗ ПРОДАВЦА/.test(f)?'w':/ГАРАНТИЯ|ВОЗВРАТ \d|^НОВЫЕ|ЗАПЕЧАТАН|IPHONE/.test(f)?'g':'')+'">'+f+'</span>').join("")+'</div>';
   el.innerHTML = pic + '<div class="k">'+label+'</div>'
     + '<div class="sum"><b class="n">'+money(x.final)+'</b>'+(ref && ref!==x && ref.final-x.final>=1 ? '<span class="save">экономия '+money(ref.final-x.final)+' <button class="tip" type="button" data-tip="К самому дешёвому новому из магазина с гарантией: '+ref.t+', '+ref.where+', '+money(ref.final)+'">?</button></span>' : '')+'</div>'
     + '<div class="what">'+x.t+(cf[0]?' · '+cf[0]:'')+'</div><div class="where">'+(cf.slice(1).filter(Boolean).length?cf.slice(1).filter(Boolean).join(" · ")+' · ':'')+x.where+'</div>' + flags
@@ -965,7 +971,7 @@ function topCard(el, label, x, ref){
 /* Карточки сверху: всегда самые низкие цены из всех найденных, пересчёт при любом изменении */
 function renderTop(){
   const all = allOffers(), min = l => l.slice().sort((a,b)=>a.final-b.final || (b.h?1:0)-(a.h?1:0))[0];
-  const w = all.filter(x=>x.cat==="w"), d = all.filter(x=>x.cat==="d" && x.lat);
+  const w = all.filter(x=>x.cat==="w" && !x.nobp), d = all.filter(x=>x.cat==="d" && x.lat);
   const wAny = min(w), wNew = min(w.filter(x=>x.cond==="new")), wRet = min(w.filter(x=>x.ret));
   const dAny = min(d), dRet = min(d.filter(x=>x.ret)), dNew = min(d.filter(x=>x.cond==="new"));
   const w2 = wAny===wNew ? wRet : wNew, d2 = dAny===dRet ? dNew : dRet;
