@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-19T07:10:20.697Z",
+  "generated_at": "2026-11-19T07:10:34.600Z",
   "origin": "self-hosted changedetection.io local REST API (sanitized snapshot)",
   "max_age_hours": 4,
   "province": "Ontario",
@@ -196,7 +196,7 @@
       "last_seen_currency": null,
       "stock": "unknown",
       "checked_at": "2026-11-18T09:07:32.000Z",
-      "age_hours": 22,
+      "age_hours": 22.1,
       "status": "paused",
       "issue": "Error - 403 (Access denied) received",
       "checkout_verified": false,
