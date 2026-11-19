@@ -1,0 +1,4 @@
+bestprice-sync.cmd
+*.log
+prices.json.tmp-*
+node_modules/

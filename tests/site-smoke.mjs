@@ -14,6 +14,11 @@ const records={
  '9dbad522-2b27-4cb3-9d8d-a533f781630b':{title:'Dyson Core',url:'https://homeessentialsclearance.com/products/dyson-official-outlet-v15',processor:'restock_diff',paused:false,last_error:false,last_checked:Math.floor(now/1000)-20*3600,processor_state_restock_diff:{price:459.97,in_stock:true,currency:'CAD'}}
 };
 const s=buildSnapshot(records,now);const by=id=>s.offers.find(x=>x.id===id);
+const privateWatch=buildSnapshot({...records,unknown:{title:'secret',url:'https://private.example.test/path?token=private',processor:'restock_diff',paused:false,last_checked:Math.floor(now/1000),last_error:false,processor_state_restock_diff:{price:1,in_stock:true,currency:'CAD'}}},now);
+assert.equal(privateWatch.ignored_unreviewed_watches,1);
+assert.ok(!JSON.stringify(privateWatch).includes('private.example.test'));
+const sanitized=buildSnapshot({...records,'53de55d1-4910-42a9-a40a-af16faf721c9':{...records['53de55d1-4910-42a9-a40a-af16faf721c9'],url:'https://openbox.ca/products/apple-watch-series-11?token=leak-test'}},now);
+assert.equal(sanitized.offers.find(x=>x.id==='53de55d1-4910-42a9-a40a-af16faf721c9').url,null);
 assert.equal(s.counts.tracked,6);assert.equal(s.counts.usable_observations,1);assert.equal(by('53de55d1-4910-42a9-a40a-af16faf721c9').monitored_price,349.99);
 assert.equal(by('86ff3375-d8dc-4228-b543-0b3c01aee607').status,'out_of_stock');
 assert.equal(by('86ff3375-d8dc-4228-b543-0b3c01aee607').monitored_price,null);

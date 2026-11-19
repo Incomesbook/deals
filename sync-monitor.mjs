@@ -29,7 +29,17 @@ const METADATA={
 '86ff3375-d8dc-4228-b543-0b3c01aee607':['apple','S11 GPS (размер уточнить)','new','OpenBox Canada','no'],
 '39a20125-80a2-4f44-91f5-f560d918ff98':['dyson','V15 Detect (комплект уточнить)','refurbished','Neighbor Buy','unknown']
 };
-const isHttps=(v)=>{try{let u=new URL(v);return u.protocol==='https:'&&!u.username&&!u.password&&!u.port}catch{return false}};
+const approvedHosts=['staples.ca','bestbuy.ca','walmart.ca','homeessentialsoutlet.com','homeessentialsclearance.com','dysoncanada.ca','ipowerresale.com','openbox.ca','jumpplus.com','nbbuy.ca','gotcashback.com'];
+function publicUrl(v){
+ try{
+  const u=new URL(v),host=u.hostname.toLowerCase();
+  if(u.protocol!=='https:'||u.username||u.password||u.port||!approvedHosts.some(x=>host===x||host.endsWith('.'+x)))return null;
+  if([...u.searchParams.keys()].some(k=>/token|secret|api.?key|session|access|auth|password|code/i.test(k)))return null;
+  u.hash='';
+  for(const k of [...u.searchParams.keys()])if(/^(utm_|fbclid$|gclid$)/i.test(k))u.searchParams.delete(k);
+  return u.toString();
+ }catch{return null}
+}
 const safeMoney=(v)=>typeof v==='number'&&Number.isFinite(v)&&v>0&&v<100000?Math.round(v*100)/100:null;
 function transform(id,v,now){
  const meta=METADATA[id]||['other','Точная модель не подтверждена','unknown','Не указан','unknown'];
@@ -39,7 +49,7 @@ function transform(id,v,now){
  const currency=/^[A-Z]{3}$/.test(String(p.currency||''))?p.currency:null;
  const amount=safeMoney(p.price);
  const offer=meta[0]!=='bonus'&&v.processor==='restock_diff';
- const error=typeof v.last_error==='string'&&v.last_error.length>0?v.last_error.slice(0,135):null;
+ const error=typeof v.last_error==='string'&&v.last_error.length>0?(v.last_error.includes('403')?'HTTP 403':v.last_error.includes('404')?'HTTP 404':'Ошибка получения или извлечения цены'):null;
  const fresh=offer&&amount!==null&&currency!==null&&p.in_stock===true&&!v.paused&&!error&&age!==null&&age<=MAX_AGE_HOURS;
  let status='stale';
  if(meta[0]==='bonus')status='promotion_only';
@@ -48,7 +58,7 @@ function transform(id,v,now){
  else if(p.in_stock===false)status='out_of_stock';
  else if(fresh&&currency!=='CAD')status='foreign_currency';
  else if(fresh)status='observed';
- const url=isHttps(v.url)?v.url:null;
+ const url=publicUrl(v.url);
  return {id,category:meta[0],model:meta[1],condition:meta[2],seller:meta[3],pickup:meta[4],
   title:String(v.title||meta[1]).slice(0,145),url,
   monitored_price:status==='observed'?amount:null,
@@ -64,13 +74,13 @@ function transform(id,v,now){
  };
 }
 export function buildSnapshot(watches,now=Date.now()){
- const offers=Object.entries(watches).map(([id,v])=>transform(id,v,now));
+ const all=Object.entries(watches);const offers=all.filter(([id])=>Object.hasOwn(METADATA,id)).map(([id,v])=>transform(id,v,now));
  const counts={tracked:offers.length,usable_observations:offers.filter(x=>x.status==='observed').length,
   stalled_or_unavailable:offers.filter(x=>['stale','paused','fetch_error','out_of_stock'].includes(x.status)).length,
   foreign_currency:offers.filter(x=>x.status==='foreign_currency').length,
   promo_only:offers.filter(x=>x.status==='promotion_only').length};
  return {schema_version:1,generated_at:new Date(now).toISOString(),origin:'self-hosted changedetection.io local REST API (sanitized snapshot)',
-  max_age_hours:MAX_AGE_HOURS,province:'Ontario',tax_rate_display_only:0.13,
+  max_age_hours:MAX_AGE_HOURS,ignored_unreviewed_watches:all.length-offers.length,province:'Ontario',tax_rate_display_only:0.13,
   counts,offers,
   disclaimer:'Показанная цена — наблюдение на сайте, НЕ подтверждённая цена покупки в Канаде. Неизвестные доставка, налоги, гарантия и ограничения не равны нулю. Устаревшие и недоступные предложения нельзя называть актуальной лучшей ценой.'};
 }
@@ -95,7 +105,7 @@ async function main(){
  await atomicWrite(payload);
  console.log('SNAPSHOT_OK '+JSON.stringify(payload.counts)+' '+payload.generated_at);
  if(process.argv.includes('--publish')){
-  const allowed=['prices.json','index.html','sync-monitor.mjs','tests/site-smoke.mjs','README.md','archive-2026-11-07.html'];
+  const allowed=['prices.json','index.html','sync-monitor.mjs','tests/site-smoke.mjs','README.md','archive-2026-11-07.html','MAP_BESTPRICE_SITE.md','.gitignore'];
   if(git(['branch','--show-current'])!=='main')throw Error('unexpected git branch; publishing aborted');
   // Never git add -A; audit and other private files remain excluded.
   git(['add','--',...allowed]);
